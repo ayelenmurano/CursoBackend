@@ -1,6 +1,6 @@
 
 var express = require('express')
-var multer  = require('multer')
+
 
 //Iniciamos express
 var app = express()
@@ -35,7 +35,7 @@ server.on("error", (error) => console.log(`Se produjo un error: ${error}`))
 
 //-------FUNCIONES-------
 
-const funciones = require ('./funciones.js')
+const funciones = require ('./controllers/functions.js')
 
 let productos;
 
@@ -44,15 +44,7 @@ app.use('/api/productos',router)
 
 //-------RENDERIZADOS-------
 
-//Cargamos el archivo index en la raiz
-app.get("/",function(req, res){
-    res.redirect("/api/productos/vista")
-})
 
-router.get("/vista",async function(req, res){
-    if(!productos) productos = await  funciones.leer();
-    res.render("pages/index.ejs",{productos})
-})
 
 // router.post('/vista', function(req,res){
 //     console.log(req.body);
@@ -68,69 +60,6 @@ router.get("/vista",async function(req, res){
     
 // })
 
-
-
-
-//-------POSTMAN-------
-
-router.get('/listar',(req, res)=>{
-    console.log('request recibido');
-   // var longitud = productos.length;
-   if ( JSON.stringify(productos) === '[]'){
-    res.json ({error:'no hay productos cargados'})
-   } else {
-    res.json({items: productos})
-   }   
-})
-
-router.get('/listar/:id',(req, res)=>{
-    console.log('request recibido');
-    var longitud = productos.length;
-    var id = req.params.id;
-    if ( id > longitud || id < 1){
-        res.json ({error:'producto no encontrado'})
-    } else {
-        var producto = productos[id-1]
-
-        res.json({items: producto})
-    }
-    
-})
-var upload = multer({ dest: 'uploads/' })
-
-router.post('/guardar',upload.array('title','price','thumbnail'), (req,res)=>{
-    const producto = req.body;
-    var longitud = productos.length;
-    producto.id= longitud+1;
-    productos.push(producto);
-    escribir(productos);
-    res.json({items: productos})
-})
-
-router.put('/:id',(req, res)=>{
-    console.log('request recibido');
-    var longitud = productos.length;
-    var id = req.params.id;
-    var actualizar = req.body
-    if ( id > longitud || id < 1){
-        res.json ({error:'producto no encontrado'})
-    } else {
-        productos[id-1] = actualizar
-        var producto = productos[id-1]
-        escribir(productos)
-
-        res.json({items: producto})
-    }
-})
-
-router.delete('/:id',(req,res)=>{
-    var id = req.params.id
-    var producto = productos[id-1]
-    productos.splice(id-1,1)
-    escribir(productos)
-
-    res.json({items: producto})
-})
 
 //------Socket.io------
 io.on('connection', socket => {

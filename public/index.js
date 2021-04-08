@@ -1,4 +1,5 @@
 const socket = io()
+
 //Permite empezar a usar los sockets desde el lado cliente
 //cliente
 
@@ -22,6 +23,5 @@ function nuevoProducto(){
 
 socket.on('nuevoProducto', productos =>{
     console.log('hola')
-    let template=ejs.compile("pages/index.ejs")
-    template({productos})
+    location.reload();
 })

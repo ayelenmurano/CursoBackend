@@ -1,4 +1,4 @@
-var fs = require('fs')
+
 var express = require('express')
 var multer  = require('multer')
 
@@ -34,30 +34,10 @@ server.on("error", (error) => console.log(`Se produjo un error: ${error}`))
 
 
 //-------FUNCIONES-------
-let productos
 
-async function leer(){
- try{
-    if(!fs.existsSync('./productos.txt')){
-        fs.writeFileSync('./productos.txt','[]')
-    }
-    var contenido = await fs.promises.readFile('./productos.txt','utf-8');
-    productos = JSON.parse(contenido);
- } catch (error) {
-    console.log('Se produjo un error al leer el archivo.')
- }
-   
-};
+const funciones = require ('./funciones.js')
 
-async function escribir(items){
-    try{   
-        await fs.promises.writeFile('./productos.txt',JSON.stringify(items)) 
-    } catch{
-        console.log('Se produjo un error al escribir el archivo.')
-    }
-}
-
-leer();
+let productos;
 
 app.use('/api/productos',router)
 
@@ -69,7 +49,8 @@ app.get("/",function(req, res){
     res.redirect("/api/productos/vista")
 })
 
-router.get("/vista",function(req, res){
+router.get("/vista",async function(req, res){
+    if(!productos) productos = await  funciones.leer();
     res.render("pages/index.ejs",{productos})
 })
 
@@ -160,12 +141,14 @@ io.on('connection', socket => {
     //Enviamos un evento al cliente
     //socket.emit ('mi mensaje', 'ESte es un mensaje del servidor')
 
-    socket.on('nuevoProducto', (producto)=> {
+    socket.on('nuevoProducto',async (producto)=> {
         var longitud = productos.length;
         console.log(longitud)
         producto.id= longitud+1
         productos.push(producto)
-        escribir(productos);
+        await funciones.escribir(productos);
+        
+        
 
         io.sockets.emit('nuevoProducto',productos)
         

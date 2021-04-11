@@ -9,8 +9,8 @@
         <style>
             body { padding-top:50px; }
         </style>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="/index.js"></script>
+        
+        
     </head>
 
     <body class="container">
@@ -39,6 +39,8 @@
                 <div class="col-sm-4">
                     <div class="well">
                         <%- include('../partials/formulario'); %>
+                        <br>
+                        <%- include('../partials/chat'); %>
                     </div>
                 </div>
             </div>
@@ -49,6 +51,8 @@
         <footer>
             <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
         </footer>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/index.js"></script>
 
     </body>
 </html>

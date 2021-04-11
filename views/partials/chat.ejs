@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+    <div class="container">
+        <h3 class="titulo">Mensajeria</h3>
+        
+        <form id="form-chat">
+        <div class="input-group mb-3">
+            <input id="email" type="text" class="form-control" placeholder="Email" required>
+        </div>
+        
+        <hr>
+        
+        <div id="mensajes" class="mensajes">
+            <% mensajes.forEach(function(item){ %>
+                <h10><b><%= item.email %></b><br>[<%= item.fecha %>]: <i><%= item.mensaje %></i><br></h10>
+            <% }) %>
+        </div>
+
+        <div class="input-group mb-3">
+            <input id="mensaje" type="text" class="form-control" placeholder="Ingresá un mensaje" required>
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-primary" onclick="nuevoMensaje()" value="Enviar">
+            </div>
+        </div>
+        </form>
+    </div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+
+</body>
+</html>
+
+

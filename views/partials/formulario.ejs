@@ -1,15 +1,31 @@
-    <h1 class="navbar-brand">Formulario de productos</h1>
-    <form>
-        <label for="titulo">Titulo</label>
-        <input type="text" name="titulo" id="titulo">
-        <br>
-        <label for="precio">Precio</label>
-        <input type="text" name="precio" id="precio">
-        <br>
-        <label for="thumbnail">Thumbnail</label>
-        <input type="text" name="thumbnail" id="thumbnail">
-        <br>
-        <input type="submit" value="Guardar" onclick="nuevoProducto()">
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+</head>
+<body>
+
+<div class="container">    
+    <h2 class="navbar-brand">Formulario de productos</h2>
+    <form id="form" action="/productos/guardar/" method="post">
+        <label for="titulo" class="mensajes"><i>Titulo</i></label> 
+        <input type="text" class="form-control" name="titulo" id="titulo">
+        <br>
+        <label for="precio" class="mensajes"><i>Precio</i></label>
+        <input type="text" class="form-control" name="precio" id="precio">
+        <br>
+        <label for="thumbnail" class="mensajes"><i>Thumbnail</i></label>
+        <input type="text" class="form-control" name="thumbnail" id="thumbnail">
+        <br>
+        <input type="submit" class="btn btn-primary" value="Guardar" onclick="nuevoProducto()">
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+</body>
+</html>
 

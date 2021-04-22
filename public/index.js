@@ -28,12 +28,12 @@ function nuevoProducto(){
     socket.emit('client-message', {title, price, thumbnail})
 }
 
-
 function nuevoMensaje(){
-
+    console.log({email, fecha, mensaje})
     let email = document.getElementById("email").value
     let fecha = fechaFormateada
     let mensaje = document.getElementById("mensaje").value
+    
 
     socket.emit('client-chat-message', {email, fecha, mensaje})
 

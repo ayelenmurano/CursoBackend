@@ -11,14 +11,23 @@
 <div class="container">    
     <h2 class="navbar-brand">Formulario de productos</h2>
     <form id="form" action="/productos/guardar/" method="post">
-        <label for="titulo" class="mensajes"><i>Titulo</i></label> 
-        <input type="text" class="form-control" name="titulo" id="titulo">
+        <label for="nombre" class="mensajes"><i>Nombre</i></label> 
+        <input type="text" class="form-control" name="nombre" id="nombre">
+        <br>
+        <label for="descripcion" class="mensajes"><i>Descripción</i></label>
+        <input type="text" class="form-control" name="descripcion" id="descripcion">
+        <br>
+        <label for="codigo" class="mensajes"><i>Código</i></label>
+        <input type="text" class="form-control" name="codigo" id="codigo">
+        <br>
+        <label for="thumbnail" class="mensajes"><i>Foto</i></label>
+        <input type="text" class="form-control" name="thumbnail" id="thumbnail">
         <br>
         <label for="precio" class="mensajes"><i>Precio</i></label>
         <input type="text" class="form-control" name="precio" id="precio">
         <br>
-        <label for="thumbnail" class="mensajes"><i>Thumbnail</i></label>
-        <input type="text" class="form-control" name="thumbnail" id="thumbnail">
+        <label for="stock" class="mensajes"><i>Stock</i></label>
+        <input type="text" class="form-control" name="stock" id="stock">
         <br>
         <input type="submit" class="btn btn-primary" value="Guardar" onclick="nuevoProducto()">
     </form>

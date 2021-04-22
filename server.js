@@ -1,71 +1,37 @@
-const express = require('express');
-
+"use strict";
+var express = require('express');
 //Iniciamos express
-const app = express();
-
+var app = express();
 //Le pasamos a http la constante app
-const http = require('http').createServer(app);
-
+var http = require('http').createServer(app);
 //Le pasamos al constante http a socket.io
-const io = require('socket.io')(http);
-
-
-
+var io = require('socket.io')(http);
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
-app.use(express.static("public"))
-app.set("view engine", "ejs")
-app.set("views", "./views")
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+app.set("views", "./views");
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 //------RUTAS--------
-const { router } = require('./routes/productos.js');
-app.use('/productos', router)
-
+var routerProduct = require('./routes/routesProduct');
+app.use('/productos', routerProduct);
+var routerCarrito = require('./routes/routesCarrito');
+app.use('/carrito', routerCarrito);
 //-------FUNCIONES-------
-const funciones = require ('./controllers/functions.js')
-
-
-// router.post('/vista', function(req,res){
-//     console.log(req.body);
-//     const {titulo, precio, thumbnail} = req.body;
-//     const producto = {titulo, precio, thumbnail};
-//     var longitud = productos.length;
-//     producto.id= longitud+1;
-//     productos.push(producto);
-//     escribir(productos);
-
-//     res.render("pages/index.ejs",{productos})   
-// })
-
-
+var mensajes = require('./modules/mensajes.js');
 //------Socket.io------
-io.on('connection', socket => {
-
+io.on('connection', function (socket) {
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
-    console.log('Usuario conectado')
-    
-    socket.on('client-message', (producto) =>
-    {
+    console.log('Usuario conectado');
+    socket.on('client-message', function (producto) {
         io.emit('server-message', (producto));
     });
-
-    socket.on('client-chat-message', async (datos) => 
-    {
-        await funciones.guardarMensaje(datos);
-        io.emit('server-chat-message', (datos));
+    socket.on('client-chat-message', function (mensaje) {
+        io.emit('server-chat-message', (mensaje));
     });
-
     //Nos suscribimos a un evento enviada desde el cliente
-
-})
-
-
-
-
-
-const server = http.listen(8080, () =>{
-    console.log(`Escuchando en el puerto ${server.address().port}`)
-})
-
-server.on("error", (error) => console.log(`Se produjo un error: ${error}`))
+});
+var server = http.listen(8080, function () {
+    console.log("Escuchando en el puerto " + server.address().port);
+});
+server.on("error", function (error) { return console.log("Se produjo un error: " + error); });

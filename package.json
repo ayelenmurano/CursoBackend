@@ -4,11 +4,15 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon node server.js"
+    "test": "nodemon node server.js",
+    "ServerES6toJS5" : ".\\node_modules\\.bin\\babel ./server.es6.js -o ./server.js -w",
+    "ServerTStoJS5" : ".\\node_modules\\.bin\\tsc -w"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.0.0-beta2",
     "ejs": "^3.1.6",

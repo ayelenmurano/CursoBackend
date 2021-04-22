@@ -11,25 +11,25 @@
     <div class="container">
         <h3 class="titulo">Mensajeria</h3>
         
-        <form id="form-chat">
-        <div class="input-group mb-3">
-            <input id="email" type="text" class="form-control" placeholder="Email" required>
-        </div>
-        
-        <hr>
-        
-        <div id="mensajes" class="mensajes">
-            <% mensajes.forEach(function(item){ %>
-                <h10><b><%= item.email %></b><br>[<%= item.fecha %>]: <i><%= item.mensaje %></i><br></h10>
-            <% }) %>
-        </div>
-
-        <div class="input-group mb-3">
-            <input id="mensaje" type="text" class="form-control" placeholder="Ingresá un mensaje" required>
-            <div class="input-group-append">
-                <input type="submit" class="btn btn-primary" onclick="nuevoMensaje()" value="Enviar">
+        <form id="form-chat" action="/productos/guardarMensaje/" method="post">
+            <div class="input-group mb-3">
+                <input id="email" type="text" class="form-control" placeholder="Email" required>
             </div>
-        </div>
+            
+            <hr>
+            
+            <div id="mensajes" class="mensajes">
+                <% mensajes.forEach(function(item){ %>
+                    <h10><b><%= item.email %></b><br>[<%= item.fecha %>]: <i><%= item.mensaje %></i><br></h10>
+                <% }) %>
+            </div>
+
+            <div class="input-group mb-3" >
+                <input id="mensaje" type="text" class="form-control" placeholder="Ingresá un mensaje" required>
+                <div class="input-group-append">
+                    <input type="submit" class="btn btn-primary" value="Enviar" onclick="nuevoMensaje()">
+                </div>
+            </div>
         </form>
     </div>
 

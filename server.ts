@@ -19,40 +19,30 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 //------RUTAS--------
-const { router } = require('./routes/productos.js');
-app.use('/productos', router)
+const routerProduct = require('./routes/routesProduct');
+app.use('/productos', routerProduct)
+
+const routerCarrito = require('./routes/routesCarrito');
+app.use('/carrito', routerCarrito)
+
 
 //-------FUNCIONES-------
-const funciones = require ('./controllers/functions.js')
-
-
-// router.post('/vista', function(req,res){
-//     console.log(req.body);
-//     const {titulo, precio, thumbnail} = req.body;
-//     const producto = {titulo, precio, thumbnail};
-//     var longitud = productos.length;
-//     producto.id= longitud+1;
-//     productos.push(producto);
-//     escribir(productos);
-
-//     res.render("pages/index.ejs",{productos})   
-// })
+const mensajes = require ('./modules/mensajes.js')
 
 
 //------Socket.io------
-io.on('connection', socket => {
+io.on('connection', function(socket:any)  {
 
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
     console.log('Usuario conectado')
     
-    socket.on('client-message', (producto) =>
+    socket.on('client-message', (producto: any) =>
     {
         io.emit('server-message', (producto));
     });
 
-    socket.on('client-chat-message', (mensaje) => 
-    {
-        funciones.guardarMensaje(mensaje);
+    socket.on('client-chat-message', (mensaje: any) => 
+    {        
         io.emit('server-chat-message', (mensaje));
     });
 
@@ -68,4 +58,4 @@ const server = http.listen(8080, () =>{
     console.log(`Escuchando en el puerto ${server.address().port}`)
 })
 
-server.on("error", (error) => console.log(`Se produjo un error: ${error}`))
+server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))

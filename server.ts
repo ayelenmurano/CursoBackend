@@ -9,6 +9,7 @@ const http = require('http').createServer(app);
 //Le pasamos al constante http a socket.io
 const io = require('socket.io')(http);
 
+let admin = true
 
 
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
@@ -47,6 +48,11 @@ io.on('connection', function(socket:any)  {
     });
 
     //Nos suscribimos a un evento enviada desde el cliente
+    socket.on('client-carrito-message', (mensaje: any) => 
+    {        
+        io.emit('server-carrito-message', (mensaje));
+    });
+
 
 })
 

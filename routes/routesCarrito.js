@@ -3,10 +3,12 @@ const routerCarrito = express.Router();
 const controllers = require("../controllers/controllersCarrito");
 const multer  = require('multer')
 
+routerCarrito.get("/listar", controllers.listar )
+
 routerCarrito.get("/listar/:id", controllers.listarById )
 
-routerCarrito.get("/agregar/:id_producto", controllers.agregarById )
+routerCarrito.get("/agregar/:id", controllers.agregarById )
 
-routerCarrito.delete("/:id", controllers.borrar )
+routerCarrito.get("/borrar/:id", controllers.borrar )
 
 module.exports = routerCarrito;

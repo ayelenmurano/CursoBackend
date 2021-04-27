@@ -21,11 +21,14 @@ let fechaFormateada= `${fecha.getDate()}/${fecha.getMonth()+1}/${fecha.getFullYe
 
 function nuevoProducto(){
 
-    let title = document.getElementById("titulo").value
-    let price = document.getElementById("precio").value
-    let thumbnail = document.getElementById("thumbnail").value
+    let nombre = document.getElementById("nombre").value
+    let descripcion = document.getElementById("descripcion").value
+    let codigo = document.getElementById("codigo").value
+    let foto = document.getElementById("foto").value
+    let precio = document.getElementById("precio").value
+    let stock = document.getElementById("stock").value
 
-    socket.emit('client-message', {title, price, thumbnail})
+    socket.emit('client-message', {nombre, descripcion, codigo, foto, precio, stock})
 }
 
 function nuevoMensaje(){
@@ -38,6 +41,13 @@ function nuevoMensaje(){
     socket.emit('client-chat-message', {email, fecha, mensaje})
 
   //  listaMensajes.innerHTML += `<b>${datosMensaje.email}</b>[${fechaFormateada}]: <i>${datosMensaje.mensaje}</i><br>`
+}
+
+function nuevoProductoCarrito(){
+
+    let id = document.getElementById("id").value
+
+    socket.emit('client-message', {id})
 }
 
 
@@ -59,5 +69,20 @@ socket.on('server-chat-message', (datos) =>
 //     console.log('hola')
 //     location.reload();
 // })
+
+
+document.getElementById('agregarProducto').addEventListener('click', function(){
+     const idProducto = document.getElementById('id')
+    // const productosCarrito = carrito.leer()
+    // const productToAdd = ""
+    // for (let producto in productosCarrito){
+    //     if ( productosCarrito[producto].id === idProducto){
+    //         productoToAdd = productos[producto]
+    //     }
+    // }
+    console.log(`El producto a agregar es ${idProducto}`)
+    
+})
+
 
 

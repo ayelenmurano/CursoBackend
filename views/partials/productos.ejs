@@ -19,9 +19,10 @@
                             <td> <%= producto.nombre %> </td>
                             <td> <%= producto.descripcion %> </td>
                             <td> <%= producto.codigo %> </td>
-                            <td> <img src=<%=producto.thumbnail %> width="50" height="50"> </td>
+                            <td> <img src=<%=producto.foto %> width="50" height="50"> </td>
                             <td> <%= producto.precio %> </td>
                             <td> <%= producto.stock %> </td>
+                            <td> <a href='/carrito/agregar/<%= producto.id %>' class="btn btn-primary">Agregar</a> </td>
                         </tr>
                     <% }) %>
                     <tr>

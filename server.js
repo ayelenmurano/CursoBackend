@@ -30,6 +30,9 @@ io.on('connection', function (socket) {
         io.emit('server-chat-message', (mensaje));
     });
     //Nos suscribimos a un evento enviada desde el cliente
+    socket.on('client-carrito-message', function (mensaje) {
+        io.emit('server-carrito-message', (mensaje));
+    });
 });
 var server = http.listen(8080, function () {
     console.log("Escuchando en el puerto " + server.address().port);

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="container">    
+    <h2 class="navbar-brand">Formulario de productos</h2>
+    <form id="form">
+        <br>
+        <label for="idProducto" class="mensajes"><i>Id del producto</i></label>
+        <input type="text" class="form-control" name="id" id="idProducto">
+        <br>
+        <button class="btn btn-primary" id='agregarProducto'>Agregar Al Carrito</button>
+        <input type="submit" class="btn btn-primary" value="Eliminar" routerLink="/productos">
+        <input type="submit" class="btn btn-primary" value="Volver" onclick="volverAProductos()">
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+
+</body>
+</html>
+

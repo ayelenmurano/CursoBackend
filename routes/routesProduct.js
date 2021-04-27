@@ -11,7 +11,9 @@ routerProduct.get('/listar', controllers.listar )
 
 routerProduct.get('/listar/:id',  controllers.listarById )
 
-routerProduct.post('/guardar', upload.array('nombre','descripcion','codigo','thumbnail','precio','stock'), controllers.guardarProducto )
+routerProduct.get('/agregarProductos',  controllers.agregarProducto )
+
+routerProduct.post('/guardar', upload.array('nombre','descripcion','codigo','foto','precio','stock'), controllers.guardarProducto )
 
 routerProduct.post('/guardarMensaje', upload.array('email','mensaje'), controllers.guardarMensaje )
 

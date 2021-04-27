@@ -4,13 +4,27 @@ const Mensajes = require ('../modules/mensajes.js')
 console.log(Mensajes)
 let product = new Productos()
 let message = new Mensajes()
+
+let admin = true
  
 module.exports = {
     
     consultar: (req, res) => {
         const productos = product.leer()
-        const mensajes = message.leer()
-        res.render("pages/index.ejs", {productos, mensajes})
+        res.render("pages/index.ejs", {productos})
+    },
+
+    agregarProducto: (req, res) => {
+
+        const productos = product.leer()
+        if(admin){
+           
+            res.status(200).render("pages/indexAdmin.ejs", {productos})
+        }
+        if(!admin){
+            res.status(200).render('pages/acceso_denegado.ejs',{productos})
+        }
+        
     },
 
     listar: (req,res) => {
@@ -33,7 +47,7 @@ module.exports = {
         if ( id > longitud || id < 1){
             res.json ({error:'producto no encontrado'})
         } else {
-            const productos = functions.leer()
+            const productos = product.leer()
             var producto = productos[id-1]
     
             res.json({items: producto})
@@ -57,6 +71,7 @@ module.exports = {
         let fechaFormateada= `${fecha.getDate()}/${fecha.getMonth()+1}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
         datos.fecha=fechaFormateada        
         const productos = await message.guardar(datos)
+
         res.redirect('http://localhost:8080/productos');
 
     },

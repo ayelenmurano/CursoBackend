@@ -56,7 +56,47 @@ io.on('connection', function(socket:any)  {
 
 })
 
+// const {options} = require('./options/mariaDB')
+// const knex = require('knex')(options)
 
+// knex.schema.createTable('productos', function(table: any) {
+//     table.increments("id")
+//     table.string('nombre',15)
+//     table.float('precio',10,2)
+//     table.string('descripcion',100)
+//     table.string('codigo',15)
+//     table.string('foto',150)
+//     table.integer('stock')
+//     table.timestamp('fecha')
+// })
+// .then( ()=>{
+//     console.log('Tabla creada')
+// })
+// .catch( async(e:any)=>{
+//     console.log(e)
+// })
+// .finally(()=>{
+//     knex.destroy()
+// })
+
+
+// const {options} = require('./options/sqlite3')
+// const knex = require('knex')(options)
+
+// knex.schema.createTable('mensajes', function(table: any) {
+//     table.increments("id")
+//     table.string('email',15)
+//     table.timestamp('fecha')
+// })
+// .then( ()=>{
+//     console.log('Tabla creada')
+// })
+// .catch( async(e:any)=>{
+//     console.log(e)
+// })
+// .finally(()=>{
+//     knex.destroy()
+// })
 
 
 
@@ -65,3 +105,7 @@ const server = http.listen(8080, () =>{
 })
 
 server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))
+
+function table(arg0: string, table: any, arg2: (any: any) => void) {
+    throw new Error("Function not implemented.");
+}

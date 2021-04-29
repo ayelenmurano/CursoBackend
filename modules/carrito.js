@@ -56,8 +56,15 @@ class Productos {
     async borrar(id) {
 
         const productos = this.leer()
-        var producto = productos[id-1]
-        productos.splice(id-1,1)
+        let idProducto = ""
+        for (let producto in productos){ 
+            if (productos[producto].id == id) {
+                idProducto = producto
+                break
+            }
+        }
+        const producto = productos[idProducto]
+        productos.splice(idProducto,1)
         await this.escribir(productos)
     
         return producto

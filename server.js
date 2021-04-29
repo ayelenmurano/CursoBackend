@@ -6,6 +6,7 @@ var app = express();
 var http = require('http').createServer(app);
 //Le pasamos al constante http a socket.io
 var io = require('socket.io')(http);
+var admin = true;
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -34,7 +35,47 @@ io.on('connection', function (socket) {
         io.emit('server-carrito-message', (mensaje));
     });
 });
+// const {options} = require('./options/mariaDB')
+// const knex = require('knex')(options)
+// knex.schema.createTable('productos', function(table: any) {
+//     table.increments("id")
+//     table.string('nombre',15)
+//     table.float('precio',10,2)
+//     table.string('descripcion',100)
+//     table.string('codigo',15)
+//     table.string('foto',150)
+//     table.integer('stock')
+//     table.timestamp('fecha')
+// })
+// .then( ()=>{
+//     console.log('Tabla creada')
+// })
+// .catch( async(e:any)=>{
+//     console.log(e)
+// })
+// .finally(()=>{
+//     knex.destroy()
+// })
+// const {options} = require('./options/sqlite3')
+// const knex = require('knex')(options)
+// knex.schema.createTable('mensajes', function(table: any) {
+//     table.increments("id")
+//     table.string('email',15)
+//     table.timestamp('fecha')
+// })
+// .then( ()=>{
+//     console.log('Tabla creada')
+// })
+// .catch( async(e:any)=>{
+//     console.log(e)
+// })
+// .finally(()=>{
+//     knex.destroy()
+// })
 var server = http.listen(8080, function () {
     console.log("Escuchando en el puerto " + server.address().port);
 });
 server.on("error", function (error) { return console.log("Se produjo un error: " + error); });
+function table(arg0, table, arg2) {
+    throw new Error("Function not implemented.");
+}

@@ -1,23 +1,36 @@
 const fs = require('fs')
+const {options} = require('../options/mariaDB')
+const knex = require('knex')(options)
 
 class Productos {
 
-    leer() {
+    async leer() {
 
         try {
 
-           if(!fs.existsSync('../productos.txt')){
-               fs.writeFileSync('../productos.txt','[]')
-           }
+           let productos = await knex.select('*').from('productos')
+           console.log(JSON.parse(JSON.stringify(productos)))
 
-           const contenido = fs.readFileSync('productos.txt','utf-8');
-           let productos = JSON.parse(contenido)
-
-           return productos
+           return JSON.parse(JSON.stringify(productos))
     
         } catch (error) {
     
            console.log('Se produjo un error al leer el archivo.' + error)
+        }
+          
+    }
+
+    async buscarPorId(id) {
+
+        try {
+
+           const producto = await knex('productos').where('id','=',id).select('*')
+           console.log(`hola ${JSON.parse(JSON.stringify(producto[0])}`)
+           return JSON.parse(JSON.stringify(producto[0]))
+    
+        } catch (error) {
+    
+           console.log('Se produjo un error al leer el archivo--.' + error)
         }
           
     }
@@ -35,20 +48,19 @@ class Productos {
 
     async guardar(producto) {
 
-        const productos = this.leer()
-        const longitud = productos.length
+        const idMayor = await knex('productos').max('id')
         const productoAgregar = {
-            id: longitud+1,
+            id: idMayor+1,
             nombre: producto.nombre,
             precio: producto.precio,
             descripcion:producto.descripcion,
             codigo: producto.codigo,
             foto: producto.foto,
-            stock: producto.stock,
-            timestamp: Date.now()
+            stock: producto.stock
         }
-        productos.push(productoAgregar)
-        await this.escribir(productos)
+        await knex('productos').insert(productoAgregar)
+            .then(console.log('producto agregado'))
+        let productos = this.leer()
     
         return productos
     
@@ -56,10 +68,8 @@ class Productos {
 
     async borrar(id) {
 
-        const productos = this.leer()
-        var producto = productos[id-1]
-        productos.splice(id-1,1)
-        await this.escribir(productos)
+        await knex('productos').where('id','=',id).del()
+        const producto = await knex('productos').where('id','=',id).select()
     
         return producto
     }

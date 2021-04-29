@@ -21,15 +21,9 @@ module.exports = {
         res.render("pages/indexCarrito.ejs", {productos})
     },
 
-    agregarById: (req, res) => {
-       console.log('hola')
-       const productosEnGeneral = product.leer()
-       
-       const producto = productosEnGeneral.find( producto => {
-           return producto.id == req.params.id 
-        })
-
-       console.log(`producto: ${producto}`)
+    agregarById: async (req, res) => {
+        
+       const producto = await product.buscarPorId(req.params.id)
        if(!producto){
            return res.status(400).send({Error: "No se encontro producto con dicho id"})
        }

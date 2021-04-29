@@ -9,14 +9,14 @@ let admin = true
  
 module.exports = {
     
-    consultar: (req, res) => {
-        const productos = product.leer()
+    consultar: async (req, res) => {
+        const productos = await product.leer()
         res.render("pages/index.ejs", {productos})
     },
 
-    agregarProducto: (req, res) => {
+    agregarProducto: async (req, res) => {
 
-        const productos = product.leer()
+        const productos = await product.leer()
         if(admin){
            
             res.status(200).render("pages/indexAdmin.ejs", {productos})
@@ -27,9 +27,9 @@ module.exports = {
         
     },
 
-    listar: (req,res) => {
+    listar: async (req,res) => {
 
-        const productos = product.leer()
+        const productos = await product.leer()
         if ( JSON.stringify(productos) === '[]'){     
             res.json ({error:'no hay productos cargados'})
            } else {
@@ -37,19 +37,15 @@ module.exports = {
            }   
     },
 
-    listarById: (req,res) => {
+    listarById: async (req,res) => {
 
-        const productos = product.leer()
+        const productos = await product.leer()
         console.log('request recibido')
-        var longitud = productos.length
-        var id = req.params.id;
+        const producto = await product.buscarPorId(req.params.id)
     
-        if ( id > longitud || id < 1){
+        if ( !producto ){
             res.json ({error:'producto no encontrado'})
         } else {
-            const productos = product.leer()
-            var producto = productos[id-1]
-    
             res.json({items: producto})
         }
     },
@@ -100,8 +96,7 @@ module.exports = {
 
     borrar: async (req, res)=>{
 
-        var id = req.params.id
-        const producto = await product.borrar(id)
+        const producto = await product.borrar(req.params.id)
     
         res.json({items: producto})
     }

@@ -1,6 +1,6 @@
-const Productos = require ('../modules/productos.js')
-const Mensajes = require ('../modules/mensajes.js')
-const Carrito = require ('../modules/carrito.js')
+const Productos = require ('../utils/productos.js')
+const Mensajes = require ('../utils/mensajes.js')
+const Carrito = require ('../utils/carrito.js')
 //const { restart } = require('nodemon')
 
 console.log(Mensajes)

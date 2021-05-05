@@ -1,5 +1,5 @@
-const Productos = require ('../modules/productos.js')
-const Mensajes = require ('../modules/mensajes.js')
+const Productos = require ('../utils/productos.js')
+const Mensajes = require ('../utils/mensajes.js')
 
 console.log(Mensajes)
 let product = new Productos()

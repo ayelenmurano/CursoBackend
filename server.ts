@@ -28,7 +28,7 @@ app.use('/carrito', routerCarrito)
 
 
 //-------FUNCIONES-------
-const mensajes = require ('./modules/mensajes.js')
+const mensajes = require ('./utils/mensajes.js')
 
 
 //------Socket.io------

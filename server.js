@@ -19,7 +19,7 @@ app.use('/productos', routerProduct);
 var routerCarrito = require('./routes/routesCarrito');
 app.use('/carrito', routerCarrito);
 //-------FUNCIONES-------
-var mensajes = require('./modules/mensajes.js');
+var mensajes = require('./utils/mensajes.js');
 //------Socket.io------
 io.on('connection', function (socket) {
     //"connection" se ejecuta la primera vez que se abre una nueva conexion

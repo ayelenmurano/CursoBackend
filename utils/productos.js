@@ -25,7 +25,7 @@ class Productos {
         try {
 
            const producto = await knex('productos').where('id','=',id).select('*')
-           console.log(`hola ${JSON.parse(JSON.stringify(producto[0])}`)
+           console.log(`hola ${JSON.parse(JSON.stringify(producto[0]))}`)
            return JSON.parse(JSON.stringify(producto[0]))
     
         } catch (error) {

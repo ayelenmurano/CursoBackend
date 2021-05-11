@@ -38,17 +38,36 @@
             
                 <div class="col-sm-4">
                     <div class="well">
-
+     
                     </div>
                 </div>
+            </div>
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" >Mensajes</a>
+                    <div>
+                        <ul id="listado-msjs">
+                       
+                        </ul>
+                    </div>
+                    
+                    <div id="env-msjs">
+                        <input id="email-nuevo-msj"  placeholder="Email">
+                        <input id="nuevo-msj"  placeholder="Nuevo mensaje">
+                        <button id="btn-msj" onclick="enviarMensaje()">Enviar</button>
+                    </div>
+                </nav>
+                
+                
             </div>
 
             
         </main>
 
         <footer>
-            <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
+            <p class="text-center text-muted">© Copyright 2021</p>
         </footer>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/index.js"></script>
 

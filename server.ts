@@ -37,21 +37,26 @@ io.on('connection', function(socket:any)  {
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
     console.log('Usuario conectado')
     
-    socket.on('client-message', (producto: any) =>
-    {
-        io.emit('server-message', (producto));
-    });
+    // socket.on('client-message', (producto: any) =>
+    // {
+    //     io.emit('server-message', (producto));
+    // });
 
     socket.on('client-chat-message', (mensaje: any) => 
-    {        
+    {
+                
         io.emit('server-chat-message', (mensaje));
     });
 
-    //Nos suscribimos a un evento enviada desde el cliente
-    socket.on('client-carrito-message', (mensaje: any) => 
-    {        
-        io.emit('server-carrito-message', (mensaje));
-    });
+    // //Nos suscribimos a un evento enviada desde el cliente
+    // socket.on('client-carrito-message', (mensaje: any) => 
+    // {        
+    //     io.emit('server-carrito-message', (mensaje));
+    // });
+
+    socket.on('disconnect', ()=> {
+        console.log('Usuario desconectado')
+    })
 
 
 })

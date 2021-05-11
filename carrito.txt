@@ -1,1 +1,1 @@
-[{"id":3,"nombre":"Computadora","precio":1200,"descripcion":"Dispositivo","codigo":"sdfj","foto":"https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_word-512.png","stock":1,"timestamp":1620177661862}]
+[{"id":3,"nombre":"Word","precio":456,"descripcion":"Elemento","codigo":"dsdsfg","foto":null,"stock":1,"timestamp":1620695857005},{"id":4,"nombre":"Word","precio":456,"descripcion":"Elemento","codigo":"dsdsfg","foto":null,"stock":1,"timestamp":1620695861174}]

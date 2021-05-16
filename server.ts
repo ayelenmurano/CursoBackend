@@ -9,8 +9,15 @@ const http = require('http').createServer(app);
 //Le pasamos al constante http a socket.io
 const io = require('socket.io')(http);
 
+//import model from './models/mensajes';
+//import * as model from './models/mensajes';
+import model from './models/mensajes';
+
+const {CRUD} = require('./options/mongoose')
+
 let admin = true
 
+CRUD()
 
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"))
@@ -42,10 +49,16 @@ io.on('connection', function(socket:any)  {
     //     io.emit('server-message', (producto));
     // });
 
-    socket.on('client-chat-message', (mensaje: any) => 
+    socket.on('client-chat-message', async (mensajeNuevo: any) => 
     {
-                
-        io.emit('server-chat-message', (mensaje));
+        const mensaje = { 
+            email: mensajeNuevo.nuevoEmail, 
+            fecha: new Date(),
+            mensaje: mensajeNuevo.nuevoMensaje
+        };
+        const mensajeSaveModel = new model(mensaje);
+        let mensajeSave = await mensajeSaveModel.save()
+        io.emit('server-chat-message', (mensajeNuevo));
     });
 
     // //Nos suscribimos a un evento enviada desde el cliente

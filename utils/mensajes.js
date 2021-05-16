@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs');
+const { model } = require('mongoose');
 
 class Mensajes {
 
@@ -28,12 +29,14 @@ class Mensajes {
     leer() {
 
         try {
-           if(!fs.existsSync('../chat.txt')){
-               fs.writeFileSync('../chat.txt','')
-           }
+        //    if(!fs.existsSync('../chat.txt')){
+        //        fs.writeFileSync('../chat.txt','')
+        //    }
            
-           const contenidoMensajes = fs.readFileSync('chat.txt','utf-8');
-           let mensajes = JSON.parse(contenidoMensajes)
+        //    const contenidoMensajes = fs.readFileSync('chat.txt','utf-8');
+        //    let mensajes = JSON.parse(contenidoMensajes)
+           let mensajes = model.mensajes.find({})
+
            return mensajes
     
         } catch (error) {

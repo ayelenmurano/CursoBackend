@@ -14,6 +14,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% if ( productos == undefined || productos.length == 0) { %>
+                        <tr> <td>No hay productos </td> </tr>
+                    <% } else { %>
                     <% productos.forEach(function(producto){ %>
                         <tr>
                             <td> <%= producto.nombre %> </td>
@@ -24,7 +27,7 @@
                             <td> <%= producto.stock %> </td>
                             <td> <a href='/carrito/agregar/<%= producto.id %>' class="btn btn-primary">Agregar</a> </td>
                         </tr>
-                    <% }) %>
+                    <% }) } %>
                     <tr>
 
                     </tr>

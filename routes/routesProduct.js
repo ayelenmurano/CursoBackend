@@ -9,6 +9,8 @@ routerProduct.get("/", controllers.consultar )
 
 routerProduct.get('/listar', controllers.listar )
 
+routerProduct.get('/vista-test', controllers.vistaTest )
+
 routerProduct.get('/listar/:id',  controllers.listarById )
 
 routerProduct.get('/agregarProductos',  controllers.agregarProducto )

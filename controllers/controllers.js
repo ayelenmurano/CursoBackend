@@ -1,5 +1,6 @@
 const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
+const generadorProductos = require ('../utils/generadorProductos.js')
 
 console.log(Mensajes)
 let product = new Productos()
@@ -8,6 +9,15 @@ let message = new Mensajes()
 let admin = true
  
 module.exports = {
+
+    vistaTest: (req, res) => {
+        let cantidad = 10
+        if (req.query.cant !== undefined) {
+            cantidad = req.query.cant
+        }
+        const productos = generadorProductos(cantidad)
+        res.render("pages/index.ejs", {productos})
+    },
     
     consultar: async (req, res) => {
         const productos = await product.leer()

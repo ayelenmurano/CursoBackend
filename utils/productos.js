@@ -9,9 +9,9 @@ class Productos {
 
         try {
 
-        //    let productos = await knex.select('*').from('productos')
-        //    console.log(JSON.parse(JSON.stringify(productos)))
-           let productos = model.find({})
+           let productos = await knex.select('*').from('productos')
+           console.log(JSON.parse(JSON.stringify(productos)))
+           //let productos = model.find({})
 
            return productos;
     
@@ -26,10 +26,11 @@ class Productos {
 
         try {
 
-        //    const producto = await knex('productos').where('id','=',id).select('*')
-        //    console.log(`hola ${JSON.parse(JSON.stringify(producto[0]))}`)
-           const producto = model.findOne({ _id: id })
-           return (producto)
+           const producto = await knex('productos').where('id','=',id).select('*')
+           console.log(`hola ${JSON.stringify(producto[0])}`)
+           return producto[0]
+        //    const producto = model.findOne({ _id: id })
+        //    return (producto)
     
         } catch (error) {
     
@@ -51,10 +52,10 @@ class Productos {
 
     async guardar(producto) {
 
-        //const idMayor = await knex('productos').max('id')
+        const idMayor = await knex('productos').max('id')
 
         const productoAgregar = { 
-        //    id: idMayor+1,
+            id: idMayor+1,
             nombre: producto.nombre,
             precio: producto.precio,
             descripcion:producto.descripcion,
@@ -62,12 +63,12 @@ class Productos {
             foto: producto.foto,
             stock: producto.stock
         };
-        const productoSaveModel = new model(productoAgregar);
-        let productoSave = await productoSaveModel.save()
+        // const productoSaveModel = new model(productoAgregar);
+        // let productoSave = await productoSaveModel.save()
 
         
-        // await knex('productos').insert(productoAgregar)
-        //     .then(console.log('producto agregado'))
+        await knex('productos').insert(productoAgregar)
+            .then(console.log('producto agregado'))
         let productos = this.leer()
     
         return productos
@@ -76,10 +77,10 @@ class Productos {
 
     async borrar(id) {
 
-        // await knex('productos').where('id','=',id).del()
-        // const producto = await knex('productos').where('id','=',id).select()
+        await knex('productos').where('id','=',id).del()
+        const producto = await knex('productos').where('id','=',id).select()
     
-        let producto = model.deleteOne({_id:id})
+        // let producto = model.deleteOne({_id:id})
         return producto
     }
 

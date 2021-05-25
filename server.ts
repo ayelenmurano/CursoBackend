@@ -1,4 +1,7 @@
 const express = require('express');
+const session = require('express-session')
+
+const cookieParser = require('cookie-parser')
 
 //Iniciamos express
 const app = express();
@@ -13,9 +16,9 @@ const io = require('socket.io')(http);
 //import * as model from './models/mensajes';
 import model from './models/mensajes';
 
-const {CRUD} = require('./options/mongoose')
+const {CRUD} = require('./options/mongoose');
 
-let admin = true
+let admin = true;
 
 CRUD()
 
@@ -25,6 +28,15 @@ app.set("view engine", "ejs")
 app.set("views", "./views")
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cookieParser());
+app.use(session({
+    secret: 'secreto',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 30000,
+    }
+}))
 
 //------RUTAS--------
 const routerProduct = require('./routes/routesProduct');
@@ -32,6 +44,9 @@ app.use('/productos', routerProduct)
 
 const routerCarrito = require('./routes/routesCarrito');
 app.use('/carrito', routerCarrito)
+
+const routerLogin = require('./routes/routesLogin');
+app.use(routerLogin)
 
 
 //-------FUNCIONES-------

@@ -40,6 +40,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 //Iniciamos express
 var app = express();
 //Le pasamos a http la constante app
@@ -58,11 +60,22 @@ app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
+app.use(session({
+    secret: 'secreto',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 30000,
+    }
+}));
 //------RUTAS--------
 var routerProduct = require('./routes/routesProduct');
 app.use('/productos', routerProduct);
 var routerCarrito = require('./routes/routesCarrito');
 app.use('/carrito', routerCarrito);
+var routerLogin = require('./routes/routesLogin');
+app.use(routerLogin);
 //-------FUNCIONES-------
 var mensajes = require('./utils/mensajes.js');
 //------Socket.io------

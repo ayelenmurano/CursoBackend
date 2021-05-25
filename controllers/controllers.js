@@ -21,7 +21,8 @@ module.exports = {
     
     consultar: async (req, res) => {
         const productos = await product.leer()
-        res.render("pages/index.ejs", {productos})
+        const session = req.session;
+        res.render("pages/index.ejs", {productos, session})
     },
 
     agregarProducto: async (req, res) => {

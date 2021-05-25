@@ -5,7 +5,7 @@
         <title>API de productos</title>
 
         <!-- CSS (load bootstrap from a CDN) -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
         <style>
             body { padding-top:50px; }
         </style>
@@ -16,6 +16,15 @@
     <body class="container">
 
         <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Bienvenido <%= session.user %> </a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <td> <a href='/logout' class="btn btn-primary " >Desloguear</a> </td>
+                  </li>
+                </ul>
+            </nav>
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/">API de productos</a>
                 <ul class="navbar-nav mr-auto">

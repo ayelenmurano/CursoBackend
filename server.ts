@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session')
+const bodyParser = require('body-parser')
 
 const cookieParser = require('cookie-parser')
 
@@ -18,9 +19,26 @@ import model from './models/mensajes';
 
 const {CRUD} = require('./options/mongoose');
 
+//------PASSPORT-----
+const passport = require ('./passport/passport');
+console.log(passport)
+
 let admin = true;
 
 CRUD()
+
+//-----CONEXIONES-----
+//-----FILESTORE-----
+//const fileStore = require("session-file-store")(session);
+
+//-----MONGO-----
+const MongoStore = require('connect-mongo');
+const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+
+//-----REDIS-----
+// const redis = require("redis");
+// const client = redis.createClient();
+// const redisStore = require("connect-redis")(session);
 
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"))
@@ -29,14 +47,40 @@ app.set("views", "./views")
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(session({
+    //store: new fileStore({path: './sessions', ttl: 10, retries: 0}),
+    store: MongoStore.create({
+       mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+       mongoOptions: {
+           useNewUrlParser: true,
+           useUnifiedTopology: true
+       },
+    //    ttl: 60,
+       collectionName: 'sessions'
+     }),
+    // store: new redisStore({
+    //     host: 'localhost',
+    //     port: 6379,
+    //     client: client,
+    //     ttl: 60 //opcional
+    // }),
     secret: 'secreto',
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
+        httpOnly: false,
+        secure: false,
         maxAge: 30000,
-    }
+    },
+    rolling:true
 }))
+
+//------PASSPORT-----
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 //------RUTAS--------
 const routerProduct = require('./routes/routesProduct');

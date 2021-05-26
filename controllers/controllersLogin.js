@@ -12,11 +12,11 @@ module.exports = {
     },
 
     checkLogin: (req,res) => {
-        if (!req.body.nombre || !req.body.contraseña ) {
+        if (!req.body.username || !req.body.password ) {
             res.send('login failed')
         } else {
-            req.session.user = req.body.nombre;
-            req.session.contraseña = req.body.contraseña;
+            req.session.user = req.body.username;
+            req.session.password = req.body.password;
             req.session.contador =+1;
             console.log(`req session: ${JSON.stringify(req.session)}`)
             res.send(`Ok, ${req.session.contador}`)
@@ -24,8 +24,8 @@ module.exports = {
     },
 
     register: (req,res) => {
-        req.session.user = req.body.nombre;
-        req.session.contraseña = req.body.contraseña;
+        req.session.user = req.body.username;
+        req.session.password = req.body.password;
         req.session.email = req.body.email;
         console.log(req.session)
         res.redirect('/productos')
@@ -38,5 +38,12 @@ module.exports = {
 
             res.sendFile(path.join(__dirname + pathPublic + "logout.html"));
         })
-    }
+    },
+
+    failRegister: (req, res) => 
+    { res.sendFile(path.join(__dirname + pathPublic + "register-error.html") ) },
+
+    failLogin: (req, res) => 
+    { res.sendFile(path.join(__dirname + pathPublic + "login-error.html"))}
+
 }

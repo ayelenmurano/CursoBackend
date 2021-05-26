@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
 var session = require('express-session');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 //Iniciamos express
 var app = express();
@@ -52,8 +53,21 @@ var io = require('socket.io')(http);
 //import * as model from './models/mensajes';
 var mensajes_1 = __importDefault(require("./models/mensajes"));
 var CRUD = require('./options/mongoose').CRUD;
+//------PASSPORT-----
+var passport = require('./passport/passport');
+console.log(passport);
 var admin = true;
 CRUD();
+//-----CONEXIONES-----
+//-----FILESTORE-----
+//const fileStore = require("session-file-store")(session);
+//-----MONGO-----
+var MongoStore = require('connect-mongo');
+var advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+//-----REDIS-----
+// const redis = require("redis");
+// const client = redis.createClient();
+// const redisStore = require("connect-redis")(session);
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -61,14 +75,37 @@ app.set("views", "./views");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(session({
+    //store: new fileStore({path: './sessions', ttl: 10, retries: 0}),
+    store: MongoStore.create({
+        mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+        mongoOptions: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },
+        //    ttl: 60,
+        collectionName: 'sessions'
+    }),
+    // store: new redisStore({
+    //     host: 'localhost',
+    //     port: 6379,
+    //     client: client,
+    //     ttl: 60 //opcional
+    // }),
     secret: 'secreto',
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
+        httpOnly: false,
+        secure: false,
         maxAge: 30000,
-    }
+    },
+    rolling: true
 }));
+//------PASSPORT-----
+app.use(passport.initialize());
+app.use(passport.session());
 //------RUTAS--------
 var routerProduct = require('./routes/routesProduct');
 app.use('/productos', routerProduct);

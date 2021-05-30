@@ -17,7 +17,7 @@ const io = require('socket.io')(http);
 //import * as model from './models/mensajes';
 import model from './models/mensajes';
 
-const {CRUD} = require('./options/mongoose');
+const conn = require('./options/mongoose');
 
 //------PASSPORT-----
 const passport = require ('./passport/passport');
@@ -25,15 +25,15 @@ console.log(passport)
 
 let admin = true;
 
-CRUD()
+
 
 //-----CONEXIONES-----
 //-----FILESTORE-----
 //const fileStore = require("session-file-store")(session);
 
 //-----MONGO-----
-const MongoStore = require('connect-mongo');
-const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+// const MongoStore = require('connect-mongo');
+// const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 
 //-----REDIS-----
 // const redis = require("redis");
@@ -49,16 +49,22 @@ app.use(express.json())
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(session({
+
+    //-----FILESTORE-----
     //store: new fileStore({path: './sessions', ttl: 10, retries: 0}),
-    store: MongoStore.create({
-       mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-       mongoOptions: {
-           useNewUrlParser: true,
-           useUnifiedTopology: true
-       },
-    //    ttl: 60,
-       collectionName: 'sessions'
-     }),
+
+    //-----MONGO-----
+    // store: MongoStore.create({
+    //    mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    //    mongoOptions: {
+    //        useNewUrlParser: true,
+    //        useUnifiedTopology: true
+    //    },
+    // //    ttl: 60,
+    //    collectionName: 'sessions'
+    //  }),
+
+    //-----REDIS-----
     // store: new redisStore({
     //     host: 'localhost',
     //     port: 6379,
@@ -73,7 +79,10 @@ app.use(session({
         secure: false,
         maxAge: 30000,
     },
-    rolling:true
+    rolling:true,
+    store: new MongoStore ({
+        mongooseConnection: conn,
+    })
 }))
 
 //------PASSPORT-----
@@ -133,6 +142,8 @@ io.on('connection', function(socket:any)  {
 
 })
 
+//---------CREACION DE LA TABLA PRODUCTOS CON MYSQL
+
 // const {options} = require('./options/mariaDB')
 // const knex = require('knex')(options)
 
@@ -157,6 +168,7 @@ io.on('connection', function(socket:any)  {
 // })
 
 
+//---------CREACION DE LA TABLA PRODUCTOS CON SQLITE3
 // const {options} = require('./options/sqlite3')
 // const knex = require('knex')(options)
 

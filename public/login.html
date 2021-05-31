@@ -20,14 +20,19 @@
                 <div class="login-box">
                     <div class="login-snip"> <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label> <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Registrarse</label>
                         <div class="login-space">
-                            <form class="login" method="POST" action="/login">
+                            <div class='login'>
+                            <form method="POST" action="/login">
                                 <div class="group"> <label for="user" class="label">Nombre</label> <input id="user" type="text" class="input" name="username" placeholder="Escribir nombre"> </div>
                                 <div class="group"> <label for="pass" class="label">Contraseña</label> <input id="pass" type="password" class="input" data-type="password" name="password" placeholder="Escribir contraseña"> </div>
                                 <!-- <div class="group"> <input id="check" type="checkbox" class="check" checked> <label for="check"><span class="icon"></span> Keep me Signed in</label> </div> -->
-                                <div class="group"> <input type="submit" class="button" href="/" value="Entrar"> </div>
+                                <div class="group"> <input type="submit" class="button" value="Entrar"> </div>
                                 <div class="hr"></div>
                                 <div class="foot"> <a href="#">¿Olvidaste la contraseña?</a> </div>
+                                <div class="hr"></div>
                             </form>
+                            <div class="group"> <input type="submit" class="button" onclick="location.href='/auth/facebook'" value="Entrar con Facebook"> </div>
+                            </div>
+                            
                             <form class="sign-up-form" method="POST" action="/register" >
                                 <div class="group"> <label for="user" class="label">Nombre</label> <input id="user" type="text" class="input" name="username" placeholder="Crear usuario"> </div>
                                 <div class="group"> <label for="pass" class="label">Contraseña</label> <input id="pass" type="password" class="input" data-type="password" name="password" placeholder="Crear contraseña"> </div>

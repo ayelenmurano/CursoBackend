@@ -43,6 +43,7 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+//**************EXPRESS
 //Iniciamos express
 var app = express();
 //Le pasamos a http la constante app
@@ -52,13 +53,11 @@ var io = require('socket.io')(http);
 //import model from './models/mensajes';
 //import * as model from './models/mensajes';
 var mensajes_1 = __importDefault(require("./models/mensajes"));
-var CRUD = require('./options/mongoose').CRUD;
-//------PASSPORT-----
+var conn = require('./options/mongoose');
+//**************PASSPORT
 var passport = require('./passport/passport');
-console.log(passport);
 var admin = true;
-CRUD();
-//-----CONEXIONES-----
+//**************CONEXIONES
 //-----FILESTORE-----
 //const fileStore = require("session-file-store")(session);
 //-----MONGO-----
@@ -68,6 +67,7 @@ var advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 // const redis = require("redis");
 // const client = redis.createClient();
 // const redisStore = require("connect-redis")(session);
+//**************APP
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"));
 app.set("view engine", "ejs");
@@ -77,16 +77,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(session({
+    //-----FILESTORE-----
     //store: new fileStore({path: './sessions', ttl: 10, retries: 0}),
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-        mongoOptions: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        },
-        //    ttl: 60,
-        collectionName: 'sessions'
-    }),
+    //-----REDIS-----
     // store: new redisStore({
     //     host: 'localhost',
     //     port: 6379,
@@ -94,28 +87,34 @@ app.use(session({
     //     ttl: 60 //opcional
     // }),
     secret: 'secreto',
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 30000,
+        maxAge: 3000,
     },
-    rolling: true
+    rolling: true,
+    //-----MONGO-----
+    // store: MongoStore.create({
+    //     mongoUrl: 'mongodb://admin:root@localhost:27017/ecommerce',
+    //     mongoOptions: advancedOptions,
+    //     ttl: 60,
+    //     collectionName: 'sessions'
+    //     }),
 }));
-//------PASSPORT-----
 app.use(passport.initialize());
 app.use(passport.session());
-//------RUTAS--------
+//**************RUTAS
 var routerProduct = require('./routes/routesProduct');
 app.use('/productos', routerProduct);
 var routerCarrito = require('./routes/routesCarrito');
 app.use('/carrito', routerCarrito);
 var routerLogin = require('./routes/routesLogin');
 app.use(routerLogin);
-//-------FUNCIONES-------
+//**************FUNCIONES
 var mensajes = require('./utils/mensajes.js');
-//------Socket.io------
+//**************Socket.io
 io.on('connection', function (socket) {
     var _this = this;
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
@@ -152,6 +151,7 @@ io.on('connection', function (socket) {
         console.log('Usuario desconectado');
     });
 });
+//---------CREACION DE LA TABLA PRODUCTOS CON MYSQL
 // const {options} = require('./options/mariaDB')
 // const knex = require('knex')(options)
 // knex.schema.createTable('productos', function(table: any) {
@@ -173,6 +173,7 @@ io.on('connection', function (socket) {
 // .finally(()=>{
 //     knex.destroy()
 // })
+//---------CREACION DE LA TABLA PRODUCTOS CON SQLITE3
 // const {options} = require('./options/sqlite3')
 // const knex = require('knex')(options)
 // knex.schema.createTable('mensajes', function(table: any) {

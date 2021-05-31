@@ -1,6 +1,7 @@
 const path = require("path");
 const pathPublic = "../../public/";
 
+
 module.exports = {
 
     login: (req, res) => {
@@ -12,15 +13,9 @@ module.exports = {
     },
 
     checkLogin: (req,res) => {
-        if (!req.body.username || !req.body.password ) {
-            res.send('login failed')
-        } else {
-            req.session.user = req.body.username;
-            req.session.password = req.body.password;
-            req.session.contador =+1;
-            console.log(`req session: ${JSON.stringify(req.session)}`)
-            res.send(`Ok, ${req.session.contador}`)
-        }
+        req.session.user = req.body.username;
+        req.session.email = req.body.email;
+        res.redirect('/productos')
     },
 
     register: (req,res) => {
@@ -32,7 +27,7 @@ module.exports = {
     },
 
     logout: (req,res) => {
-
+        req.logout();
         req.session.destroy( err => {
             if(err) return err;
 

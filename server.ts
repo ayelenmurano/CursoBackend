@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 const cookieParser = require('cookie-parser')
 
+//**************EXPRESS
 //Iniciamos express
 const app = express();
 
@@ -19,27 +20,31 @@ import model from './models/mensajes';
 
 const conn = require('./options/mongoose');
 
-//------PASSPORT-----
+
+//**************PASSPORT
 const passport = require ('./passport/passport');
-console.log(passport)
 
 let admin = true;
 
 
 
-//-----CONEXIONES-----
+//**************CONEXIONES
+
 //-----FILESTORE-----
 //const fileStore = require("session-file-store")(session);
 
 //-----MONGO-----
-// const MongoStore = require('connect-mongo');
-// const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
+const MongoStore = require('connect-mongo');
+const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 
 //-----REDIS-----
 // const redis = require("redis");
 // const client = redis.createClient();
 // const redisStore = require("connect-redis")(session);
 
+
+
+//**************APP
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
 app.use(express.static("public"))
 app.set("view engine", "ejs")
@@ -53,17 +58,6 @@ app.use(session({
     //-----FILESTORE-----
     //store: new fileStore({path: './sessions', ttl: 10, retries: 0}),
 
-    //-----MONGO-----
-    // store: MongoStore.create({
-    //    mongoUrl: 'mongodb+srv://ayelenmurano:ayelenmurano@cluster0.s0im9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-    //    mongoOptions: {
-    //        useNewUrlParser: true,
-    //        useUnifiedTopology: true
-    //    },
-    // //    ttl: 60,
-    //    collectionName: 'sessions'
-    //  }),
-
     //-----REDIS-----
     // store: new redisStore({
     //     host: 'localhost',
@@ -72,26 +66,30 @@ app.use(session({
     //     ttl: 60 //opcional
     // }),
     secret: 'secreto',
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 30000,
+        maxAge: 3000,
     },
     rolling:true,
-    store: new MongoStore ({
-        mongooseConnection: conn,
-    })
+    
+    //-----MONGO-----
+    // store: MongoStore.create({
+    //     mongoUrl: 'mongodb://admin:root@localhost:27017/ecommerce',
+    //     mongoOptions: advancedOptions,
+    //     ttl: 60,
+    //     collectionName: 'sessions'
+    //     }),
+    
 }))
-
-//------PASSPORT-----
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 
-//------RUTAS--------
+//**************RUTAS
 const routerProduct = require('./routes/routesProduct');
 app.use('/productos', routerProduct)
 
@@ -102,11 +100,11 @@ const routerLogin = require('./routes/routesLogin');
 app.use(routerLogin)
 
 
-//-------FUNCIONES-------
+//**************FUNCIONES
 const mensajes = require ('./utils/mensajes.js')
 
 
-//------Socket.io------
+//**************Socket.io
 io.on('connection', function(socket:any)  {
 
     //"connection" se ejecuta la primera vez que se abre una nueva conexion

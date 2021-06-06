@@ -28,11 +28,7 @@ module.exports = {
 
     logout: (req,res) => {
         req.logout();
-        req.session.destroy( err => {
-            if(err) return err;
-
-            res.sendFile(path.join(__dirname + pathPublic + "logout.html"));
-        })
+        res.sendFile(path.join(__dirname + pathPublic + "logout.html"));
     },
 
     failRegister: (req, res) => 

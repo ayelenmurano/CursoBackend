@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require ('passport-local').Strategy;
-const FacebookStrategy = require('passport-facebook');
+const FacebookStrategy = require('passport-facebook').Strategy;
 const config = require('../config/config');
 const model = require('../models/sessions.js');
 const bCrypt = require('bcrypt');
@@ -74,6 +74,44 @@ passport.use ('register', new LocalStrategy ({
     })
 )
 
+
+//*************LOGIN WITH FACEBOOK
+
+passport.use('facebook', new FacebookStrategy({
+    clientID: config.facebook.clientID,
+    clientSecret: config.facebook.clientSecret,
+    callbackURL: '/auth/facebook/callback'
+}, (accessToken, refreshToken, profile, done) => {
+
+
+    model.findOne({'password':profile.id}, async function(err, user){
+        if (err) {
+            console.log('Error in SignUp: '+err);
+            return done(err);
+        }
+
+        if (!user){
+            let user = {};
+            user.password = profile.id;
+            user.username = profile.displayName;
+            const userToSave = new model(user);
+            await userToSave.save(function(err){
+                if(err){
+                    console.log('Error in Saving user: '+err);
+                    throw err;
+                }
+                console.log('User Registration succesful')
+                return done(null, user)
+            })
+        } else {
+            return done(null, user)
+        }
+
+    })
+}))
+
+
+//***************
 passport.serializeUser(function(user, done){
     done(null, user);
 })
@@ -99,43 +137,5 @@ const isValidPassword = function(user, password){
 const createHash = function(password){
     return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
 }
-
-//*************LOGIN WITH FACEBOOK
-
-passport.use('facebook', new FacebookStrategy({
-    clientID: config.facebook.clientID,
-    clientSecret: config.facebook.clientSecret,
-    callbackURL: '/auth/facebook/callback'
-}, (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
-
-    model.findOne({'idFacebook':profile.id}, async function(err, user){
-        if (err) {
-            console.log('Error in SignUp: '+err);
-            return done(err);
-        }
-        console.log(`El usuario es ${user}`)
-        if (!user){
-            const user = {};
-            user.idFacebook = profile.id;
-            user.username = profile.displayName;
-            console.log(`Entro es ${user}`)
-            const userToSave = new model(user);
-            await userToSave.save(function(err){
-                if(err){
-                    console.log('Error in Saving user: '+err);
-                    throw err;
-                }
-                console.log('User Registration succesful')
-                return done(null, user)
-            })
-        } else {
-            return done(null, user)
-        }
-
-    })
-}))
-
-
 
 module.exports = passport

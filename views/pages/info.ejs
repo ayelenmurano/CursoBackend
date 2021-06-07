@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Informacion</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+<body>
+    <table class="table">
+        <tbody>
+                <tr>
+                    <th scope="row">Argumentos</th>
+                    <td> <%= info.argumentos %> </td>
+                </tr>
+                <tr>
+                    <th scope="row">Sistema Operativo</th>
+                    <td> <%= info.sistemaOperativo %> </td>
+                </tr>
+                <tr> 
+                    <th scope="row">Version Node</th>
+                    <td> <%= info.versionNode %> </td>
+                </tr>
+                <tr> 
+                    <th scope="row">Memoria</th>
+                    <td> <%= info.memoria %> </td>
+                </tr>
+                <tr> 
+                    <th scope="row">Path</th>
+                    <td> <%= info.path %> </td>
+                </tr>
+                <tr> 
+                    <th scope="row">Process ID</th>
+                    <td> <%= info.processID %> </td>
+                </tr>
+                <tr> 
+                    <th scope="row">Carpeta</th>
+                    <td> <%= info.carpeta %> </td>
+                </tr>
+        </tbody>
+    </table>
+</body>
+</html>

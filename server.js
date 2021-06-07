@@ -52,10 +52,10 @@ var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 //import model from './models/mensajes';
 //import * as model from './models/mensajes';
-var mensajes_1 = __importDefault(require("./models/mensajes"));
-var conn = require('./options/mongoose');
+var mensajes_1 = __importDefault(require("./src/models/mensajes"));
+var conn = require('./src/options/mongoose');
 //**************PASSPORT
-var passport = require('./passport/passport');
+var passport = require('./src/passport/passport');
 var admin = true;
 //**************CONEXIONES
 //-----FILESTORE-----
@@ -106,14 +106,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 //**************RUTAS
-var routerProduct = require('./routes/routesProduct');
+var routerProduct = require('./src/routes/routesProduct');
 app.use('/productos', routerProduct);
-var routerCarrito = require('./routes/routesCarrito');
+var routerCarrito = require('./src/routes/routesCarrito');
 app.use('/carrito', routerCarrito);
-var routerLogin = require('./routes/routesLogin');
+var routerLogin = require('./src/routes/routesLogin');
 app.use(routerLogin);
 //**************FUNCIONES
-var mensajes = require('./utils/mensajes.js');
+var mensajes = require('./src/utils/mensajes.js');
 //**************Socket.io
 io.on('connection', function (socket) {
     var _this = this;
@@ -190,8 +190,10 @@ io.on('connection', function (socket) {
 // .finally(()=>{
 //     knex.destroy()
 // })
-var server = http.listen(8080, function () {
-    console.log("Escuchando en el puerto " + server.address().port);
+var port = parseInt(process.argv[2]) || 8080;
+console.log("111 " + port);
+var server = http.listen(port, function () {
+    console.log("Escuchando en el puerto " + port + ". Codigo de salida: " + process.pid);
 });
 server.on("error", function (error) { return console.log("Se produjo un error: " + error); });
 function table(arg0, table, arg2) {

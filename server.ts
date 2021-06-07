@@ -16,13 +16,13 @@ const io = require('socket.io')(http);
 
 //import model from './models/mensajes';
 //import * as model from './models/mensajes';
-import model from './models/mensajes';
+import model from './src/models/mensajes';
 
-const conn = require('./options/mongoose');
+const conn = require('./src/options/mongoose');
 
 
 //**************PASSPORT
-const passport = require ('./passport/passport');
+const passport = require ('./src/passport/passport');
 
 let admin = true;
 
@@ -90,18 +90,18 @@ app.use(passport.session());
 
 
 //**************RUTAS
-const routerProduct = require('./routes/routesProduct');
+const routerProduct = require('./src/routes/routesProduct');
 app.use('/productos', routerProduct)
 
-const routerCarrito = require('./routes/routesCarrito');
+const routerCarrito = require('./src/routes/routesCarrito');
 app.use('/carrito', routerCarrito)
 
-const routerLogin = require('./routes/routesLogin');
+const routerLogin = require('./src/routes/routesLogin');
 app.use(routerLogin)
 
 
 //**************FUNCIONES
-const mensajes = require ('./utils/mensajes.js')
+const mensajes = require ('./src/utils/mensajes.js')
 
 
 //**************Socket.io
@@ -185,10 +185,10 @@ io.on('connection', function(socket:any)  {
 //     knex.destroy()
 // })
 
-
-
-const server = http.listen(8080, () =>{
-    console.log(`Escuchando en el puerto ${server.address().port}`)
+const port = parseInt(process.argv[2]) || 8080;
+console.log(`111 ${port}`)
+const server = http.listen(port, () =>{
+    console.log(`Escuchando en el puerto ${port}. Codigo de salida: ${process.pid}`)
 })
 
 server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))

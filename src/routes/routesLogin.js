@@ -15,6 +15,10 @@ routerLogin.get("/logout", controllers.logout )
 routerLogin.get("/auth/facebook", passport.authenticate('facebook'));
 routerLogin.get("/auth/facebook/callback", passport.authenticate('facebook', { successRedirect:'/productos', failureRedirect:'/login'}))
 
+routerLogin.get("/info", controllers.getInfo )
+
+routerLogin.get("/random", controllers.getNumber )
+
 
 // function control (req, res, next) {
 //     if(req.session.nombre) {

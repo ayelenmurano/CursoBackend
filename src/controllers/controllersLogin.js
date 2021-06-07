@@ -1,5 +1,7 @@
+const { info } = require("console");
 const path = require("path");
-const pathPublic = "../../public/";
+const pathPublic = "../../../public/";
+const { fork } = require('child_process');
 
 
 module.exports = {
@@ -35,6 +37,29 @@ module.exports = {
     { res.sendFile(path.join(__dirname + pathPublic + "register-error.html") ) },
 
     failLogin: (req, res) => 
-    { res.sendFile(path.join(__dirname + pathPublic + "login-error.html"))}
+    { res.sendFile(path.join(__dirname + pathPublic + "login-error.html"))},
+
+    getInfo: (req, res) => {
+        let info = {};
+        info.argumentos = JSON.stringify(process.argv);
+        info.sistemaOperativo = process.platform;
+        info.versionNode = process.version;
+        info.memoria = process.memoryUsage();
+        info.path = process.argv[1];
+        info.processID= process.pid;
+        info.carpeta = process.cwd();
+
+        console.log(`infooo ${info}`)
+        res.render("pages/info.ejs", {info})
+    },
+
+    getNumber: (req, res) => {
+        const computo = fork('./src/utils/calculo.js');
+        computo.send(req.query);
+
+        computo.on('message', objeto => {
+            res.end(`El objeto random es ${JSON.stringify(objeto)}`)
+        })
+    }
 
 }

@@ -6,7 +6,10 @@
   "scripts": {
     "test": "nodemon node server.js",
     "ServerES6toJS5": ".\\node_modules\\.bin\\babel ./server.es6.js -o ./server.js -w",
-    "ServerTStoJS5": ".\\node_modules\\.bin\\tsc -w"
+    "ServerTStoJS5": ".\\node_modules\\.bin\\tsc -w",
+    "pm2": "pm2 start server.js --watch",
+    "pm2Cluster": "pm2 start server.js --watch -i max",
+    "forever": "forever start -w server.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +26,7 @@
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.2",
     "faker": "^5.5.3",
+    "forever": "^4.0.1",
     "fork": "^1.3.1",
     "fs": "0.0.1-security",
     "knex": "^0.95.4",

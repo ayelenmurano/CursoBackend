@@ -190,12 +190,34 @@ io.on('connection', function (socket) {
 // .finally(()=>{
 //     knex.destroy()
 // })
-var port = parseInt(process.argv[2]) || 8080;
-console.log("111 " + port);
-var server = http.listen(port, function () {
-    console.log("Escuchando en el puerto " + port + ". Codigo de salida: " + process.pid);
-});
-server.on("error", function (error) { return console.log("Se produjo un error: " + error); });
-function table(arg0, table, arg2) {
-    throw new Error("Function not implemented.");
+var port = 8080;
+var cluster = false;
+for (var i in process.argv) {
+    if (process.argv[i].includes("port")) {
+        port = parseInt(process.argv[i]);
+    }
+    if (process.argv[i].includes("cluster")) {
+        cluster = true;
+    }
+}
+if (cluster) {
+    var cluster_1 = require('cluster');
+    var numCpu = require('os').cpus().length;
+    if (cluster_1.isMaster) {
+        console.log("cantidad de nucleos: " + numCpu);
+        console.log("process ID: " + process.pid + " ");
+        for (var i = 0; i < numCpu; i++) {
+            cluster_1.fork();
+        }
+        cluster_1.on('exit', function (worker) {
+            console.log("Worker, " + worker.process.pid + " died " + new Date());
+            cluster_1.fork();
+        });
+    }
+}
+else {
+    var server = http.listen(port, function () {
+        console.log("Escuchando en el puerto " + port + ". Codigo de salida: " + process.pid);
+    });
+    server.on("error", function (error) { return console.log("Se produjo un error: " + error); });
 }

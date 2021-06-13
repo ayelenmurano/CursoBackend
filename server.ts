@@ -185,14 +185,42 @@ io.on('connection', function(socket:any)  {
 //     knex.destroy()
 // })
 
-const port = parseInt(process.argv[2]) || 8080;
-console.log(`111 ${port}`)
-const server = http.listen(port, () =>{
-    console.log(`Escuchando en el puerto ${port}. Codigo de salida: ${process.pid}`)
-})
+let port = 8080;
+let cluster = false;
 
-server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))
+for ( let i in process.argv ) {
+    if ( process.argv[i].includes("port" )) {
+        port = parseInt(process.argv[i])
+    }
 
-function table(arg0: string, table: any, arg2: (any: any) => void) {
-    throw new Error("Function not implemented.");
+    if( process.argv[i].includes("cluster") ){
+        cluster = true;
+    }
 }
+
+if ( cluster ) {
+    const cluster = require('cluster');
+    const numCpu = require('os').cpus().length;
+    if(cluster.isMaster) {
+        console.log(`cantidad de nucleos: ${numCpu}`);
+        console.log(`process ID: ${process.pid} `);
+
+        for (let i=0; i < numCpu; i++){
+            cluster.fork();
+        }
+
+        cluster.on('exit', worker  => {
+            console.log(`Worker, ${worker.process.pid} died ${new Date()}`);
+            cluster.fork();
+        })
+    }
+} else { 
+    const server = http.listen(port, () =>{
+        console.log(`Escuchando en el puerto ${port}. Codigo de salida: ${process.pid}`)
+    })
+    
+    server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))
+}
+
+
+

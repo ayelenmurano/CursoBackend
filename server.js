@@ -69,7 +69,7 @@ var advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 // const redisStore = require("connect-redis")(session);
 //**************APP
 //Indicamos que queremos cargar los archivos estaticos que se encuentran en dicha carpeta
-app.use(express.static("public"));
+//app.use(express.static("public"))
 app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.urlencoded({ extended: false }));

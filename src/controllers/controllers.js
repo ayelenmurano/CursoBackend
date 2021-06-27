@@ -1,8 +1,10 @@
 const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
 const generadorProductos = require ('../utils/generadorProductos.js')
+const log4js = require ('../config/log4jsConfig');
 
-console.log(Mensajes)
+const loggs = log4js.getLogger('controllers');
+
 let product = new Productos()
 let message = new Mensajes()
 
@@ -51,7 +53,7 @@ module.exports = {
     listarById: async (req,res) => {
 
         const productos = await product.leer()
-        console.log('request recibido')
+        loggs.debug('request recibido')
         const producto = await product.buscarPorId(req.params.id)
     
         if ( !producto ){
@@ -64,7 +66,6 @@ module.exports = {
     guardarProducto: async (req,res) => {
     
         const producto = req.body;
-        console.log(producto)
         const productos = await product.guardar(producto)
         res.redirect('http://localhost:8080/productos');
 
@@ -73,7 +74,7 @@ module.exports = {
     guardarMensaje: async (req,res) => {
         
         const datos = req.body;
-        console.log(datos)
+        loggs.debug(`Los datos recibidos son ${datos}`)
         let fecha = new Date();
         let fechaFormateada= `${fecha.getDate()}/${fecha.getMonth()+1}/${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
         datos.fecha=fechaFormateada        
@@ -87,7 +88,7 @@ module.exports = {
     actualizar: (req, res)=>{
 
         const productos = functions.leer()
-        console.log('request recibido');
+        loggs.debug('request recibido');
         var longitud = productos.length;
         var id = req.params.id;
         var actualizar = req.body

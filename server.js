@@ -43,6 +43,8 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var log4js = require('./src/config/log4jsConfig');
+var loggs = log4js.getLogger('server');
 //**************EXPRESS
 //Iniciamos express
 var app = express();
@@ -118,7 +120,7 @@ var mensajes = require('./src/utils/mensajes.js');
 io.on('connection', function (socket) {
     var _this = this;
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
-    console.log('Usuario conectado');
+    loggs.info('Usuario conectado');
     // socket.on('client-message', (producto: any) =>
     // {
     //     io.emit('server-message', (producto));
@@ -148,7 +150,7 @@ io.on('connection', function (socket) {
     //     io.emit('server-carrito-message', (mensaje));
     // });
     socket.on('disconnect', function () {
-        console.log('Usuario desconectado');
+        loggs.info('Usuario desconectado');
     });
 });
 //---------CREACION DE LA TABLA PRODUCTOS CON MYSQL
@@ -204,20 +206,20 @@ if (cluster) {
     var cluster_1 = require('cluster');
     var numCpu = require('os').cpus().length;
     if (cluster_1.isMaster) {
-        console.log("cantidad de nucleos: " + numCpu);
-        console.log("process ID: " + process.pid + " ");
+        loggs.info("cantidad de nucleos: " + numCpu);
+        loggs.info("process ID: " + process.pid + " ");
         for (var i = 0; i < numCpu; i++) {
             cluster_1.fork();
         }
         cluster_1.on('exit', function (worker) {
-            console.log("Worker, " + worker.process.pid + " died " + new Date());
+            loggs.info("Worker, " + worker.process.pid + " died " + new Date());
             cluster_1.fork();
         });
     }
 }
 else {
     var server = http.listen(port, function () {
-        console.log("Escuchando en el puerto " + port + ". Codigo de salida: " + process.pid);
+        loggs.info("Escuchando en el puerto " + port + ". Codigo de salida: " + process.pid);
     });
-    server.on("error", function (error) { return console.log("Se produjo un error: " + error); });
+    server.on("error", function (error) { return loggs.error("Se produjo un error: " + error); });
 }

@@ -27,7 +27,6 @@ socket.on('server-chat-message', function (msj) {
   });
 
 function enviarMensaje() {
-    console.log('Esto es una prueba');
     const nuevoMensaje = $('#nuevo-msj').val();
     const nuevoEmail = $('#email-nuevo-msj').val();
     socket.emit('client-chat-message', {nuevoMensaje,nuevoEmail,fechaFormateada});

@@ -2,6 +2,9 @@ const { info } = require("console");
 const path = require("path");
 const pathPublic = "../../../public/";
 const { fork } = require('child_process');
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('controllers');
 
 
 module.exports = {
@@ -24,7 +27,7 @@ module.exports = {
         req.session.user = req.body.username;
         req.session.password = req.body.password;
         req.session.email = req.body.email;
-        console.log(req.session)
+        loggs.debug(`La sesion es ${req.session}`)
         res.redirect('/productos')
     },
 
@@ -49,7 +52,7 @@ module.exports = {
         info.processID= process.pid;
         info.carpeta = process.cwd();
 
-        console.log(`infooo ${info}`)
+        loggs.debug(`La info formada es ${info}`)
         res.render("pages/info.ejs", {info})
     },
 

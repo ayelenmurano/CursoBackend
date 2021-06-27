@@ -1,8 +1,12 @@
 const express = require('express');
-const session = require('express-session')
-const bodyParser = require('body-parser')
+const session = require('express-session');
+const bodyParser = require('body-parser');
 
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+
+const log4js = require ('./src/config/log4jsConfig');
+
+const loggs = log4js.getLogger('server');
 
 //**************EXPRESS
 //Iniciamos express
@@ -108,7 +112,7 @@ const mensajes = require ('./src/utils/mensajes.js')
 io.on('connection', function(socket:any)  {
 
     //"connection" se ejecuta la primera vez que se abre una nueva conexion
-    console.log('Usuario conectado')
+    loggs.info('Usuario conectado');
     
     // socket.on('client-message', (producto: any) =>
     // {
@@ -134,7 +138,7 @@ io.on('connection', function(socket:any)  {
     // });
 
     socket.on('disconnect', ()=> {
-        console.log('Usuario desconectado')
+        loggs.info('Usuario desconectado');
     })
 
 
@@ -202,24 +206,24 @@ if ( cluster ) {
     const cluster = require('cluster');
     const numCpu = require('os').cpus().length;
     if(cluster.isMaster) {
-        console.log(`cantidad de nucleos: ${numCpu}`);
-        console.log(`process ID: ${process.pid} `);
+        loggs.info(`cantidad de nucleos: ${numCpu}`);
+        loggs.info(`process ID: ${process.pid} `);
 
         for (let i=0; i < numCpu; i++){
             cluster.fork();
         }
 
         cluster.on('exit', worker  => {
-            console.log(`Worker, ${worker.process.pid} died ${new Date()}`);
+            loggs.info(`Worker, ${worker.process.pid} died ${new Date()}`);
             cluster.fork();
         })
     }
 } else { 
     const server = http.listen(port, () =>{
-        console.log(`Escuchando en el puerto ${port}. Codigo de salida: ${process.pid}`)
+        loggs.info(`Escuchando en el puerto ${port}. Codigo de salida: ${process.pid}`)
     })
     
-    server.on("error", (error: any) => console.log(`Se produjo un error: ${error}`))
+    server.on("error", (error: any) => loggs.error(`Se produjo un error: ${error}`))
 }
 
 

@@ -1,4 +1,8 @@
 const fs = require('fs')
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('utils');
+
 
 class Productos {
 
@@ -17,7 +21,7 @@ class Productos {
     
         } catch (error) {
     
-           console.log('Se produjo un error al leer el archivo.' + error)
+           loggs.error('Se produjo un error al leer el archivo.' + error)
         }
           
     }
@@ -27,7 +31,7 @@ class Productos {
         try {   
             fs.writeFileSync('carrito.txt',JSON.stringify(items))    
         } catch { 
-            console.log('Se produjo un error al escribir el archivo.')
+            loggs.error('Se produjo un error al escribir el archivo.')
             }
     }
 

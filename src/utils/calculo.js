@@ -1,13 +1,17 @@
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('utils');
+
 const calculo = (param) => {
     const cantidad = param.cant || 9;
 
     const arrayDeNumeros = [];
-    console.log(`cantidad ${cantidad}`)
+    loggs.debug(`cantidad ${cantidad}`)
     for (let index = 0; index < cantidad; index++) {
         const element = Math.floor(Math.random() * 1000);
         arrayDeNumeros.push(element);
     };
-    console.log(arrayDeNumeros)
+    loggs.debug(`El array de numeros es ${arrayDeNumeros}`)
     const objeto = {};
 
     for (const i in arrayDeNumeros) {
@@ -18,7 +22,7 @@ const calculo = (param) => {
             objeto[number] = 1;
         }
     }
-    console.log(JSON.stringify(objeto))
+    loggs.debug(`El objeto es ${JSON.stringify(objeto)}`)
     return objeto
 }
 

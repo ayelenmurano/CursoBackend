@@ -1,7 +1,7 @@
 const express = require("express");
 const routerProduct = express.Router();
 const controllers = require("../controllers/controllers.js");
-console.log(controllers)
+
 const multer  = require('multer')
 var upload = multer({ dest: 'uploads/' })
 

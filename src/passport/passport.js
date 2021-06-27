@@ -4,6 +4,10 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const config = require('../config/config');
 const model = require('../models/sessions.js');
 const bCrypt = require('bcrypt');
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('passport');
+
 
 passport.use('login', new LocalStrategy({
     passReqToCallback : true
@@ -11,19 +15,19 @@ passport.use('login', new LocalStrategy({
     function(req, username, password, done){
 
         //Buscamos usuario
-        console.log(`El username es: ${req.body.username}`)
+        loggs.debug(`El username es: ${req.body.username}`)
         model.findOne({'username':req.body.username}, function(err, user){
             if (err) {
-                console.log('Error in SignUp: '+err);
+                loggs.error('Error in SignUp: '+err);
                 return done(err);
             }
 
         if( !user ) return done(null, false)
 
         //Validamos la contrase;a
-        console.log(`User: ${user}, PAssword: ${password}`)
+        loggs.debug(`User: ${user}, Password: ${password}`)
         if (!isValidPassword(user, password)){
-            console.log('Invalid Password');
+            loggs.error('Invalid Password');
             return done(null, false)
           }
         // let credencialOk = user.username === req.body.username && user.password === req.body.password ;
@@ -44,14 +48,14 @@ passport.use ('register', new LocalStrategy ({
             //Buscamos usuario
             let user = model.findOne({'username':username}, async function(err, user){
                 if (err) {
-                    console.log('Error in SignUp: '+err);
+                    loggs.error('Error in SignUp: '+err);
                     return done(err);
                 }
 
             //Si ya existe
             if (user) {
-                console.log(`Usuario ya existente`)
-                return done (null, false, console.log('message','User already exists'))
+                loggs.error(`Usuario ya existente`)
+                return done (null, false, loggs.error('message','User already exists'))
             } else {
                 //Si no existe lo creamos
                 let user = {}
@@ -62,10 +66,10 @@ passport.use ('register', new LocalStrategy ({
                 const userToSave = new model(user);
                 await userToSave.save(function(err){
                     if(err){
-                        console.log('Error in Saving user: '+err);
+                        loggs.error('Error in Saving user: '+err);
                         throw err;
                     }
-                    console.log('User Registration succesful')
+                    loggs.info('User Registration succesful')
                     return done(null, user)
                 })      
             }           
@@ -86,7 +90,7 @@ passport.use('facebook', new FacebookStrategy({
 
     model.findOne({'password':profile.id}, async function(err, user){
         if (err) {
-            console.log('Error in SignUp: '+err);
+            loggs.error('Error in SignUp: '+err);
             return done(err);
         }
 
@@ -97,10 +101,10 @@ passport.use('facebook', new FacebookStrategy({
             const userToSave = new model(user);
             await userToSave.save(function(err){
                 if(err){
-                    console.log('Error in Saving user: '+err);
+                    loggs.error('Error in Saving user: '+err);
                     throw err;
                 }
-                console.log('User Registration succesful')
+                loggs.info('User Registration succesful')
                 return done(null, user)
             })
         } else {
@@ -119,7 +123,7 @@ passport.serializeUser(function(user, done){
 passport.deserializeUser(function(username, done){
     let usuario = model.findOne(({'username':username.username}, function(err, user){
         if (err) {
-            console.log('Error in SignUp: '+err);
+            loggs.error('Error in SignUp: '+err);
             return done(err);
         }
         

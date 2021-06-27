@@ -2,8 +2,11 @@ const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
 const Carrito = require ('../utils/carrito.js')
 //const { restart } = require('nodemon')
+const log4js = require ('../config/log4jsConfig');
 
-console.log(Mensajes)
+const loggs = log4js.getLogger('controllers');
+
+
 let product = new Productos()
 let message = new Mensajes()
 let carrito = new Carrito()
@@ -17,7 +20,7 @@ module.exports = {
 
     listarById: (req, res) => {
         const productos = carrito.leer()
-        console.log(req.params.id)
+        loggs.debug(`El id recibido es ${req.params.id}`)
         res.render("pages/indexCarrito.ejs", {productos})
     },
 

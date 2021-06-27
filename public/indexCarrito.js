@@ -1,5 +1,8 @@
 const socket = io()
 
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('utils');
 
 document.getElementById('agregarProducto').addEventListener('click', function(){
      const idProducto = document.getElementById('idProducto').value
@@ -12,7 +15,7 @@ document.getElementById('agregarProducto').addEventListener('click', function(){
     //     }
     // }
 
-    console.log(`El producto a agregar es ${idProducto}`)
+    loggs.info(`El producto a agregar es ${idProducto}`)
     
 })
 

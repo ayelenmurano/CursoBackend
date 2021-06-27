@@ -2,6 +2,9 @@ const fs = require('fs')
 const {options} = require('../options/mariaDB')
 const knex = require('knex')(options)
 const model = require('../models/productos.js');
+const log4js = require ('../config/log4jsConfig');
+
+const loggs = log4js.getLogger('utils');
 
 class Productos {
 
@@ -17,7 +20,7 @@ class Productos {
     
         } catch (error) {
     
-           console.log('Se produjo un error al leer el archivo.' + error)
+           loggs.error('Se produjo un error al leer el archivo.' + error)
         }
           
     }
@@ -33,7 +36,7 @@ class Productos {
     
         } catch (error) {
     
-           console.log('Se produjo un error al leer el archivo--.' + error)
+            loggs.error('Se produjo un error al leer el archivo--.' + error)
         }
           
     }
@@ -45,7 +48,7 @@ class Productos {
             const productos = model(items).save()
         } catch{
     
-            console.log('Se produjo un error al escribir el archivo.')
+            loggs.error('Se produjo un error al escribir el archivo.')
         }
     }
 

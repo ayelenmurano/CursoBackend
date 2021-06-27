@@ -1,7 +1,9 @@
 const { info } = require("console");
 const path = require("path");
 const pathPublic = "../../../public/";
+const pathRoot = "../../../";
 const { fork } = require('child_process');
+const fs = require('fs');
 const log4js = require ('../config/log4jsConfig');
 
 const loggs = log4js.getLogger('controllers');
@@ -41,6 +43,14 @@ module.exports = {
 
     failLogin: (req, res) => 
     { res.sendFile(path.join(__dirname + pathPublic + "login-error.html"))},
+
+    getInfoArtillery: (req, res) => {
+        if(fs.existsSync('./result_fork.txt')){
+            res.sendFile(path.join(__dirname + pathRoot + 'result_fork.txt'));
+        } else {
+            res.status(200).json({message: "Debe correr el siguiente comando para generar el archivo: artillery quick --count 50 -n 40 http://localhost:8080/random?cant=14 > result_fork.txt "})
+        }
+    },
 
     getInfo: (req, res) => {
         let info = {};

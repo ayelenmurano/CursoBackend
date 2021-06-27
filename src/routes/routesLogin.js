@@ -17,7 +17,13 @@ routerLogin.get("/auth/facebook/callback", passport.authenticate('facebook', { s
 
 routerLogin.get("/info", controllers.getInfo )
 
+routerLogin.get("/infoArtillery", controllers.getInfoArtillery )
+
 routerLogin.get("/random", controllers.getNumber )
+
+routerLogin.get("/mensaje", (req, res) => {
+    res.send('Hola desde Heroku');
+} )
 
 
 // function control (req, res, next) {

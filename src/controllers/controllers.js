@@ -1,7 +1,7 @@
 const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
 const generadorProductos = require ('../utils/generadorProductos.js')
-const log4js = require ('../config/log4jsConfig');
+const log4js = require ('../config/logger/log4jsConfig');
 
 const loggs = log4js.getLogger('controllers');
 

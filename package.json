@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "test": "nodemon node server.js",
     "ServerES6toJS5": ".\\node_modules\\.bin\\babel ./server.es6.js -o ./server.js -w",
@@ -11,7 +14,7 @@
     "pm2Cluster": "pm2 start server.js --watch -i max",
     "forever": "forever start -w server.js"
   },
-  "author": "",
+  "author": "Ayelen Murano",
   "license": "ISC",
   "dependencies": {
     "artillery": "^1.7.4",

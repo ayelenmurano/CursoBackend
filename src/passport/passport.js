@@ -4,7 +4,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const config = require('../config/config');
 const model = require('../models/sessions.js');
 const bCrypt = require('bcrypt');
-const log4js = require ('../config/log4jsConfig');
+const log4js = require ('../config/logger/log4jsConfig');
 
 const loggs = log4js.getLogger('passport');
 

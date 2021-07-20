@@ -12,7 +12,8 @@ log4js.configure({
         utils: {appenders: ['miLoggerConsole'], level: 'info'},
         baseDeDatos: {appenders: ['miLoggerConsole'], level: 'info'},
         controllers: {appenders: ['miLoggerConsole'], level: 'info'},
-        passport: {appenders: ['miLoggerConsole'], level: 'info'}
+        passport: {appenders: ['miLoggerConsole'], level: 'info'},
+        config: {appenders: ['miLoggerConsole'], level: 'info'}
     }
 })
 

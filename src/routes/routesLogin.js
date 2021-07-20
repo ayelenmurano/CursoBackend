@@ -17,27 +17,5 @@ routerLogin.get("/auth/facebook/callback", passport.authenticate('facebook', { s
 
 routerLogin.get("/info", controllers.getInfo )
 
-routerLogin.get("/infoArtillery", controllers.getInfoArtillery )
-
-routerLogin.get("/random", controllers.getNumber )
-
-routerLogin.get("/mensaje", (req, res) => {
-    res.send('Hola desde Heroku');
-} )
-
-
-// function control (req, res, next) {
-//     if(req.session.nombre) {
-//         if(req.session.contador) {
-//             req.session.contador ++;
-//         } else {
-//             req.session.contador = 1;
-//         }
-//         next();
-//     } else {
-//         res.redirect("/login");
-//     }
-// }
-
 
 module.exports = routerLogin;

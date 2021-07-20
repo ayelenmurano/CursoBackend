@@ -1,14 +1,12 @@
 const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
 const Carrito = require ('../utils/carrito.js')
-//const { restart } = require('nodemon')
-const log4js = require ('../config/log4jsConfig');
+const log4js = require ('../config/logger/log4jsConfig');
 
 const loggs = log4js.getLogger('controllers');
 
 
 let product = new Productos()
-let message = new Mensajes()
 let carrito = new Carrito()
  
 module.exports = {

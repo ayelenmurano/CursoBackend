@@ -2,7 +2,7 @@ const fs = require('fs')
 const {options} = require('../options/mariaDB')
 const knex = require('knex')(options)
 const model = require('../models/productos.js');
-const log4js = require ('../config/log4jsConfig');
+const log4js = require ('../config/logger/log4jsConfig');
 
 const loggs = log4js.getLogger('utils');
 

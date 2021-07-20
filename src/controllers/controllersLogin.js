@@ -4,7 +4,7 @@ const pathPublic = "../../../public/";
 const pathRoot = "../../../";
 const { fork } = require('child_process');
 const fs = require('fs');
-const log4js = require ('../config/log4jsConfig');
+const log4js = require ('../config/logger/log4jsConfig');
 
 const loggs = log4js.getLogger('controllers');
 

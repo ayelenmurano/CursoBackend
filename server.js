@@ -13,7 +13,7 @@ const cookieParser = require('cookie-parser');
 const io = require('socket.io')(http);
 
 const model = require('./src/models/mensajes.js');
-const conn = require('./src/options/mongoose.js');
+const conn = require('./src/options/mongoAtlas.js');
 
 
 //_____________PASSPORT_____________//

@@ -29,10 +29,10 @@
                 <a class="navbar-brand" href="/">API de productos</a>
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="/carrito/listar">Ver Carrito</a>
+                    <a class="nav-link" href="/carrito/listar?username=<%= session.user %>">Ver Carrito</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/productos/agregarProductos">Agregar Productos</a>
+                    <a class="nav-link" href="/productos/agregarProductos?username=<%= session.user %>">Agregar Productos</a>
                   </li>
                 </ul>
             </nav>

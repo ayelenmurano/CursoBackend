@@ -1,9 +1,8 @@
-const fs = require('fs')
-const {options} = require('../options/mariaDB')
-const knex = require('knex')(options)
+//const {options} = require('../options/mariaDB')
+//const knex = require('knex')(options)
 const model = require('../models/productos.js');
-const log4js = require ('../config/logger/log4jsConfig');
 
+const log4js = require('../config/logger/log4jsConfig');
 const loggs = log4js.getLogger('utils');
 
 class Productos {
@@ -11,15 +10,12 @@ class Productos {
     async leer() {
 
         try {
-
         //    let productos = await knex.select('*').from('productos')
         //    console.log(JSON.parse(JSON.stringify(productos)))
            let productos = model.find({})
-
-           return productos;
-    
-        } catch (error) {
-    
+           console.log(`productos.js ${productos}`)
+           return productos;   
+        } catch (error) {   
            loggs.error('Se produjo un error al leer el archivo.' + error)
         }
           
@@ -28,14 +24,11 @@ class Productos {
     async buscarPorId(id) {
 
         try {
-
         //    const producto = await knex('productos').where('id','=',id).select('*')
         //    console.log(`hola ${JSON.parse(JSON.stringify(producto[0]))}`)
            const producto = model.findOne({ _id: id })
-           return (producto)
-    
-        } catch (error) {
-    
+           return (producto)   
+        } catch (error) {   
             loggs.error('Se produjo un error al leer el archivo--.' + error)
         }
           
@@ -55,7 +48,6 @@ class Productos {
     async guardar(producto) {
 
         //const idMayor = await knex('productos').max('id')
-
         const productoAgregar = { 
         //    id: idMayor+1,
             nombre: producto.nombre,
@@ -66,9 +58,7 @@ class Productos {
             stock: producto.stock
         };
         const productoSaveModel = new model(productoAgregar);
-        let productoSave = await productoSaveModel.save()
-
-        
+        let productoSave = await productoSaveModel.save()      
         // await knex('productos').insert(productoAgregar)
         //     .then(console.log('producto agregado'))
         let productos = this.leer()
@@ -78,10 +68,8 @@ class Productos {
     }
 
     async borrar(id) {
-
         // await knex('productos').where('id','=',id).del()
-        // const producto = await knex('productos').where('id','=',id).select()
-    
+        // const producto = await knex('productos').where('id','=',id).select()    
         let producto = model.deleteOne({_id:id})
         return producto
     }

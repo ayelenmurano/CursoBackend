@@ -38,6 +38,11 @@ module.exports = {
         res.sendFile(path.join(__dirname + pathPublic + "logout.html"));
     },
 
+    logoutTimeExpired: (req,res) => {
+        res.sendFile(path.join(__dirname + pathPublic + "logout-timeExpired.html"));
+    },
+
+
     failRegister: (req, res) => 
     { res.sendFile(path.join(__dirname + pathPublic + "register-error.html") ) },
 

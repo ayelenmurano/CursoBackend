@@ -1,27 +1,38 @@
 const fs = require('fs')
-const log4js = require ('../config/logger/log4jsConfig');
+const model = require('../models/carrito.js')
 
+const log4js = require('../config/logger/log4jsConfig');
 const loggs = log4js.getLogger('utils');
 
 
-class Productos {
+class Carrito {
 
-    leer() {
-
+    leer(username) {
         try {
-
-           if(!fs.existsSync('../carrito.txt')){
-               fs.writeFileSync('../carrito.txt','[]')
-           }
-           
-           const contenido = fs.readFileSync('carrito.txt','utf-8');
-           let productos = JSON.parse(contenido)
-    
-           return productos
-    
+            let productosCarrito = model.findOne({username: username});
+            console.log(`Carrito.js ${JSON.stringify(productosCarrito)}`)
+            return productosCarrito;
         } catch (error) {
-    
-           loggs.error('Se produjo un error al leer el archivo.' + error)
+            loggs.error(`Se produjo un error al buscar los productos del carrito correspondiente a ${username}` + error)
+        }
+          
+    };
+
+    async leerProductos(username) {
+        try {
+            let productosCarrito = await model.find({username: username}, {productos:1, _id:0});
+            let productosArray = [];
+            console.log(`productoscarrito en carrito.js ${productosCarrito}`)
+            console.log(`Carrito.js111d ${JSON.stringify(productosCarrito)}`)
+            if ( JSON.stringify(productosCarrito) != '[]' ) {
+                productosArray = productosCarrito[0].productos;
+            }
+            console.log(`Carrito.js ${JSON.stringify(productosCarrito)}`)
+            console.log(`Carrito.js ${JSON.stringify(productosArray)}`)
+            return productosArray;       
+            
+        } catch (error) {
+            loggs.error(`Se produjo un error al buscar los productos del carrito correspondiente a ${username}` + error)
         }
           
     }
@@ -35,32 +46,68 @@ class Productos {
             }
     }
 
-    async guardar(producto) {
+    async guardar(username, producto) {
+        const productosCarrito = await this.leerProductos(username);
+        console.log(`productosCarrito 11111 ${JSON.stringify(productosCarrito)}`)
+        if (JSON.stringify(productosCarrito) != '[]') { 
+            let productDuplicated = false
+            for (let i in productosCarrito) {
+                if ( productosCarrito[i].nombre == producto.nombre ) {
+                    productDuplicated = true
+                    const cantidadProductos = productosCarrito[i].cantidad;
+                    productosCarrito[i].cantidad = cantidadProductos + 1;
+                    break;
+                }
+            }
+            if ( !productDuplicated ) {
+                const productoAgregar = {
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    descripcion: producto.descripcion,
+                    codigo: producto.codigo,
+                    foto: producto.foto,
+                    cantidad: 1,
+                    id: producto.id
+                };
+                productosCarrito.push(productoAgregar);
+            }
+            
+            console.log(`productosCarrito 22222: ${JSON.stringify(productosCarrito)}`);
+            try {
+                const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productosCarrito } });
+            } catch (e) {
+                loggs.error('No se pudo agregar el elemento. ERROR: '+ e)
+            }
 
-        const productos = this.leer()
-        const longitud = productos.length
-        const productoAgregar = {
-            id: longitud+1,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            descripcion:producto.descripcion,
-            codigo: producto.codigo,
-            foto: producto.foto,
-            stock: producto.stock,
-            timestamp: Date.now()
+            return productosCarrito;
+        } else {
+            const nuevoCarrito = {
+                username: username,
+                productos: [{
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    descripcion: producto.descripcion,
+                    codigo: producto.codigo,
+                    foto: producto.foto,
+                    cantidad: 1,
+                    id: producto.id
+                }]
+            };
+
+            const carritoSaveModel = new model(nuevoCarrito);
+            let carritoSave = await carritoSaveModel.save();
+            const array = [producto]
+            console.log(`producto en carrito.js ${JSON.stringify(array)}, el tipo es ${typeof array }`)
+            return array; 
         }
-        
-        productos.push(productoAgregar)
-        await this.escribir(productos)
+          
     
-        return productos
-    
-    }
+    };
 
-    async borrar(id) {
+    async borrar(username, id) {
 
-        const productos = this.leer()
-        let idProducto = ""
+        const productos = this.leerProductos(username);
+        let idProducto = "";
         for (let producto in productos){ 
             if (productos[producto].id == id) {
                 idProducto = producto
@@ -69,14 +116,18 @@ class Productos {
         }
         const producto = productos[idProducto]
         productos.splice(idProducto,1)
-        await this.escribir(productos)
+        try {
+            const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productos } });
+        } catch (e) {
+            loggs.error('No se pudo agregar el elemento. ERROR: '+ e)
+        }
     
-        return producto
+        return productos
     }
 
 }
 //export default
-module.exports = Productos
+module.exports = Carrito
 
 //export mas de uno
 //exports.Productos = Productos

@@ -10,10 +10,13 @@
                         <td>Código</td>
                         <td>Foto</td>
                         <td>Precio</td>
-                        <td>Cantidad</td>
+                        <td>Stock</td>
                     </tr>
                 </thead>
                 <tbody>
+                    <% if ( productos == undefined || productos.length == 0) { %>
+                        <tr> <td>No hay productos </td> </tr>
+                    <% } else { %>
                     <% productos.forEach(function(producto){ %>
                         <tr>
                             <td> <%= producto.nombre %> </td>
@@ -21,10 +24,10 @@
                             <td> <%= producto.codigo %> </td>
                             <td> <img src=<%=producto.foto %> width="50" height="50"> </td>
                             <td> <%= producto.precio %> </td>
-                            <td> <%= producto.cantidad %> </td>
-                            <td> <a href='/carrito/borrar?id=<%= producto.id%>&username=<%= username %>' class="btn btn-primary">Eliminar</a> </td>
+                            <td> <%= producto.stock %> </td>
+                            <td> <a href='/carrito/agregar?id=<%= producto.id%>&username=<%= username %>' class="btn btn-primary">Agregar</a> </td>
                         </tr>
-                    <% }) %>
+                    <% }) } %>
                     <tr>
 
                     </tr>

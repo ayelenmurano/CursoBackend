@@ -67,3 +67,744 @@
 [2021-07-20T19:34:04.851] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 11756
 [2021-07-20T19:34:27.209] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 10392
 [2021-07-20T19:35:00.286] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 19608
+[2021-07-20T19:50:33.680] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 20760
+[2021-07-20T20:04:52.769] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 12948
+[2021-07-20T20:13:06.238] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 1836
+[2021-07-20T20:14:52.608] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 14372
+[2021-07-20T20:16:08.697] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 12020
+[2021-07-20T20:16:26.120] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 21244
+[2021-07-20T20:16:30.808] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 16332
+[2021-07-20T20:16:35.878] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 15288
+[2021-07-20T20:17:11.015] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 15140
+[2021-07-20T20:17:21.850] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 18256
+[2021-07-20T20:19:17.622] [INFO] server - Usuario conectado
+[2021-07-20T20:24:13.431] [INFO] server - Usuario desconectado
+[2021-07-20T20:24:33.019] [INFO] server - Usuario conectado
+[2021-07-20T20:24:34.351] [INFO] server - Usuario desconectado
+[2021-07-20T20:24:35.998] [INFO] server - Usuario conectado
+[2021-07-20T20:24:37.319] [INFO] server - Usuario desconectado
+[2021-07-20T20:24:44.831] [INFO] server - Usuario conectado
+[2021-07-20T20:27:42.722] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 9320
+[2021-07-20T20:27:42.929] [INFO] server - Usuario conectado
+[2021-07-20T20:28:04.329] [INFO] server - Usuario desconectado
+[2021-07-20T20:28:09.944] [INFO] server - Usuario conectado
+[2021-07-20T20:28:12.472] [INFO] server - Usuario desconectado
+[2021-07-20T20:28:12.769] [INFO] server - Usuario conectado
+[2021-07-20T20:30:45.178] [INFO] server - Usuario desconectado
+[2021-07-20T20:31:06.132] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 13028
+[2021-07-20T20:31:11.534] [INFO] server - Usuario conectado
+[2021-07-20T20:31:19.829] [INFO] server - Usuario desconectado
+[2021-07-20T20:31:20.117] [INFO] server - Usuario conectado
+[2021-07-20T20:31:23.739] [INFO] server - Usuario desconectado
+[2021-07-20T20:31:24.022] [INFO] server - Usuario conectado
+[2021-07-20T20:31:25.418] [INFO] server - Usuario desconectado
+[2021-07-20T20:31:25.700] [INFO] server - Usuario conectado
+[2021-07-20T20:32:16.378] [INFO] server - Usuario desconectado
+[2021-07-20T20:32:30.977] [INFO] server - Usuario conectado
+[2021-07-20T20:33:18.580] [INFO] server - Escuchando en el puerto 8081. Codigo de salida: 16112
+[2021-07-20T20:33:18.682] [INFO] server - Usuario conectado
+[2021-07-20T20:33:39.127] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10352
+[2021-07-20T20:52:20.207] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13064
+[2021-07-20T20:53:34.522] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15896
+[2021-07-20T20:56:34.136] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1120
+[2021-07-20T20:56:55.653] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18060
+[2021-07-20T21:13:29.651] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20888
+[2021-07-20T21:14:19.253] [INFO] server - Usuario conectado
+[2021-07-20T21:14:24.173] [INFO] server - Usuario desconectado
+[2021-07-20T21:14:25.764] [INFO] server - Usuario conectado
+[2021-07-20T21:14:26.636] [INFO] server - Usuario desconectado
+[2021-07-21T10:06:33.697] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4824
+[2021-07-21T10:06:43.739] [INFO] server - Usuario conectado
+[2021-07-21T10:23:10.096] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17928
+[2021-07-21T10:23:10.130] [INFO] server - Usuario conectado
+[2021-07-21T10:27:49.369] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18032
+[2021-07-21T10:27:49.522] [INFO] server - Usuario conectado
+[2021-07-21T10:28:34.661] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11492
+[2021-07-21T10:28:34.769] [INFO] server - Usuario conectado
+[2021-07-21T10:31:17.354] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T10:31:30.172] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14836
+[2021-07-21T10:31:30.255] [INFO] server - Usuario conectado
+[2021-07-21T10:31:43.901] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7920
+[2021-07-21T10:31:44.019] [INFO] server - Usuario conectado
+[2021-07-21T10:33:52.516] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12348
+[2021-07-21T10:36:47.344] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19544
+[2021-07-21T10:37:00.964] [INFO] server - Usuario conectado
+[2021-07-21T10:37:12.731] [INFO] server - Usuario desconectado
+[2021-07-21T10:46:26.200] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17544
+[2021-07-21T10:46:32.504] [INFO] server - Usuario conectado
+[2021-07-21T10:46:33.970] [INFO] server - Usuario desconectado
+[2021-07-21T10:47:29.723] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T10:47:44.146] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 912
+[2021-07-21T10:47:53.751] [INFO] server - Usuario conectado
+[2021-07-21T10:47:57.011] [INFO] server - Usuario desconectado
+[2021-07-21T10:49:48.725] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11572
+[2021-07-21T10:49:57.445] [INFO] server - Usuario conectado
+[2021-07-21T10:50:38.238] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12532
+[2021-07-21T10:52:17.988] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T10:52:51.846] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3128
+[2021-07-21T10:54:14.001] [INFO] server - Usuario conectado
+[2021-07-21T10:55:22.081] [INFO] server - Usuario desconectado
+[2021-07-21T11:08:54.455] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11724
+[2021-07-21T11:09:03.681] [INFO] server - Usuario conectado
+[2021-07-21T11:09:05.014] [INFO] server - Usuario desconectado
+[2021-07-21T11:09:49.997] [INFO] server - Usuario conectado
+[2021-07-21T11:10:32.173] [INFO] server - Usuario desconectado
+[2021-07-21T11:10:36.191] [INFO] server - Usuario conectado
+[2021-07-21T11:10:37.709] [INFO] server - Usuario desconectado
+[2021-07-21T11:11:34.038] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 21368
+[2021-07-21T11:12:07.768] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18240
+[2021-07-21T11:13:47.088] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10460
+[2021-07-21T11:13:55.883] [INFO] server - Usuario conectado
+[2021-07-21T11:13:57.298] [INFO] server - Usuario desconectado
+[2021-07-21T11:14:59.417] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16792
+[2021-07-21T11:15:20.225] [INFO] server - Usuario conectado
+[2021-07-21T11:15:23.959] [INFO] server - Usuario desconectado
+[2021-07-21T11:18:40.814] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12584
+[2021-07-21T11:18:45.259] [INFO] server - Usuario conectado
+[2021-07-21T11:18:46.453] [INFO] server - Usuario desconectado
+[2021-07-21T11:20:05.016] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11540
+[2021-07-21T11:20:13.664] [INFO] server - Usuario conectado
+[2021-07-21T11:20:15.239] [INFO] server - Usuario desconectado
+[2021-07-21T11:23:55.618] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T11:24:13.459] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7308
+[2021-07-21T11:24:50.356] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12588
+[2021-07-21T11:24:56.751] [INFO] server - Usuario conectado
+[2021-07-21T11:24:58.168] [INFO] server - Usuario desconectado
+[2021-07-21T11:26:33.974] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18608
+[2021-07-21T11:26:42.583] [INFO] server - Usuario conectado
+[2021-07-21T11:26:43.778] [INFO] server - Usuario desconectado
+[2021-07-21T11:27:18.833] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15440
+[2021-07-21T11:27:24.716] [INFO] server - Usuario conectado
+[2021-07-21T11:27:25.836] [INFO] server - Usuario desconectado
+[2021-07-21T11:30:11.244] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15892
+[2021-07-21T11:31:26.407] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9280
+[2021-07-21T11:32:01.354] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15820
+[2021-07-21T11:32:13.087] [INFO] server - Usuario conectado
+[2021-07-21T11:32:14.187] [INFO] server - Usuario desconectado
+[2021-07-21T11:33:13.246] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11512
+[2021-07-21T11:33:21.168] [INFO] server - Usuario conectado
+[2021-07-21T11:35:36.163] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17812
+[2021-07-21T11:35:36.275] [INFO] server - Usuario conectado
+[2021-07-21T11:35:41.615] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10224
+[2021-07-21T11:35:41.640] [INFO] server - Usuario conectado
+[2021-07-21T11:35:44.695] [INFO] server - Usuario desconectado
+[2021-07-21T11:35:45.050] [INFO] server - Usuario conectado
+[2021-07-21T11:35:58.243] [INFO] server - Usuario desconectado
+[2021-07-21T11:36:01.623] [INFO] server - Usuario conectado
+[2021-07-21T11:36:51.351] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13300
+[2021-07-21T11:36:51.535] [INFO] server - Usuario conectado
+[2021-07-21T11:36:54.209] [INFO] server - Usuario desconectado
+[2021-07-21T11:36:54.572] [INFO] server - Usuario conectado
+[2021-07-21T11:37:21.396] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14236
+[2021-07-21T11:37:21.524] [INFO] server - Usuario conectado
+[2021-07-21T11:37:22.233] [INFO] server - Usuario desconectado
+[2021-07-21T11:37:22.418] [INFO] server - Usuario conectado
+[2021-07-21T11:37:53.084] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20976
+[2021-07-21T11:37:53.459] [INFO] server - Usuario conectado
+[2021-07-21T11:38:31.493] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16924
+[2021-07-21T11:38:31.575] [INFO] server - Usuario conectado
+[2021-07-21T11:38:33.611] [INFO] server - Usuario desconectado
+[2021-07-21T11:38:33.777] [INFO] server - Usuario conectado
+[2021-07-21T11:39:02.801] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10900
+[2021-07-21T11:39:02.824] [INFO] server - Usuario conectado
+[2021-07-21T11:39:02.870] [INFO] server - Usuario desconectado
+[2021-07-21T11:39:03.036] [INFO] server - Usuario conectado
+[2021-07-21T11:39:17.521] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1844
+[2021-07-21T11:39:17.600] [INFO] server - Usuario conectado
+[2021-07-21T11:39:18.494] [INFO] server - Usuario desconectado
+[2021-07-21T11:39:19.543] [INFO] server - Usuario conectado
+[2021-07-21T11:40:04.239] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19312
+[2021-07-21T11:40:04.316] [INFO] server - Usuario conectado
+[2021-07-21T11:40:08.498] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10224
+[2021-07-21T11:40:08.530] [INFO] server - Usuario conectado
+[2021-07-21T12:00:35.587] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16436
+[2021-07-21T12:00:35.797] [INFO] server - Usuario conectado
+[2021-07-21T12:40:43.254] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3664
+[2021-07-21T12:40:43.347] [INFO] server - Usuario conectado
+[2021-07-21T12:40:48.735] [INFO] server - Usuario desconectado
+[2021-07-21T12:40:52.478] [INFO] server - Usuario conectado
+[2021-07-21T12:40:55.654] [INFO] server - Usuario desconectado
+[2021-07-21T12:44:56.357] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19280
+[2021-07-21T12:45:07.477] [INFO] server - Usuario conectado
+[2021-07-21T12:45:08.328] [INFO] server - Usuario desconectado
+[2021-07-21T12:46:29.511] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10308
+[2021-07-21T12:46:38.623] [INFO] server - Usuario conectado
+[2021-07-21T12:46:39.794] [INFO] server - Usuario desconectado
+[2021-07-21T12:48:03.651] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4732
+[2021-07-21T12:48:11.035] [INFO] server - Usuario conectado
+[2021-07-21T12:48:12.127] [INFO] server - Usuario desconectado
+[2021-07-21T12:50:41.734] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18052
+[2021-07-21T12:50:48.017] [INFO] server - Usuario conectado
+[2021-07-21T12:50:49.114] [INFO] server - Usuario desconectado
+[2021-07-21T12:51:25.385] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19996
+[2021-07-21T12:52:50.576] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9600
+[2021-07-21T12:53:00.873] [INFO] server - Usuario conectado
+[2021-07-21T12:53:01.625] [INFO] server - Usuario desconectado
+[2021-07-21T12:56:08.962] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9440
+[2021-07-21T12:56:17.601] [INFO] server - Usuario conectado
+[2021-07-21T12:56:19.376] [INFO] server - Usuario desconectado
+[2021-07-21T12:56:41.854] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 6800
+[2021-07-21T12:57:08.013] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11220
+[2021-07-21T13:08:52.711] [INFO] server - Usuario conectado
+[2021-07-21T13:09:04.829] [INFO] server - Usuario desconectado
+[2021-07-21T13:09:07.590] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16928
+[2021-07-21T13:10:06.832] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20928
+[2021-07-21T13:16:24.706] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13508
+[2021-07-21T13:16:30.124] [INFO] server - Usuario conectado
+[2021-07-21T13:16:31.299] [INFO] server - Usuario desconectado
+[2021-07-21T13:27:08.704] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20684
+[2021-07-21T13:28:14.794] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16404
+[2021-07-21T13:30:12.489] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19324
+[2021-07-21T13:33:31.393] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1532
+[2021-07-21T13:33:37.119] [INFO] server - Usuario conectado
+[2021-07-21T13:33:40.054] [INFO] server - Usuario desconectado
+[2021-07-21T13:37:01.530] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T13:37:13.353] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15788
+[2021-07-21T13:37:18.222] [INFO] server - Usuario conectado
+[2021-07-21T13:37:20.692] [INFO] server - Usuario desconectado
+[2021-07-21T13:41:29.293] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1776
+[2021-07-21T13:42:39.142] [INFO] server - Usuario conectado
+[2021-07-21T13:42:44.745] [INFO] server - Usuario desconectado
+[2021-07-21T13:45:15.627] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9060
+[2021-07-21T13:45:19.766] [INFO] server - Usuario conectado
+[2021-07-21T13:45:21.497] [INFO] server - Usuario desconectado
+[2021-07-21T13:45:21.781] [INFO] server - Usuario conectado
+[2021-07-21T13:50:30.094] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18952
+[2021-07-21T13:50:32.720] [INFO] server - Usuario conectado
+[2021-07-21T13:50:35.596] [INFO] server - Usuario desconectado
+[2021-07-21T13:50:53.499] [INFO] server - Usuario conectado
+[2021-07-21T13:51:11.368] [INFO] server - Usuario desconectado
+[2021-07-21T13:52:05.306] [INFO] server - Usuario conectado
+[2021-07-21T13:53:19.855] [INFO] server - Usuario desconectado
+[2021-07-21T13:53:20.112] [INFO] server - Usuario conectado
+[2021-07-21T13:53:31.355] [INFO] server - Usuario desconectado
+[2021-07-21T13:55:42.824] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16732
+[2021-07-21T13:57:38.987] [INFO] server - Usuario conectado
+[2021-07-21T13:57:40.701] [INFO] server - Usuario desconectado
+[2021-07-21T13:57:41.185] [INFO] server - Usuario conectado
+[2021-07-21T13:58:16.267] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10064
+[2021-07-21T13:58:16.372] [INFO] server - Usuario conectado
+[2021-07-21T13:58:17.701] [INFO] server - Usuario desconectado
+[2021-07-21T13:58:21.193] [INFO] server - Usuario conectado
+[2021-07-21T13:58:23.306] [INFO] server - Usuario desconectado
+[2021-07-21T13:58:23.772] [INFO] server - Usuario conectado
+[2021-07-21T13:59:09.795] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15084
+[2021-07-21T13:59:09.820] [INFO] server - Usuario conectado
+[2021-07-21T13:59:11.695] [INFO] server - Usuario desconectado
+[2021-07-21T13:59:14.895] [INFO] server - Usuario conectado
+[2021-07-21T13:59:15.850] [INFO] server - Usuario desconectado
+[2021-07-21T13:59:16.320] [INFO] server - Usuario conectado
+[2021-07-21T14:07:37.021] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2680
+[2021-07-21T14:07:37.197] [INFO] server - Usuario conectado
+[2021-07-21T14:11:56.745] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16076
+[2021-07-21T14:11:59.816] [INFO] server - Usuario conectado
+[2021-07-21T14:12:00.238] [INFO] server - Usuario desconectado
+[2021-07-21T14:12:03.711] [INFO] server - Usuario conectado
+[2021-07-21T14:12:05.668] [INFO] server - Usuario desconectado
+[2021-07-21T14:12:06.134] [INFO] server - Usuario conectado
+[2021-07-21T14:12:36.558] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10060
+[2021-07-21T14:12:36.582] [INFO] server - Usuario conectado
+[2021-07-21T14:12:37.870] [INFO] server - Usuario desconectado
+[2021-07-21T14:12:48.159] [INFO] server - Usuario conectado
+[2021-07-21T14:12:52.788] [INFO] server - Usuario desconectado
+[2021-07-21T14:12:53.310] [INFO] server - Usuario conectado
+[2021-07-21T14:14:11.159] [INFO] server - Usuario desconectado
+[2021-07-21T14:14:14.512] [INFO] server - Usuario conectado
+[2021-07-21T14:14:17.328] [INFO] server - Usuario desconectado
+[2021-07-21T14:14:17.789] [INFO] server - Usuario conectado
+[2021-07-21T14:14:57.792] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17804
+[2021-07-21T14:14:58.042] [INFO] server - Usuario conectado
+[2021-07-21T14:15:07.911] [INFO] server - Usuario desconectado
+[2021-07-21T14:15:28.581] [INFO] server - Usuario conectado
+[2021-07-21T14:15:34.195] [INFO] server - Usuario desconectado
+[2021-07-21T14:17:48.440] [INFO] server - Usuario conectado
+[2021-07-21T14:18:19.338] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12672
+[2021-07-21T14:18:33.602] [INFO] server - Usuario conectado
+[2021-07-21T14:18:36.184] [INFO] server - Usuario desconectado
+[2021-07-21T14:19:42.126] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 588
+[2021-07-21T14:19:50.527] [INFO] server - Usuario conectado
+[2021-07-21T14:19:53.554] [INFO] server - Usuario desconectado
+[2021-07-21T14:24:56.411] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3376
+[2021-07-21T14:25:06.612] [INFO] server - Usuario conectado
+[2021-07-21T14:25:09.476] [INFO] server - Usuario desconectado
+[2021-07-21T14:25:59.737] [INFO] server - Usuario conectado
+[2021-07-21T14:27:02.567] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10376
+[2021-07-21T14:27:43.229] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12800
+[2021-07-21T14:27:49.835] [INFO] server - Usuario conectado
+[2021-07-21T14:27:52.412] [INFO] server - Usuario desconectado
+[2021-07-21T14:27:52.887] [INFO] server - Usuario conectado
+[2021-07-21T14:31:38.292] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17544
+[2021-07-21T14:31:38.367] [INFO] server - Usuario conectado
+[2021-07-21T14:31:41.022] [INFO] server - Usuario desconectado
+[2021-07-21T14:31:44.226] [INFO] server - Usuario conectado
+[2021-07-21T14:31:45.426] [INFO] server - Usuario desconectado
+[2021-07-21T14:31:45.904] [INFO] server - Usuario conectado
+[2021-07-21T14:32:21.078] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17236
+[2021-07-21T14:32:28.501] [INFO] server - Usuario conectado
+[2021-07-21T14:32:45.949] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15484
+[2021-07-21T14:32:46.088] [INFO] server - Usuario conectado
+[2021-07-21T14:32:46.587] [INFO] server - Usuario desconectado
+[2021-07-21T14:32:48.359] [INFO] server - Usuario conectado
+[2021-07-21T14:33:07.708] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 236
+[2021-07-21T14:34:18.415] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4800
+[2021-07-21T14:36:57.229] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3136
+[2021-07-21T14:38:03.774] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9092
+[2021-07-21T14:38:05.735] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-07-21T14:38:21.254] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9716
+[2021-07-21T14:40:25.256] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20012
+[2021-07-21T14:48:50.486] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19344
+[2021-07-21T14:50:54.760] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4980
+[2021-07-21T14:52:43.348] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17880
+[2021-07-21T14:53:41.936] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13868
+[2021-07-21T14:54:04.507] [INFO] server - Usuario conectado
+[2021-07-21T14:54:09.225] [INFO] server - Usuario desconectado
+[2021-07-21T14:56:16.452] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12936
+[2021-07-21T14:57:01.602] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10752
+[2021-07-21T14:58:07.261] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11412
+[2021-07-21T14:59:11.557] [INFO] server - Usuario conectado
+[2021-07-21T15:03:02.734] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9916
+[2021-07-21T15:03:06.949] [INFO] server - Usuario conectado
+[2021-07-21T15:03:08.168] [INFO] server - Usuario desconectado
+[2021-07-21T15:08:03.235] [INFO] server - Usuario conectado
+[2021-07-21T15:11:23.511] [INFO] server - Usuario desconectado
+[2021-07-21T15:12:09.843] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16380
+[2021-07-21T15:12:10.073] [INFO] server - Usuario conectado
+[2021-07-21T15:12:11.718] [INFO] server - Usuario desconectado
+[2021-07-21T15:13:02.869] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19920
+[2021-07-21T15:13:20.238] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13516
+[2021-07-21T15:13:33.103] [INFO] server - Usuario conectado
+[2021-07-21T15:13:34.290] [INFO] server - Usuario desconectado
+[2021-07-21T15:14:19.485] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13532
+[2021-07-21T15:14:22.448] [INFO] server - Usuario conectado
+[2021-07-21T15:16:21.900] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15892
+[2021-07-21T15:16:22.051] [INFO] server - Usuario conectado
+[2021-07-21T15:16:22.349] [INFO] server - Usuario desconectado
+[2021-07-21T15:18:19.840] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1416
+[2021-07-21T15:18:24.536] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16664
+[2021-07-21T15:18:26.933] [INFO] server - Usuario conectado
+[2021-07-21T15:19:22.133] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13448
+[2021-07-21T15:19:22.311] [INFO] server - Usuario conectado
+[2021-07-21T15:19:22.911] [INFO] server - Usuario desconectado
+[2021-07-21T15:19:25.032] [INFO] server - Usuario conectado
+[2021-07-21T15:21:35.659] [INFO] server - Usuario desconectado
+[2021-07-21T15:22:35.197] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1360
+[2021-07-21T15:22:40.010] [INFO] server - Usuario conectado
+[2021-07-21T15:23:10.422] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11792
+[2021-07-21T15:23:10.553] [INFO] server - Usuario conectado
+[2021-07-21T15:23:11.402] [INFO] server - Usuario desconectado
+[2021-07-21T15:23:12.853] [INFO] server - Usuario conectado
+[2021-07-21T15:29:33.657] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12412
+[2021-07-21T15:29:33.863] [INFO] server - Usuario conectado
+[2021-07-21T15:29:35.214] [INFO] server - Usuario desconectado
+[2021-07-21T15:29:36.075] [INFO] server - Usuario conectado
+[2021-07-21T15:30:09.121] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 6792
+[2021-07-21T15:30:11.492] [INFO] server - Usuario conectado
+[2021-07-21T15:36:05.611] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 21080
+[2021-07-21T15:36:05.636] [INFO] server - Usuario conectado
+[2021-07-21T15:36:07.516] [INFO] server - Usuario desconectado
+[2021-07-21T15:36:08.247] [INFO] server - Usuario conectado
+[2021-07-21T15:42:37.554] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10352
+[2021-07-21T15:42:37.624] [INFO] server - Usuario conectado
+[2021-07-21T15:42:47.533] [INFO] server - Usuario desconectado
+[2021-07-21T15:42:48.303] [INFO] server - Usuario conectado
+[2021-07-21T15:43:52.990] [INFO] server - Usuario desconectado
+[2021-07-21T15:44:00.997] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12412
+[2021-07-21T15:44:03.394] [INFO] server - Usuario conectado
+[2021-07-21T15:44:41.507] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 21448
+[2021-07-21T15:44:41.582] [INFO] server - Usuario conectado
+[2021-07-21T15:44:56.175] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19796
+[2021-07-21T15:44:56.308] [INFO] server - Usuario conectado
+[2021-07-21T15:45:13.727] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18932
+[2021-07-21T15:45:13.817] [INFO] server - Usuario conectado
+[2021-07-21T15:45:14.713] [INFO] server - Usuario desconectado
+[2021-07-21T15:45:16.145] [INFO] server - Usuario conectado
+[2021-07-21T15:45:40.258] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 21200
+[2021-07-21T15:45:42.608] [INFO] server - Usuario conectado
+[2021-07-21T15:46:37.902] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14436
+[2021-07-21T15:46:38.097] [INFO] server - Usuario conectado
+[2021-07-21T15:46:40.698] [INFO] server - Usuario desconectado
+[2021-07-21T15:47:15.913] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 8048
+[2021-07-21T15:48:27.280] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12940
+[2021-07-21T15:49:54.684] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12892
+[2021-07-21T15:51:21.098] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 19712
+[2021-07-21T15:52:01.026] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14112
+[2021-07-21T15:52:38.798] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20160
+[2021-07-21T15:53:15.956] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10752
+[2021-07-21T15:53:40.735] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2296
+[2021-07-21T15:54:49.861] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 6796
+[2021-07-21T15:56:41.666] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3376
+[2021-07-21T15:57:10.498] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11696
+[2021-07-21T16:00:23.727] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10128
+[2021-07-21T16:00:25.962] [INFO] server - Usuario conectado
+[2021-07-21T16:00:36.258] [INFO] server - Usuario desconectado
+[2021-07-21T16:00:36.597] [INFO] server - Usuario conectado
+[2021-07-21T16:00:37.762] [INFO] server - Usuario desconectado
+[2021-07-21T16:01:23.030] [INFO] server - Usuario conectado
+[2021-07-21T16:03:23.330] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17584
+[2021-07-21T16:03:23.404] [INFO] server - Usuario conectado
+[2021-07-21T16:03:25.099] [INFO] server - Usuario desconectado
+[2021-07-21T16:03:28.313] [INFO] server - Usuario conectado
+[2021-07-21T16:03:29.582] [INFO] server - Usuario desconectado
+[2021-07-21T16:03:46.365] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2968
+[2021-07-21T16:03:52.425] [INFO] server - Usuario conectado
+[2021-07-21T16:03:53.354] [INFO] server - Usuario desconectado
+[2021-07-21T16:03:54.137] [INFO] server - Usuario conectado
+[2021-07-21T16:05:48.048] [INFO] server - Usuario desconectado
+[2021-07-21T16:05:48.393] [INFO] server - Usuario conectado
+[2021-07-21T16:05:49.978] [INFO] server - Usuario desconectado
+[2021-07-21T16:06:26.433] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10020
+[2021-07-21T16:06:34.722] [INFO] server - Usuario conectado
+[2021-07-21T16:06:51.892] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:02.717] [INFO] server - Usuario conectado
+[2021-07-21T16:07:05.195] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:05.661] [INFO] server - Usuario conectado
+[2021-07-21T16:07:07.615] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:07.944] [INFO] server - Usuario conectado
+[2021-07-21T16:07:10.156] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:10.629] [INFO] server - Usuario conectado
+[2021-07-21T16:07:13.422] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:13.716] [INFO] server - Usuario conectado
+[2021-07-21T16:07:15.086] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:15.554] [INFO] server - Usuario conectado
+[2021-07-21T16:07:22.511] [INFO] server - Usuario desconectado
+[2021-07-21T16:07:22.793] [INFO] server - Usuario conectado
+[2021-07-21T16:07:23.714] [INFO] server - Usuario desconectado
+[2021-07-21T16:08:09.015] [INFO] server - Usuario conectado
+[2021-07-21T16:10:50.750] [INFO] server - Usuario desconectado
+[2021-07-21T16:11:05.965] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10172
+[2021-07-21T16:11:10.640] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10012
+[2021-07-21T16:12:51.724] [INFO] server - Usuario conectado
+[2021-07-21T16:12:53.158] [INFO] server - Usuario desconectado
+[2021-07-21T16:13:38.026] [INFO] server - Usuario conectado
+[2021-07-21T16:15:10.073] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4284
+[2021-07-21T16:15:10.341] [INFO] server - Usuario conectado
+[2021-07-21T16:15:14.612] [INFO] server - Usuario desconectado
+[2021-07-21T16:15:17.947] [INFO] server - Usuario conectado
+[2021-07-21T16:15:18.897] [INFO] server - Usuario desconectado
+[2021-07-21T16:16:03.976] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20816
+[2021-07-21T16:16:04.219] [INFO] server - Usuario conectado
+[2021-07-21T16:16:05.783] [INFO] server - Usuario desconectado
+[2021-07-21T16:16:08.920] [INFO] server - Usuario conectado
+[2021-07-21T16:16:11.215] [INFO] server - Usuario desconectado
+[2021-07-21T16:16:55.021] [INFO] server - Usuario conectado
+[2021-07-21T16:17:03.087] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11788
+[2021-07-21T16:17:03.367] [INFO] server - Usuario conectado
+[2021-07-21T16:17:03.510] [INFO] server - Usuario desconectado
+[2021-07-21T16:17:07.697] [INFO] server - Usuario conectado
+[2021-07-21T16:17:08.911] [INFO] server - Usuario desconectado
+[2021-07-21T16:17:54.018] [INFO] server - Usuario conectado
+[2021-07-21T16:18:33.263] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15028
+[2021-07-21T16:18:33.366] [INFO] server - Usuario conectado
+[2021-07-21T16:18:57.779] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18528
+[2021-07-21T16:19:10.084] [INFO] server - Usuario conectado
+[2021-07-21T16:19:11.185] [INFO] server - Usuario desconectado
+[2021-07-21T16:19:36.614] [INFO] server - Usuario conectado
+[2021-07-21T16:19:42.512] [INFO] server - Usuario desconectado
+[2021-07-21T16:20:19.049] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12628
+[2021-07-21T16:20:21.595] [INFO] server - Usuario conectado
+[2021-07-21T16:20:23.452] [INFO] server - Usuario desconectado
+[2021-07-21T16:20:55.996] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7308
+[2021-07-21T16:20:58.887] [INFO] server - Usuario conectado
+[2021-07-21T16:21:00.352] [INFO] server - Usuario desconectado
+[2021-07-21T16:21:46.018] [INFO] server - Usuario conectado
+[2021-07-21T16:21:58.498] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3456
+[2021-07-21T16:22:00.498] [INFO] server - Usuario conectado
+[2021-07-21T16:22:01.980] [INFO] server - Usuario desconectado
+[2021-07-21T16:22:34.843] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17804
+[2021-07-21T16:22:37.040] [INFO] server - Usuario conectado
+[2021-07-21T16:22:37.725] [INFO] server - Usuario desconectado
+[2021-07-21T16:23:26.507] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2616
+[2021-07-21T16:23:26.594] [INFO] server - Usuario conectado
+[2021-07-21T16:23:26.951] [INFO] server - Usuario desconectado
+[2021-07-21T16:23:28.759] [INFO] server - Usuario conectado
+[2021-07-21T16:23:33.841] [INFO] server - Usuario desconectado
+[2021-07-21T16:24:15.019] [INFO] server - Usuario conectado
+[2021-07-23T14:21:02.496] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 148
+[2021-07-23T14:21:14.937] [INFO] server - Usuario conectado
+[2021-07-23T14:22:38.320] [INFO] server - Usuario desconectado
+[2021-07-23T14:23:21.314] [INFO] server - Usuario conectado
+[2021-07-23T14:25:30.927] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 24192
+[2021-07-23T14:29:31.608] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14308
+[2021-07-23T14:30:33.047] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3992
+[2021-07-23T14:32:07.032] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 28452
+[2021-07-23T14:40:51.140] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 26460
+[2021-07-23T14:42:43.347] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 30528
+[2021-07-23T14:43:30.582] [INFO] server - Usuario conectado
+[2021-07-23T14:45:47.832] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12208
+[2021-07-23T14:45:50.294] [INFO] server - Usuario conectado
+[2021-07-23T14:45:56.588] [INFO] server - Usuario desconectado
+[2021-07-23T14:46:02.922] [INFO] server - Usuario conectado
+[2021-07-23T14:46:07.447] [INFO] server - Usuario desconectado
+[2021-07-23T14:48:52.642] [INFO] server - Usuario conectado
+[2021-07-23T14:59:34.480] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 1560
+[2021-07-23T14:59:36.371] [INFO] server - Usuario conectado
+[2021-07-23T14:59:37.614] [INFO] server - Usuario desconectado
+[2021-07-23T14:59:44.566] [INFO] server - Usuario conectado
+[2021-07-23T14:59:47.544] [INFO] server - Usuario desconectado
+[2021-07-23T15:00:57.942] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 26968
+[2021-07-23T15:02:46.357] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 980
+[2021-07-23T15:02:56.395] [INFO] server - Usuario conectado
+[2021-07-23T15:02:58.747] [INFO] server - Usuario desconectado
+[2021-07-23T15:04:05.686] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 29464
+[2021-07-23T15:04:14.250] [INFO] server - Usuario conectado
+[2021-07-23T15:04:16.457] [INFO] server - Usuario desconectado
+[2021-07-23T15:04:25.575] [INFO] server - Usuario conectado
+[2021-07-23T15:06:21.822] [INFO] server - Usuario desconectado
+[2021-07-23T15:06:26.010] [INFO] server - Usuario conectado
+[2021-07-23T15:06:30.388] [INFO] server - Usuario desconectado
+[2021-07-23T15:06:42.808] [INFO] server - Usuario conectado
+[2021-07-23T15:07:20.787] [INFO] server - Usuario desconectado
+[2021-07-23T15:07:25.014] [INFO] server - Usuario conectado
+[2021-07-23T15:07:27.075] [INFO] server - Usuario desconectado
+[2021-07-23T15:07:37.259] [INFO] server - Usuario conectado
+[2021-07-23T15:08:07.098] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11708
+[2021-07-23T15:08:28.101] [INFO] server - Usuario conectado
+[2021-07-23T15:10:39.039] [INFO] server - Usuario desconectado
+[2021-07-23T15:10:39.089] [INFO] server - Usuario conectado
+[2021-07-23T15:11:05.997] [INFO] server - Usuario desconectado
+[2021-07-23T15:11:12.401] [INFO] server - Usuario conectado
+[2021-07-23T15:15:56.958] [INFO] server - Usuario desconectado
+[2021-07-23T15:16:04.456] [INFO] server - Usuario conectado
+[2021-07-23T15:16:06.845] [INFO] server - Usuario desconectado
+[2021-07-23T15:16:13.740] [INFO] server - Usuario conectado
+[2021-07-23T15:16:36.009] [INFO] server - Usuario desconectado
+[2021-07-23T15:16:41.023] [INFO] server - Usuario conectado
+[2021-07-23T15:16:43.918] [INFO] server - Usuario desconectado
+[2021-07-23T15:17:27.278] [INFO] server - Usuario conectado
+[2021-07-23T15:17:43.900] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 32416
+[2021-07-23T15:17:46.652] [INFO] server - Usuario conectado
+[2021-07-23T15:18:06.061] [INFO] server - Usuario desconectado
+[2021-07-23T15:18:09.143] [INFO] server - Usuario conectado
+[2021-07-23T15:18:13.960] [INFO] server - Usuario desconectado
+[2021-07-23T15:18:17.303] [INFO] server - Usuario conectado
+[2021-07-23T15:18:22.968] [INFO] server - Usuario desconectado
+[2021-07-23T15:18:23.415] [INFO] server - Usuario conectado
+[2021-07-23T18:01:42.936] [INFO] server - Usuario desconectado
+[2021-07-25T15:28:32.550] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15304
+[2021-07-25T15:30:49.708] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18040
+[2021-07-25T15:31:22.325] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 23040
+[2021-07-25T15:34:23.568] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 32296
+[2021-07-25T15:42:01.322] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13648
+[2021-07-25T15:46:46.115] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13732
+[2021-07-25T15:51:23.762] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16612
+[2021-07-25T15:55:41.028] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11000
+[2021-07-25T15:55:47.805] [INFO] server - Usuario conectado
+[2021-07-25T16:00:32.933] [INFO] server - Usuario desconectado
+[2021-07-25T16:02:29.638] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7840
+[2021-07-25T16:02:34.322] [INFO] server - Usuario conectado
+[2021-07-25T16:02:38.090] [INFO] server - Usuario desconectado
+[2021-07-25T16:03:09.017] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14420
+[2021-07-25T16:03:11.198] [INFO] server - Usuario conectado
+[2021-07-25T16:04:19.313] [INFO] server - Usuario desconectado
+[2021-07-25T16:04:19.679] [INFO] server - Usuario conectado
+[2021-07-25T16:04:29.545] [INFO] server - Usuario desconectado
+[2021-07-25T16:04:39.740] [INFO] server - Usuario conectado
+[2021-07-25T16:04:52.500] [INFO] server - Usuario desconectado
+[2021-07-25T16:10:38.353] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12728
+[2021-07-25T16:11:08.239] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 148
+[2021-07-25T16:12:05.884] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13772
+[2021-07-25T16:12:10.958] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 6152
+[2021-07-25T16:12:34.728] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9172
+[2021-07-25T16:12:40.482] [INFO] server - Usuario conectado
+[2021-07-25T16:12:42.688] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:42.984] [INFO] server - Usuario conectado
+[2021-07-25T16:12:44.494] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:44.778] [INFO] server - Usuario conectado
+[2021-07-25T16:12:46.826] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:47.119] [INFO] server - Usuario conectado
+[2021-07-25T16:12:49.706] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:49.997] [INFO] server - Usuario conectado
+[2021-07-25T16:12:51.024] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:51.315] [INFO] server - Usuario conectado
+[2021-07-25T16:12:53.270] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:53.558] [INFO] server - Usuario conectado
+[2021-07-25T16:12:55.096] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:55.383] [INFO] server - Usuario conectado
+[2021-07-25T16:12:56.015] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:56.295] [INFO] server - Usuario conectado
+[2021-07-25T16:12:57.100] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:57.406] [INFO] server - Usuario conectado
+[2021-07-25T16:12:57.863] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:58.161] [INFO] server - Usuario conectado
+[2021-07-25T16:12:58.808] [INFO] server - Usuario desconectado
+[2021-07-25T16:12:59.090] [INFO] server - Usuario conectado
+[2021-07-25T16:13:00.150] [INFO] server - Usuario desconectado
+[2021-07-25T16:13:00.429] [INFO] server - Usuario conectado
+[2021-07-25T16:22:47.590] [INFO] server - Usuario desconectado
+[2021-07-25T16:22:48.171] [INFO] server - Usuario conectado
+[2021-07-25T16:23:47.372] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16360
+[2021-07-25T16:23:47.409] [INFO] server - Usuario conectado
+[2021-07-25T16:24:03.581] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 10832
+[2021-07-25T16:24:03.738] [INFO] server - Usuario conectado
+[2021-07-25T16:24:10.947] [INFO] server - Usuario desconectado
+[2021-07-25T16:27:13.479] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16544
+[2021-07-25T16:29:35.169] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12412
+[2021-07-25T16:30:50.988] [INFO] server - Usuario conectado
+[2021-07-25T16:30:56.244] [INFO] server - Usuario desconectado
+[2021-07-25T16:31:03.648] [INFO] server - Usuario conectado
+[2021-07-25T16:31:05.361] [INFO] server - Usuario desconectado
+[2021-07-25T16:32:08.920] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 14516
+[2021-07-25T16:34:51.420] [INFO] server - Usuario conectado
+[2021-07-25T16:34:53.773] [INFO] server - Usuario desconectado
+[2021-07-25T16:34:54.089] [INFO] server - Usuario conectado
+[2021-07-25T16:34:55.431] [INFO] server - Usuario desconectado
+[2021-07-25T16:34:55.748] [INFO] server - Usuario conectado
+[2021-07-25T16:34:58.131] [INFO] server - Usuario desconectado
+[2021-07-25T16:34:58.444] [INFO] server - Usuario conectado
+[2021-07-25T16:34:59.731] [INFO] server - Usuario desconectado
+[2021-07-25T16:35:00.040] [INFO] server - Usuario conectado
+[2021-07-25T16:36:01.862] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 4440
+[2021-07-25T16:36:01.911] [INFO] server - Usuario conectado
+[2021-07-25T16:36:02.992] [INFO] server - Usuario desconectado
+[2021-07-25T16:36:04.177] [INFO] server - Usuario conectado
+[2021-07-25T16:36:54.444] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9732
+[2021-07-25T16:36:54.603] [INFO] server - Usuario conectado
+[2021-07-25T16:36:57.044] [INFO] server - Usuario desconectado
+[2021-07-25T16:36:57.487] [INFO] server - Usuario conectado
+[2021-07-25T16:37:00.198] [INFO] server - Usuario desconectado
+[2021-07-25T16:37:05.793] [INFO] server - Usuario conectado
+[2021-07-25T16:37:06.978] [INFO] server - Usuario desconectado
+[2021-07-25T16:37:07.450] [INFO] server - Usuario conectado
+[2021-07-25T16:39:27.557] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 12912
+[2021-07-25T16:39:27.589] [INFO] server - Usuario conectado
+[2021-07-25T16:39:29.485] [INFO] server - Usuario desconectado
+[2021-07-25T16:39:30.256] [INFO] server - Usuario conectado
+[2021-07-25T16:39:45.089] [INFO] server - Usuario desconectado
+[2021-07-25T16:39:45.879] [INFO] server - Usuario conectado
+[2021-07-25T16:39:47.085] [INFO] server - Usuario desconectado
+[2021-07-25T16:39:52.164] [INFO] server - Usuario conectado
+[2021-07-25T16:39:54.061] [INFO] server - Usuario desconectado
+[2021-07-25T16:39:54.711] [INFO] server - Usuario conectado
+[2021-07-25T16:40:52.075] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2436
+[2021-07-25T16:40:52.271] [INFO] server - Usuario conectado
+[2021-07-25T16:40:53.871] [INFO] server - Usuario desconectado
+[2021-07-25T16:43:25.297] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15812
+[2021-07-25T16:43:54.403] [INFO] server - Usuario conectado
+[2021-07-25T16:44:31.907] [INFO] server - Usuario desconectado
+[2021-07-25T16:44:37.380] [INFO] server - Usuario conectado
+[2021-07-25T16:44:40.121] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:39.016] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7276
+[2021-07-25T16:45:42.159] [INFO] server - Usuario conectado
+[2021-07-25T16:45:44.335] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:44.652] [INFO] server - Usuario conectado
+[2021-07-25T16:45:46.915] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:47.240] [INFO] server - Usuario conectado
+[2021-07-25T16:45:48.132] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:48.792] [INFO] server - Usuario conectado
+[2021-07-25T16:45:52.496] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:53.213] [INFO] server - Usuario conectado
+[2021-07-25T16:45:54.235] [INFO] server - Usuario desconectado
+[2021-07-25T16:45:58.860] [INFO] server - Usuario conectado
+[2021-07-25T16:46:04.478] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:04.787] [INFO] server - Usuario conectado
+[2021-07-25T16:46:08.121] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:08.438] [INFO] server - Usuario conectado
+[2021-07-25T16:46:10.347] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:16.124] [INFO] server - Usuario conectado
+[2021-07-25T16:46:17.262] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:17.932] [INFO] server - Usuario conectado
+[2021-07-25T16:46:22.037] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:22.335] [INFO] server - Usuario conectado
+[2021-07-25T16:46:24.036] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:29.164] [INFO] server - Usuario conectado
+[2021-07-25T16:46:31.139] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:31.465] [INFO] server - Usuario conectado
+[2021-07-25T16:46:33.185] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:33.513] [INFO] server - Usuario conectado
+[2021-07-25T16:46:34.668] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:35.314] [INFO] server - Usuario conectado
+[2021-07-25T16:46:38.655] [INFO] server - Usuario desconectado
+[2021-07-25T16:46:38.971] [INFO] server - Usuario conectado
+[2021-07-25T16:46:41.441] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:17.404] [INFO] server - Usuario conectado
+[2021-07-25T16:48:18.896] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:19.584] [INFO] server - Usuario conectado
+[2021-07-25T16:48:22.058] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:22.382] [INFO] server - Usuario conectado
+[2021-07-25T16:48:24.531] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:25.185] [INFO] server - Usuario conectado
+[2021-07-25T16:48:27.707] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:27.999] [INFO] server - Usuario conectado
+[2021-07-25T16:48:30.867] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:31.557] [INFO] server - Usuario conectado
+[2021-07-25T16:48:33.583] [INFO] server - Usuario desconectado
+[2021-07-25T16:48:33.875] [INFO] server - Usuario conectado
+[2021-07-25T16:48:46.133] [INFO] server - Usuario desconectado
+[2021-07-25T16:51:04.328] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 6308
+[2021-07-25T16:57:51.063] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 5972
+[2021-07-25T16:58:21.602] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16392
+[2021-07-25T16:58:35.097] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 7744
+[2021-07-25T16:58:37.627] [INFO] server - Usuario conectado
+[2021-07-25T16:58:41.005] [INFO] server - Usuario desconectado
+[2021-07-25T16:58:41.683] [INFO] server - Usuario conectado
+[2021-07-25T16:59:14.122] [INFO] server - Usuario desconectado
+[2021-07-25T17:00:41.434] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 16660
+[2021-07-25T17:01:16.387] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11832
+[2021-07-25T17:02:29.467] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 13576
+[2021-07-25T17:02:39.338] [INFO] server - Usuario conectado
+[2021-07-25T17:02:42.369] [INFO] server - Usuario desconectado
+[2021-07-25T17:02:44.049] [INFO] server - Usuario conectado
+[2021-07-25T17:02:45.495] [INFO] server - Usuario desconectado
+[2021-07-25T17:04:59.787] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15032
+[2021-07-25T17:05:13.212] [INFO] server - Usuario conectado
+[2021-07-25T17:05:15.285] [INFO] server - Usuario desconectado
+[2021-07-25T17:06:12.133] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15580
+[2021-07-25T17:06:15.536] [INFO] server - Usuario conectado
+[2021-07-25T17:06:22.289] [INFO] server - Usuario desconectado
+[2021-07-25T17:06:22.615] [INFO] server - Usuario conectado
+[2021-07-25T17:06:24.789] [INFO] server - Usuario desconectado
+[2021-07-25T17:06:29.191] [INFO] server - Usuario conectado
+[2021-07-25T17:06:30.137] [INFO] server - Usuario desconectado
+[2021-07-25T17:07:24.796] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9672
+[2021-07-25T17:07:58.307] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9100
+[2021-07-25T17:08:04.836] [INFO] server - Usuario conectado
+[2021-07-25T17:08:14.878] [INFO] server - Usuario desconectado
+[2021-07-25T17:09:54.197] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 17252
+[2021-07-25T17:10:11.074] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 2692
+[2021-07-25T17:10:19.183] [INFO] server - Usuario conectado
+[2021-07-25T17:10:21.638] [INFO] server - Usuario desconectado
+[2021-07-25T17:13:27.374] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 3504
+[2021-07-25T17:16:00.219] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 15048
+[2021-07-25T17:16:04.219] [INFO] server - Usuario conectado
+[2021-07-25T17:16:06.827] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:07.417] [INFO] server - Usuario conectado
+[2021-07-25T17:16:08.585] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:14.251] [INFO] server - Usuario conectado
+[2021-07-25T17:16:15.323] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:16.284] [INFO] server - Usuario conectado
+[2021-07-25T17:16:18.431] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:18.989] [INFO] server - Usuario conectado
+[2021-07-25T17:16:20.657] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:21.683] [INFO] server - Usuario conectado
+[2021-07-25T17:16:24.741] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:25.288] [INFO] server - Usuario conectado
+[2021-07-25T17:16:26.663] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:36.960] [INFO] server - Usuario conectado
+[2021-07-25T17:16:40.078] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:40.558] [INFO] server - Usuario conectado
+[2021-07-25T17:16:41.967] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:42.519] [INFO] server - Usuario conectado
+[2021-07-25T17:16:43.381] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:48.124] [INFO] server - Usuario conectado
+[2021-07-25T17:16:48.769] [INFO] server - Usuario desconectado
+[2021-07-25T17:16:49.697] [INFO] server - Usuario conectado
+[2021-07-25T17:17:12.407] [INFO] server - Usuario desconectado
+[2021-07-25T17:17:13.108] [INFO] server - Usuario conectado
+[2021-07-25T17:17:15.932] [INFO] server - Usuario desconectado
+[2021-07-25T17:17:23.750] [INFO] server - Usuario conectado
+[2021-07-25T17:17:24.638] [INFO] server - Usuario desconectado
+[2021-07-25T17:20:16.764] [INFO] server - Usuario conectado
+[2021-07-25T17:20:17.324] [INFO] server - Usuario desconectado
+[2021-07-25T17:20:18.224] [INFO] server - Usuario conectado
+[2021-07-25T17:20:20.353] [INFO] server - Usuario desconectado
+[2021-07-25T17:20:22.239] [INFO] server - Usuario conectado
+[2021-07-25T17:20:26.327] [INFO] server - Usuario desconectado
+[2021-07-25T17:20:31.373] [INFO] server - Usuario conectado
+[2021-07-25T17:21:53.140] [INFO] server - Usuario desconectado
+[2021-07-25T17:22:36.606] [INFO] server - Usuario conectado
+[2021-07-25T17:23:51.103] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 9196
+[2021-07-25T17:24:51.766] [INFO] server - Usuario conectado
+[2021-07-25T17:24:57.239] [INFO] server - Usuario desconectado
+[2021-07-25T17:27:02.026] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11004
+[2021-07-25T17:27:42.493] [INFO] server - Usuario conectado
+[2021-07-25T17:27:45.652] [INFO] server - Usuario desconectado

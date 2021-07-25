@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require ('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
-const config = require('../config/config');
+const config = require('../config/config.js');
 const model = require('../models/sessions.js');
 const bCrypt = require('bcrypt');
 const log4js = require ('../config/logger/log4jsConfig');
@@ -78,9 +78,7 @@ passport.use ('register', new LocalStrategy ({
     })
 )
 
-
-//*************LOGIN WITH FACEBOOK
-
+//_____________LOGIN WITH FACEBOOK_____________//
 passport.use('facebook', new FacebookStrategy({
     clientID: config.facebook.clientID,
     clientSecret: config.facebook.clientSecret,

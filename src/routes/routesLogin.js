@@ -11,6 +11,7 @@ routerLogin.post("/register", passport.authenticate('register', {failureRedirect
 routerLogin.get("/failRegister", controllers.failRegister);
 
 routerLogin.get("/logout", controllers.logout )
+routerLogin.get("/timeExpired", controllers.logoutTimeExpired )
 
 routerLogin.get("/auth/facebook", passport.authenticate('facebook'));
 routerLogin.get("/auth/facebook/callback", passport.authenticate('facebook', { successRedirect:'/productos', failureRedirect:'/login'}))

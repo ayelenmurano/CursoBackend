@@ -7,7 +7,7 @@ routerCarrito.get("/listar", controllers.listar )
 
 routerCarrito.get("/listar/:id", controllers.listarById )
 
-routerCarrito.get("/agregar/:id", controllers.agregarById )
+routerCarrito.get("/agregar", controllers.agregarById )
 
 routerCarrito.get("/borrar/:id", controllers.borrar )
 

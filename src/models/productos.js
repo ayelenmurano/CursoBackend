@@ -8,9 +8,10 @@ const ProductosSchema = new mongoose.Schema({
     descripcion: {type: String, require: true},
     codigo: {type: String, require: true},
     foto: {type: String, require: true},
-    stock: {type: String, require: true}
+    stock: {type: String, require: true},
+    id: {type: String, require: true}
 });
 
 const productos = mongoose.model(productosCollection, ProductosSchema);
 
-module.exports = productos
+module.exports = productos;

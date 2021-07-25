@@ -25,7 +25,7 @@ let cluster=false;
 
 
 //___________ARMADO DE PARAMETROS DE CONFIGURACION____________
-config.port = ( configInit.Parameters.port || port);
+config.port = ( process.env.PORT || configInit.Parameters.port || port);
 config.cluster = ( configInit.Parameters.cluster || cluster);
 config.facebook = {
     clientID : (configInit.Facebook.clientID || clientID),

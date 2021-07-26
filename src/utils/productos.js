@@ -13,7 +13,7 @@ class Productos {
         //    let productos = await knex.select('*').from('productos')
         //    console.log(JSON.parse(JSON.stringify(productos)))
            let productos = model.find({})
-           console.log(`productos.js ${productos}`)
+           loggs.debug(`productos.js ${productos}`)
            return productos;   
         } catch (error) {   
            loggs.error('Se produjo un error al leer el archivo.' + error)

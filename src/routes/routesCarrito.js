@@ -9,6 +9,8 @@ routerCarrito.get("/listar/:id", controllers.listarById )
 
 routerCarrito.get("/agregar", controllers.agregarById )
 
-routerCarrito.get("/borrar/:id", controllers.borrar )
+routerCarrito.get("/borrar", controllers.borrar )
+
+routerCarrito.get("/comprar", controllers.comprar )
 
 module.exports = routerCarrito;

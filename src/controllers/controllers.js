@@ -23,7 +23,6 @@ module.exports = {
     
     consultar: async (req, res) => {
         const productos = await product.leer()
-        console.log(`controllersPRoductos ${productos}`)
         const session = req.session;
         res.render("pages/index.ejs", {productos, session})
     },
@@ -32,7 +31,6 @@ module.exports = {
 
         const productos = await product.leer();
         const username = req.query.username;
-        console.log(productos)
         if(admin){
            
             res.status(200).render("pages/indexAdmin.ejs", {productos, username})

@@ -10,7 +10,7 @@ class Carrito {
     leer(username) {
         try {
             let productosCarrito = model.findOne({username: username});
-            console.log(`Carrito.js ${JSON.stringify(productosCarrito)}`)
+            loggs.debug(`Carrito.js ${JSON.stringify(productosCarrito)}`)
             return productosCarrito;
         } catch (error) {
             loggs.error(`Se produjo un error al buscar los productos del carrito correspondiente a ${username}` + error)
@@ -22,13 +22,11 @@ class Carrito {
         try {
             let productosCarrito = await model.find({username: username}, {productos:1, _id:0});
             let productosArray = [];
-            console.log(`productoscarrito en carrito.js ${productosCarrito}`)
-            console.log(`Carrito.js111d ${JSON.stringify(productosCarrito)}`)
+            loggs.debug(`productoscarrito en carrito.js ${productosCarrito}`)
             if ( JSON.stringify(productosCarrito) != '[]' ) {
                 productosArray = productosCarrito[0].productos;
             }
-            console.log(`Carrito.js ${JSON.stringify(productosCarrito)}`)
-            console.log(`Carrito.js ${JSON.stringify(productosArray)}`)
+            loggs.debug(`Carrito.js ${JSON.stringify(productosArray)}`)
             return productosArray;       
             
         } catch (error) {
@@ -48,7 +46,7 @@ class Carrito {
 
     async guardar(username, producto) {
         const productosCarrito = await this.leerProductos(username);
-        console.log(`productosCarrito 11111 ${JSON.stringify(productosCarrito)}`)
+        loggs.debug(`productosCarrito 11111 ${JSON.stringify(productosCarrito)}`)
         if (JSON.stringify(productosCarrito) != '[]') { 
             let productDuplicated = false
             for (let i in productosCarrito) {
@@ -72,7 +70,7 @@ class Carrito {
                 productosCarrito.push(productoAgregar);
             }
             
-            console.log(`productosCarrito 22222: ${JSON.stringify(productosCarrito)}`);
+            loggs.debug(`productosCarrito 22222: ${JSON.stringify(productosCarrito)}`);
             try {
                 const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productosCarrito } });
             } catch (e) {
@@ -97,7 +95,7 @@ class Carrito {
             const carritoSaveModel = new model(nuevoCarrito);
             let carritoSave = await carritoSaveModel.save();
             const array = [producto]
-            console.log(`producto en carrito.js ${JSON.stringify(array)}, el tipo es ${typeof array }`)
+            loggs.debug(`producto en carrito.js ${JSON.stringify(array)}, el tipo es ${typeof array }`)
             return array; 
         }
           

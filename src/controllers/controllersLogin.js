@@ -4,8 +4,9 @@ const pathPublic = "../../../public/";
 const pathRoot = "../../../";
 const { fork } = require('child_process');
 const fs = require('fs');
-const log4js = require ('../config/logger/log4jsConfig');
+const mail = require('../utils/mails.js')
 
+const log4js = require ('../config/logger/log4jsConfig');
 const loggs = log4js.getLogger('controllers');
 
 
@@ -29,6 +30,17 @@ module.exports = {
         req.session.user = req.body.username;
         req.session.password = req.body.password;
         req.session.email = req.body.email;
+        req.session.phone = req.body.phone;
+        const info = {
+            user : req.body.username ,
+            password : req.session.password,
+            email : req.session.email,
+            phone : req.session.phone,
+            address : req.body.address,
+            age : req.body.age,
+            photo : req.body.photo
+        }
+        mail.sendMail(info);
         loggs.debug(`La sesion es ${req.session}`)
         res.redirect('/productos')
     },

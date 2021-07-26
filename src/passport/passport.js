@@ -62,6 +62,10 @@ passport.use ('register', new LocalStrategy ({
                 user.username = username;
                 user.password = createHash(password);
                 user.email = req.body.email;
+                user.phone = req.body.phone;
+                user.address = req.body.address;
+                user.age = req.body.age;
+                user.photo = req.body.photo;
                 user.contador = 0;
                 const userToSave = new model(user);
                 await userToSave.save(function(err){

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const log4js = require ('../config/logger/log4jsConfig');
+const log4js = require ('../logger/log4jsConfig');
 
 const loggs = log4js.getLogger('baseDeDatos');
 

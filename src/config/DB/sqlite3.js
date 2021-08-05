@@ -1,7 +1,7 @@
 const options = {
     client:'sqlite3',
     connection: {
-        filename: './DB/mibase.sqlite'
+        filename: './config/DB/mibase.sqlite'
     },
     useNullAsDefault: true
 }

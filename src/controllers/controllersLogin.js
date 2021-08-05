@@ -38,8 +38,9 @@ module.exports = {
             phone : req.session.phone,
             address : req.body.address,
             age : req.body.age,
-            photo : req.body.photo
+            photo : req.file.filename
         }
+        loggs.info(`controllersLoginn ${req.file}`)
         mail.sendMail(info);
         loggs.debug(`La sesion es ${req.session}`)
         res.redirect('/productos')

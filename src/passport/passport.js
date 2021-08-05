@@ -65,8 +65,9 @@ passport.use ('register', new LocalStrategy ({
                 user.phone = req.body.phone;
                 user.address = req.body.address;
                 user.age = req.body.age;
-                user.photo = req.body.photo;
+                user.photo = req.file.filename;
                 user.contador = 0;
+                loggs.info(`passportt ${req.file}`)
                 const userToSave = new model(user);
                 await userToSave.save(function(err){
                     if(err){

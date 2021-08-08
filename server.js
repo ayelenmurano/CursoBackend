@@ -41,8 +41,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(session({
     secret: 'secreto',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     cookie: {
         httpOnly: false,
         secure: false,
@@ -59,7 +59,6 @@ app.use(session({
     //     }),
     
 }))
-app.use(passport.initialize());
 app.use(passport.session());
 
 

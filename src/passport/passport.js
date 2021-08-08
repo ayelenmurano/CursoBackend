@@ -12,20 +12,25 @@ const loggs = log4js.getLogger('passport');
 passport.use('login', new LocalStrategy({
     passReqToCallback : true
     },
-    function(req, username, password, done){
+    async function(req, username, password, done){
 
         //Buscamos usuario
         loggs.debug(`El username es: ${req.body.username}`)
-        model.findOne({'username':req.body.username}, function(err, user){
-            if (err) {
-                loggs.error('Error in SignUp: '+err);
-                return done(err);
-            }
+        let user;
+        try {
+            user = await model.findOne({ username: req.body.username });
+        } catch (error) {
+            loggs.error('Error en SignIn: '+error)
+        }
 
-        if( !user ) return done(null, false)
+        if( !user ) {
+            loggs.error('El usuario no existe');
+            return done(null, false);
+        } 
 
-        //Validamos la contrase;a
+        //Validamos la contraseña
         loggs.debug(`User: ${user}, Password: ${password}`)
+
         if (!isValidPassword(user, password)){
             loggs.error('Invalid Password');
             return done(null, false)
@@ -36,8 +41,6 @@ passport.use('login', new LocalStrategy({
         return done(null, user);
         
     })
-})
-    
 )
 
 passport.use ('register', new LocalStrategy ({

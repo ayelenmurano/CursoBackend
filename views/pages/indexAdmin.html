@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>API de productos</title>
+
+        <!-- CSS (load bootstrap from a CDN) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body { padding-top:50px; }
+        </style>
+        
+        
+    </head>
+
+    <body class="container">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">API de productos</a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/carrito">Ver Carrito</a>
+                  </li>
+                </ul>
+            </nav>
+            
+            
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="jumbotron">
+                        <h1>Tabla de productos</h1>
+                        <div id="datos"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="well">
+                        <div class="container">    
+                            <h2 class="navbar-brand">Formulario de productos</h2>
+                            <form id="form" action="/productos/guardar/" method="post">
+                                <label for="nombre" class="mensajes"><i>Nombre</i></label> 
+                                <input type="text" class="form-control" name="nombre" id="nombre">
+                                <br>
+                                <label for="descripcion" class="mensajes"><i>Descripción</i></label>
+                                <input type="text" class="form-control" name="descripcion" id="descripcion">
+                                <br>
+                                <label for="codigo" class="mensajes"><i>Código</i></label>
+                                <input type="text" class="form-control" name="codigo" id="codigo">
+                                <br>
+                                <label for="foto" class="mensajes"><i>Foto</i></label>
+                                <input type="text" class="form-control" name="foto" id="foto">
+                                <br>
+                                <label for="precio" class="mensajes"><i>Precio</i></label>
+                                <input type="text" class="form-control" name="precio" id="precio">
+                                <br>
+                                <label for="stock" class="mensajes"><i>Stock</i></label>
+                                <input type="text" class="form-control" name="stock" id="stock">
+                                <br>
+                                <button id="addProduct" class="btn btn-primary">Agregar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </main>
+
+        <footer>
+            <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
+        </footer>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+        <script>
+
+            const getPlantilla = () => `
+                {{#if productos.length}} 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Descripción</td>
+                            <td>Código</td>
+                            <td>Foto</td>
+                            <td>Precio</td>
+                            <td>Stock</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {{#each productos}}
+                                <tr> 
+                                    <td>{{this.nombre}}</td> 
+                                    <td>{{this.descripcion}}</td> 
+                                    <td>{{this.codigo}}</td> 
+                                    <td><img src={{this.foto}} width="50" height="50"></td> 
+                                    <td>{{this.precio}}</td> 
+                                    <td>{{this.stock}}</td>
+                                    <td> <button type="button" onclick="addProductCarrito('{{this._id}}')" class="btn btn-primary">Agregar</button> </td>
+                                </tr>
+                            {{/each}}
+                    </tbody>
+                </table>
+                {{else}}  
+                <tr> <td>No se encontraron productos</td> </tr>
+                {{/if}}
+            `
+            document.querySelector('#addProduct').addEventListener('click', );
+            const inputs = document.querySelectorAll('input');
+
+            async function send(e) {
+                e.preventDefault();
+                const response = await fetch('/productos/agregarProductos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'Application/json'
+                    },
+                    body: JSON.stringify({
+                        nombre: inputs[0].value,
+                        descripcion: inputs[1].value,
+                        codigo: inputs[2].value,
+                        foto: inputs[3].value,
+                        precio: inputs[4].value,
+                        stock: inputs[5].value
+                    })
+                });
+
+                let producto = await response.json();
+                console.log(producto);
+
+                cargarDatos();
+
+                inputs.forEach(input => input.value = '');
+            }
+
+            async function cargarDatos() {
+                const response = await fetch('/productos/listar2');
+                console.log(`la respuesta es ${JSON.stringify(response)}`)
+                let { productos, session } = await response.json();
+                console.log(`los productos son ${JSON.stringify(productos)}`)
+                console.log(`la sesion es ${JSON.stringify(session)}`)
+                const template = Handlebars.compile(getPlantilla());
+                let HTML = template({productos, session});
+                document.getElementById('datos').innerHTML = HTML;
+                console.log(`la sesion es ${JSON.stringify(session.user)}`)
+                let input = session.user;
+                document.getElementById('sessionn').value = input;
+
+            };
+
+            cargarDatos();
+        </script>              
+    </body>
+</html>

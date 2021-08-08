@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Carrito de Productos</title>
+
+        <!-- CSS (load bootstrap from a CDN) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body { padding-top:50px; }
+        </style>
+        
+        
+    </head>
+
+    <body class="container">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" >Mi Carrito de Productos</a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/productos">Seguir Comprando</a>
+                  </li>
+                </ul>
+            </nav>
+            
+            
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="jumbotron">
+                        <h1>Tabla de productos</h1>
+                        <div id="datos"></div>
+                    </div>
+                </div>
+            </div>                        
+        </main>
+
+        <footer>
+            <p class="text-center text-muted">© Copyright 2020 The Awesome People</p>
+        </footer>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/index.js"></script>
+                            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+        <script>
+
+            const getPlantilla = () => `
+                {{#if productos.length}} 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Descripción</td>
+                            <td>Código</td>
+                            <td>Foto</td>
+                            <td>Precio</td>
+                            <td>Cantidad</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {{#each productos}}
+                                <tr> 
+                                    <td>{{this.nombre}}</td> 
+                                    <td>{{this.descripcion}}</td> 
+                                    <td>{{this.codigo}}</td> 
+                                    <td><img src={{this.foto}} width="50" height="50"></td> 
+                                    <td>{{this.precio}}</td> 
+                                    <td>{{this.cantidad}}</td> 
+                                    <td> <button type="button" onclick="addProductCarrito('{{this._id}}')" class="btn btn-primary">Agregar</button> </td>
+                                </tr>
+                            {{/each}}
+                    </tbody>
+                </table>
+                <td> <a href='/carrito/comprar' class="btn btn-primary">Comprar</a> </td>
+                {{else}}  
+                <tr> <td>No se encontraron productos</td> </tr>
+                {{/if}}
+            `
+            async function addProductCarrito(id) {
+                console.log(`el id es  es ${id}`);
+                const response = await fetch(`/carrito/agregar?id=${id}`);
+                console.log(`la respuesta es ${JSON.stringify(response)}`);
+            };
+
+            async function cargarDatos() {
+                const response = await fetch('/carrito/listar');
+                console.log(`la respuesta es ${JSON.stringify(response)}`)
+                let { productos, session } = await response.json();
+                console.log(`los productos son ${JSON.stringify(productos)}`)
+                console.log(`la sesion es ${JSON.stringify(session)}`)
+                const template = Handlebars.compile(getPlantilla());
+                let HTML = template({productos, session});
+                document.getElementById('datos').innerHTML = HTML;
+                console.log(`la sesion es ${JSON.stringify(session.user)}`)
+
+            }
+            cargarDatos();
+        </script>    
+
+    </body>
+</html>

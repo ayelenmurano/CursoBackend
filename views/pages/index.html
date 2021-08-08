@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>API de productos</title>
+
+        <!-- CSS (load bootstrap from a CDN) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <style>
+            body { padding-top:50px; }
+        </style>
+        
+        
+    </head>
+
+    <body class="container">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">Bienvenido <div id="sessionn"></div> </a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <td> <a href='/logout' class="btn btn-primary " >Desloguear</a> </td>
+                  </li>
+                </ul>
+            </nav>
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="/">API de productos</a>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/carrito">Ver Carrito</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/productos/agregarProductos">Agregar Productos</a>
+                  </li>
+                </ul>
+            </nav>          
+        </header>
+
+        <main>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="jumbotron">
+                        <h1>Tabla de productos</h1>
+                        <div id="datos"></div>
+                    </div>
+                </div>
+                <div>
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" >Mensajes</a>
+                        <div>
+                            <ul id="listado-msjs">
+                           
+                            </ul>
+                        </div>
+                        
+                        <div id="env-msjs">
+                            <input id="email-nuevo-msj"  placeholder="Email">
+                            <input id="nuevo-msj"  placeholder="Nuevo mensaje">
+                            <button id="btn-msj" onclick="enviarMensaje()">Enviar</button>
+                        </div>
+                    </nav>
+                                      
+                </div>
+            </div>                        
+        </main>
+    
+        <footer>
+            <p class="text-center text-muted">© Copyright 2021</p>
+        </footer>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/index.js"></script>
+                            
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
+        <script>
+
+            const getPlantilla = () => `
+                {{#if productos.length}} 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Descripción</td>
+                            <td>Código</td>
+                            <td>Foto</td>
+                            <td>Precio</td>
+                            <td>Stock</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {{#each productos}}
+                                <tr> 
+                                    <td>{{this.nombre}}</td> 
+                                    <td>{{this.descripcion}}</td> 
+                                    <td>{{this.codigo}}</td> 
+                                    <td><img src={{this.foto}} width="50" height="50"></td> 
+                                    <td>{{this.precio}}</td> 
+                                    <td>{{this.stock}}</td>
+                                    <td> <button type="button" onclick="addProductCarrito('{{this._id}}')" class="btn btn-primary">Agregar</button> </td>
+                                </tr>
+                            {{/each}}
+                    </tbody>
+                </table>
+                {{else}}  
+                <tr> <td>No se encontraron productos</td> </tr>
+                {{/if}}
+            `
+            async function addProductCarrito(id) {
+                console.log(`el id es  es ${id}`);
+                const response = await fetch(`/carrito/agregar?id=${id}`);
+                console.log(`la respuesta es ${JSON.stringify(response)}`);
+            };
+
+            async function cargarDatos() {
+                const response = await fetch('/productos/listar2');
+                console.log(`la respuesta es ${JSON.stringify(response)}`)
+                let { productos, session } = await response.json();
+                console.log(`los productos son ${JSON.stringify(productos)}`)
+                console.log(`la sesion es ${JSON.stringify(session)}`)
+                const template = Handlebars.compile(getPlantilla());
+                let HTML = template({productos, session});
+                document.getElementById('datos').innerHTML = HTML;
+                console.log(`la sesion es ${JSON.stringify(session.user)}`)
+                let input = session.user;
+                document.getElementById('sessionn').value = input;
+
+            };
+
+            cargarDatos();
+        </script>                                               
+
+    </body>
+</html>

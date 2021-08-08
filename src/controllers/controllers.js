@@ -2,6 +2,7 @@ const Productos = require ('../utils/productos.js')
 const Mensajes = require ('../utils/mensajes.js')
 const generadorProductos = require ('../utils/generadorProductos.js')
 const log4js = require ('../config/logger/log4jsConfig');
+const path = require ('path');
 
 const loggs = log4js.getLogger('controllers');
 
@@ -21,22 +22,26 @@ module.exports = {
         res.render("pages/index.ejs", {productos})
     },
     
-    consultar: async (req, res) => {
+    getData: async (req, res) => {
+        res.sendFile(path.join(__dirname, '../../views/pages/index.html'))
+    },
+
+    getDataJSON: async (req, res) => {
         const productos = await product.leer()
         const session = req.session;
-        res.render("pages/index.ejs", {productos, session})
+        console.log(`en controllers los productos son ${JSON.stringify(productos)} y la session ${JSON.stringify(session)}`)
+        res.status(200).json({productos, session})
+        // res.render("pages/index.ejs", {productos, session})
     },
 
     agregarProducto: async (req, res) => {
 
         const productos = await product.leer();
-        const username = req.query.username;
-        if(admin){
-           
-            res.status(200).render("pages/indexAdmin.ejs", {productos, username})
+        if(admin){          
+            res.status(200).sendFile(path.join(__dirname, '../../views/pages/indexAdmin.html'))
         }
         if(!admin){
-            res.status(200).render('pages/acceso_denegado.ejs',{productos})
+            res.status(200).sendFile(path.join(__dirname, '../../views/pages/acceso_denegado.html'))
         }
         
     },

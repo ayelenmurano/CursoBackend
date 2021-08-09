@@ -9,6 +9,7 @@ const http = require('http').createServer(app);
 const log4js = require ('./src/config/logger/log4jsConfig.js');
 const loggs = log4js.getLogger('server');
 
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const io = require('socket.io')(http);
 
@@ -35,10 +36,9 @@ const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.set("views", "./views")
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser());
-app.use(passport.initialize());
 app.use(session({
     secret: 'secreto',
     resave: true,
@@ -59,16 +59,25 @@ app.use(session({
     //     }),
     
 }))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(passport.initialize());
 app.use(passport.session());
+app.use((req, res, next) =>{
+    console.log("sdfsdfsdf")
+    console.log(req.user)
+    console.log(JSON.stringify(req.headers))
+    next()
+});
 
-
+const login = require("./src/utils/login.js");
 
 //_____________RUTAS_____________//
 const routerProduct = require('./src/routes/routesProduct.js');
-app.use('/productos', routerProduct)
+app.use('/productos', login.checkAuthentication, routerProduct)
 
 const routerCarrito = require('./src/routes/routesCarrito.js');
-app.use('/carrito', routerCarrito)
+app.use('/carrito', login.checkAuthentication, routerCarrito)
 
 const routerLogin = require('./src/routes/routesLogin.js');
 app.use(routerLogin)

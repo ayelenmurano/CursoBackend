@@ -5,6 +5,7 @@ const config = require('../config/config.js');
 const model = require('../models/sessions.js');
 const bCrypt = require('bcrypt');
 const log4js = require ('../config/logger/log4jsConfig');
+const CircularJSON = require('circular-json');
 
 const loggs = log4js.getLogger('passport');
 
@@ -37,7 +38,8 @@ passport.use('login', new LocalStrategy({
           }
         // let credencialOk = user.username === req.body.username && user.password === req.body.password ;
         // if ( !credencialOk ) return done(null, false)
-
+        
+        console.log(`estoy en login. el user es ${user}`)
         return done(null, user);
         
     })
@@ -122,11 +124,14 @@ passport.use('facebook', new FacebookStrategy({
 
 //***************
 passport.serializeUser(function(user, done){
+    console.log(`ESTOY EN SERIALIZE ${user}`)
     done(null, user);
 })
 
-passport.deserializeUser(function(username, done){
-    let usuario = model.findOne(({'username':username.username}, function(err, user){
+passport.deserializeUser(async function(username, done){
+    
+    let user = await model.findOne({username:username.username}, function(err, user){
+        console.log(`ESTOY EN DESERIALIZE username.username es ${username.username}`)
         if (err) {
             loggs.error('Error in SignUp: '+err);
             return done(err);
@@ -135,8 +140,9 @@ passport.deserializeUser(function(username, done){
         if(user) {
             return user
         }
-    }))
-    done(null, usuario);
+    })
+    console.log(`ESTOY EN DESERIALIZE el usuario es ${CircularJSON.stringify(user)}`)
+    done(null, user);
 })
 
 const isValidPassword = function(user, password){

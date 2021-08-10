@@ -23,7 +23,10 @@ module.exports = {
     checkLogin: (req,res) => {
         req.session.user = req.body.username;
         req.session.email = req.body.email;
-        res.redirect('/productos')
+        req.login(req.user, (err) => {
+            if (err) { return next(err); }
+            res.redirect('/productos');
+          })
     },
 
     register: (req,res) => {

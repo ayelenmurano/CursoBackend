@@ -17,7 +17,7 @@
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">Bienvenido <div id="sessionn"></div> </a>
+                <a class="navbar-brand" href="/">Bienvenido <p id="sessionn"></p> </a>
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
                     <td> <a href='/logout' class="btn btn-primary " >Desloguear</a> </td>
@@ -111,12 +111,13 @@
             async function addProductCarrito(id) {
                 console.log(`el id es  es ${id}`);
                 const response = await fetch(`/carrito/agregar?id=${id}`);
-                console.log(`la respuesta es ${JSON.stringify(response)}`);
+                let { productos } = await response.json();
+                console.log(`la respuesta es ${JSON.stringify(productos)}`);
             };
 
             async function cargarDatos() {
-                const response = await fetch('/productos/listar2');
-                console.log(`la respuesta es ${JSON.stringify(response)}`)
+                const response = await fetch('/productos/listar');
+                console.log(`la respuesta es 34444444${JSON.stringify(response)}`)
                 let { productos, session } = await response.json();
                 console.log(`los productos son ${JSON.stringify(productos)}`)
                 console.log(`la sesion es ${JSON.stringify(session)}`)
@@ -125,7 +126,7 @@
                 document.getElementById('datos').innerHTML = HTML;
                 console.log(`la sesion es ${JSON.stringify(session.user)}`)
                 let input = session.user;
-                document.getElementById('sessionn').value = input;
+                document.getElementById('sessionn').innerHTML = input;
 
             };
 

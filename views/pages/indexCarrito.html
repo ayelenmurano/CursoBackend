@@ -17,7 +17,7 @@
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" >Mi Carrito de Productos</a>
+                <a class="navbar-brand" >Mi carrito de Productos, <h5 id="sessionn"></h5></a>
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
                     <a class="nav-link" href="/productos">Seguir Comprando</a>
@@ -85,7 +85,11 @@
             async function addProductCarrito(id) {
                 console.log(`el id es  es ${id}`);
                 const response = await fetch(`/carrito/agregar?id=${id}`);
-                console.log(`la respuesta es ${JSON.stringify(response)}`);
+                let { productos } = await response.json();
+                console.log(`la respuesta es ${JSON.stringify(productos)}`);
+                const template = Handlebars.compile(getPlantilla());
+                let HTML = template({productos, session});
+                document.getElementById('datos').innerHTML = HTML;
             };
 
             async function cargarDatos() {
@@ -98,6 +102,8 @@
                 let HTML = template({productos, session});
                 document.getElementById('datos').innerHTML = HTML;
                 console.log(`la sesion es ${JSON.stringify(session.user)}`)
+                let input = session.user;
+                document.getElementById('sessionn').innerHTML = input;
 
             }
             cargarDatos();

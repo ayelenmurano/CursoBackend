@@ -10,39 +10,40 @@ const CircularJSON = require('circular-json');
 const loggs = log4js.getLogger('passport');
 
 
-passport.use('login', new LocalStrategy({
+passport.use('login', new LocalStrategy(
+    {
     passReqToCallback : true
     },
     async function(req, username, password, done){
-
+        loggs.info(`El req esss 111111 : ${CircularJSON.stringify(req)}`)
         //Buscamos usuario
         loggs.debug(`El username es: ${req.body.username}`)
-        let user;
+        loggs.info(`El username esss 111111 : ${username}`)
+        loggs.info(`El password esss 111111 : ${password}`)
         try {
-            user = await model.findOne({ username: req.body.username });
+            username = await model.findOne({ username: username });
         } catch (error) {
             loggs.error('Error en SignIn: '+error)
         }
 
-        if( !user ) {
+        if( !username ) {
             loggs.error('El usuario no existe');
             return done(null, false);
         } 
 
         //Validamos la contraseña
-        loggs.debug(`User: ${user}, Password: ${password}`)
-
-        if (!isValidPassword(user, password)){
+        loggs.debug(`User: ${username}, Password: ${password}`)
+        
+        if (!isValidPassword(username, password)){
             loggs.error('Invalid Password');
             return done(null, false)
           }
         // let credencialOk = user.username === req.body.username && user.password === req.body.password ;
         // if ( !credencialOk ) return done(null, false)
+          console.log(username)
+        return done(null, username);
         
-        console.log(`estoy en login. el user es ${user}`)
-        return done(null, user);
-        
-    })
+    })    
 )
 
 passport.use ('register', new LocalStrategy ({
@@ -123,27 +124,32 @@ passport.use('facebook', new FacebookStrategy({
 
 
 //***************
-passport.serializeUser(function(user, done){
-    console.log(`ESTOY EN SERIALIZE ${user}`)
-    done(null, user);
-})
+passport.serializeUser(function (user, done) {
+    done(null,user);
+  });
 
-passport.deserializeUser(async function(username, done){
-    
-    let user = await model.findOne({username:username.username}, function(err, user){
-        console.log(`ESTOY EN DESERIALIZE username.username es ${username.username}`)
-        if (err) {
-            loggs.error('Error in SignUp: '+err);
-            return done(err);
-        }
+// passport.deserializeUser(function(username, done){
+//     let usuario = model.findOne(({'username':username.username}, function(err, user){
+//         if (err) {
+//             loggs.error('Error in SignUp: '+err);
+//             return done(err);
+//         }
         
-        if(user) {
-            return user
-        }
-    })
-    console.log(`ESTOY EN DESERIALIZE el usuario es ${CircularJSON.stringify(user)}`)
-    done(null, user);
-})
+//         if(user) {
+//             return user
+//         }
+//     }))
+//     done(null, usuario);
+// })
+
+passport.deserializeUser(function (username, done) {
+    try {
+      const usuario = model.findOne({ username: username });
+      done(null, usuario);
+    } catch (error) {
+      logger.log.error("DESERIALIZEUSER___", error);
+    }
+  });
 
 const isValidPassword = function(user, password){
     return bCrypt.compareSync(password,user.password)

@@ -9,13 +9,12 @@ const http = require('http').createServer(app);
 const log4js = require ('./src/config/logger/log4jsConfig.js');
 const loggs = log4js.getLogger('server');
 
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const io = require('socket.io')(http);
 
 
 const model = require('./src/models/mensajes.js');
-const conn = require('./src/options/mongoAtlas.js');
+const conn = require('./src/config/DB/mongoAtlas.js');
 
 
 //_____________PASSPORT_____________//
@@ -36,9 +35,10 @@ const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 app.use(express.static("public"))
 app.set("view engine", "ejs")
 app.set("views", "./views")
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use(cookieParser());
+app.use(passport.initialize());
 app.use(session({
     secret: 'secreto',
     resave: true,
@@ -46,7 +46,7 @@ app.use(session({
     cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 3000,
+        maxAge: 24 * 60 * 60 * 1000,
     },
     rolling:true,
     
@@ -59,16 +59,8 @@ app.use(session({
     //     }),
     
 }))
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(passport.initialize());
+
 app.use(passport.session());
-app.use((req, res, next) =>{
-    console.log("sdfsdfsdf")
-    console.log(req.user)
-    console.log(JSON.stringify(req.headers))
-    next()
-});
 
 const login = require("./src/utils/login.js");
 
@@ -81,6 +73,7 @@ app.use('/carrito', login.checkAuthentication, routerCarrito)
 
 const routerLogin = require('./src/routes/routesLogin.js');
 app.use(routerLogin)
+
 
 
 

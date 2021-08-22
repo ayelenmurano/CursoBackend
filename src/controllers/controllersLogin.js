@@ -5,7 +5,6 @@ const pathRoot = "../../../";
 const { fork } = require('child_process');
 const fs = require('fs');
 const mail = require('../utils/mails.js')
-
 const log4js = require ('../config/logger/log4jsConfig');
 const loggs = log4js.getLogger('controllers');
 
@@ -20,13 +19,10 @@ module.exports = {
         }     
     },
 
-    checkLogin: (req,res) => {
+    checkLogin: (req,res) => {        
         req.session.user = req.body.username;
         req.session.email = req.body.email;
-        req.login(req.user, (err) => {
-            if (err) { return next(err); }
-            res.redirect('/productos');
-          })
+        res.redirect('/productos')
     },
 
     register: (req,res) => {
@@ -49,7 +45,7 @@ module.exports = {
     },
 
     logout: (req,res) => {
-        req.logout();
+        req.session.destroy();
         res.sendFile(path.join(__dirname + pathPublic + "logout.html"));
     },
 

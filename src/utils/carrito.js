@@ -1,5 +1,6 @@
 const fs = require('fs')
 const model = require('../models/carrito.js')
+const CircularJSON = require('circular-json');
 
 const log4js = require('../config/logger/log4jsConfig');
 const loggs = log4js.getLogger('utils');
@@ -27,7 +28,7 @@ class Carrito {
                 productosArray = productosCarrito[0].productos;
             }
             loggs.debug(`Carrito.js ${JSON.stringify(productosArray)}`)
-            return productosArray;       
+            return productosArray;
             
         } catch (error) {
             loggs.error(`Se produjo un error al buscar los productos del carrito correspondiente a ${username}` + error)
@@ -102,28 +103,34 @@ class Carrito {
     
     };
 
-    async borrar(username, id) {
+    async borrar(username, codigo) {
 
-        const productos = this.leerProductos(username);
-        let idProducto = "";
+        const productos = await this.leerProductos(username);
+        console.log(`productosss ${CircularJSON.stringify(productos)}`)
+        console.log(`codigo ${codigo}`)
+        let positionProducto = "";
+        let message = "";
         for (let producto in productos){ 
-            if (productos[producto].id == id) {
-                idProducto = producto
+            if (productos[producto].codigo == codigo) {
+                positionProducto = producto
                 break
             }
+            message = 'El carrito no contiene dicho producto';
         }
-        const producto = productos[idProducto]
-        productos.splice(idProducto,1)
+        if ( productos[positionProducto].cantidad != 1 ) {
+            productos[positionProducto].cantidad -= 1 ;
+        } else { productos.splice(positionProducto,1) }
+        
         try {
             const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productos } });
         } catch (e) {
             loggs.error('No se pudo agregar el elemento. ERROR: '+ e)
-        }
-    
-        return productos
+        }   
+        return { productos , message }
     }
 
 }
+
 //export default
 module.exports = Carrito
 

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const log4js = require ('../config/logger/log4jsConfig');
+const log4js = require ('../logger/log4jsConfig');
 
 const loggs = log4js.getLogger('baseDeDatos');
 
 //---------Conexion base de datos
-const URL = 'mongodb://admin:root@localhost:27017/ecommerce';
+const URL = 'mongodb://root:root@localhost:27017/ecommerce';
 
 try{
     mongoose.connect(URL, {

@@ -17,7 +17,7 @@
 
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">API de productos</a>
+                <a class="navbar-brand" href="/">API de productos <h5 id="sessionn"></h5></a>
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
                     <a class="nav-link" href="/carrito">Ver Carrito</a>
@@ -40,7 +40,7 @@
                     <div class="well">
                         <div class="container">    
                             <h2 class="navbar-brand">Formulario de productos</h2>
-                            <form id="form" action="/productos/guardar/" method="post">
+                            <form id="form" >
                                 <label for="nombre" class="mensajes"><i>Nombre</i></label> 
                                 <input type="text" class="form-control" name="nombre" id="nombre">
                                 <br>
@@ -59,7 +59,8 @@
                                 <label for="stock" class="mensajes"><i>Stock</i></label>
                                 <input type="text" class="form-control" name="stock" id="stock">
                                 <br>
-                                <button id="addProduct" class="btn btn-primary">Agregar</button>
+                                <button type="button" class="btn btn-primary" onclick="addProduct()">Agregar</button>
+                                <h5 id="message"></h5>
                             </form>
                         </div>
                     </div>
@@ -100,7 +101,6 @@
                                     <td><img src={{this.foto}} width="50" height="50"></td> 
                                     <td>{{this.precio}}</td> 
                                     <td>{{this.stock}}</td>
-                                    <td> <button type="button" onclick="addProductCarrito('{{this._id}}')" class="btn btn-primary">Agregar</button> </td>
                                 </tr>
                             {{/each}}
                     </tbody>
@@ -109,12 +109,19 @@
                 <tr> <td>No se encontraron productos</td> </tr>
                 {{/if}}
             `
-            document.querySelector('#addProduct').addEventListener('click', );
             const inputs = document.querySelectorAll('input');
-
-            async function send(e) {
-                e.preventDefault();
-                const response = await fetch('/productos/agregarProductos', {
+            
+            async function addProduct() {
+                const inputs = document.querySelectorAll('input');
+                console.log(`holaaaaaaaa   ${JSON.stringify({
+                        nombre: inputs[0].value,
+                        descripcion: inputs[1].value,
+                        codigo: inputs[2].value,
+                        foto: inputs[3].value,
+                        precio: inputs[4].value,
+                        stock: inputs[5].value
+                    })}`)
+                const response = await fetch('/productos/guardar', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'Application/json'
@@ -129,16 +136,22 @@
                     })
                 });
 
-                let producto = await response.json();
-                console.log(producto);
-
-                cargarDatos();
-
+                let { productos, message } = await response.json();
+                console.log(`los products ${productos}`);
                 inputs.forEach(input => input.value = '');
+                if ( message != '' ) {
+                    document.getElementById('mensagge').innerHTML = message;
+                } else { 
+                    const template = Handlebars.compile(getPlantilla());
+                    let HTML = template({productos});
+                    document.getElementById('datos').innerHTML = HTML;
+                }
+                
+                
             }
 
             async function cargarDatos() {
-                const response = await fetch('/productos/listar2');
+                const response = await fetch('/productos/listar');
                 console.log(`la respuesta es ${JSON.stringify(response)}`)
                 let { productos, session } = await response.json();
                 console.log(`los productos son ${JSON.stringify(productos)}`)
@@ -148,7 +161,7 @@
                 document.getElementById('datos').innerHTML = HTML;
                 console.log(`la sesion es ${JSON.stringify(session.user)}`)
                 let input = session.user;
-                document.getElementById('sessionn').value = input;
+                document.getElementById('sessionn').innerHTML = input;
 
             };
 

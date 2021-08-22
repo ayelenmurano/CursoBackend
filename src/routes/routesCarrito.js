@@ -2,17 +2,16 @@ const express = require("express");
 const routerCarrito = express.Router();
 const controllers = require("../controllers/controllersCarrito");
 const multer  = require('multer')
-const passport = require('passport')
 
 routerCarrito.get("/", controllers.getData )
 
 routerCarrito.get("/listar", controllers.listar )
 
-routerCarrito.get("/listar/:id", controllers.listarById )
+routerCarrito.get("/listar/:codigo", controllers.agregarByCodigo )
 
-routerCarrito.get("/agregar", controllers.agregarById )
+routerCarrito.get("/agregar", controllers.agregarByCodigo )
 
-routerCarrito.get("/borrar", controllers.borrar )
+routerCarrito.delete("/", controllers.borrar )
 
 routerCarrito.get("/comprar", controllers.comprar )
 

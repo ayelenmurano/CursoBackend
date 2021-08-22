@@ -5,8 +5,8 @@ const mail = require('../utils/mails.js')
 const message = require('../utils/messages.js')
 const userFunctions = require ('../utils/user.js')
 const log4js = require ('../config/logger/log4jsConfig');
-const CircularJSON = require('circular-json');
 const path = require ('path');
+
 
 const loggs = log4js.getLogger('controllers');
 
@@ -22,57 +22,50 @@ module.exports = {
     },
 
     listar: async (req, res) => {
-        // if ( !req.query.username ) { res.redirect('/timeExpired') }
-        // const username = req.query.username;
-        // loggs.info(`username: ${username}`)
-        // if ( !req.session.user || req.session.user == 'undefined') { 
-        //     console.log(`pruebaaa`)
-        //     res.redirect('/timeExpired') }
-        const username = req.session.user;
         const session = req.session;
-        loggs.info(`username: ${username}`)
-        loggs.info(`session: ${CircularJSON.stringify(session)}`)
-        const productosCarrito = await carrito.leerProductos(username)
-        res.status(200).json({productos: productosCarrito, session})
+        if ( !session) { res.redirect('/timeExpired') }        
+        loggs.info(`session: ${session}`)
+        const productos = await carrito.leerProductos(session.user)
+        res.status(200).json({productos, session})
     },
 
     listarById: (req, res) => {
-        if ( !req.query.username ) { res.redirect('/timeExpired') }
-        const username = req.query.username;
-        const productos = carrito.leerProductos(username)
-        loggs.debug(`El id recibido es ${req.params.id}`)
-        res.render("pages/indexCarrito.ejs", {productos, username})
+        
+        const session = req.session;
+        if ( !session ) { res.redirect('/timeExpired') } 
+        const productos = carrito.leerProductos(session.user)
+        loggs.debug(`El id recibido es ${req.params.codigo}`)
+        res.status(200).json({productos, session})
     },
 
-    agregarById: async (req, res) => {      
-    //    if ( !req.query.username ) { res.redirect('/timeExpired') }
-        if ( !req.session.user ) { res.redirect('/timeExpired') }
-        const producto = await product.buscarPorId(req.query.id)
-        if(!producto){
-            return res.status(400).send({Error: "No se encontro producto con dicho id"})
-        }
-        console.log(`111 ${JSON.stringify(producto)}`)
-        const username = req.session.user;
-        const session = req.session;
-        console.log(`2222 ${username}`)
-        const productos = await carrito.guardar(username, producto);
-        loggs.debug(`productosss controllerCarrito ${productos}`)
-        res.status(200).json({productos, session})
-        // res.render("pages/indexCarrito.ejs", {productos, username})
+    agregarByCodigo: async (req, res) => {
+
+       const username = req.session.user;
+       if ( !username) { res.redirect('/timeExpired') } 
+       const producto = await product.buscarPorCodigo(req.query.codigo)
+       if(!producto){
+           return res.status(400).send({Error: "No se encontro producto con dicho id"})
+       }       
+       const productos = await carrito.guardar(username, producto);
+       res.status(200).json({productos})
     },
 
     borrar: async (req, res) => {
-        if ( !req.query.username ) { res.redirect('/timeExpired') }
-        const id = req.query.id;
-        const username = req.query.username;
-        const productos = await carrito.borrar(username, id);
-    
-        res.render("pages/indexCarrito.ejs", {productos, username})
+        const username = req.session.user;
+        if ( !username ) { res.redirect('/timeExpired') } 
+        const codigo = req.query.codigo;
+        const { productos , message } = await carrito.borrar(username, codigo);
+        if ( message !== '') {
+            res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
+        } else {
+            res.status(200).json({productos})
+        }  
     },
 
     comprar: async (req, res) => {
-        if ( !req.query.username ) { res.redirect('/timeExpired') };
-        const username = req.query.username;
+
+        const username = req.session.passport.user;
+        if ( !username ) { res.redirect('/timeExpired') } 
         const userData = await userFunctions.readByUsername(username);
         const user = {
             username: username,

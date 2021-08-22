@@ -13,6 +13,22 @@ let admin = true
  
 module.exports = {
 
+    getData: async (req, res) => {
+        res.sendFile(path.join(__dirname, '../../views/pages/index.html'))
+    },
+
+    getDataJSON: async (req, res) => {
+        const productos = await product.leer()
+        const session = req.session;
+        console.log(`en controllers los productos son ${JSON.stringify(productos)} y la session ${JSON.stringify(session)}`)
+        if ( JSON.stringify(productos) === '[]'){     
+            res.json ({message:'no hay productos cargados'})
+           } else {
+            res.status(200).json({productos, session})
+           }   
+        // res.render("pages/index.ejs", {productos, session})
+    },
+
     vistaTest: (req, res) => {
         let cantidad = 10
         if (req.query.cant !== undefined) {
@@ -22,21 +38,15 @@ module.exports = {
         res.render("pages/index.ejs", {productos})
     },
     
-    getData: async (req, res) => {
-        res.sendFile(path.join(__dirname, '../../views/pages/index.html'))
-    },
-
-    getDataJSON: async (req, res) => {
+    consultar: async (req, res) => {
+        console.log(req.session.passport)
         const productos = await product.leer()
         const session = req.session;
-        console.log(`en controllers los productos son ${JSON.stringify(productos)} y la session ${JSON.stringify(session)}`)
-        res.status(200).json({productos, session})
-        // res.render("pages/index.ejs", {productos, session})
+        res.render("pages/index.ejs", {productos, session})
     },
 
     agregarProducto: async (req, res) => {
 
-        const productos = await product.leer();
         if(admin){          
             res.status(200).sendFile(path.join(__dirname, '../../views/pages/indexAdmin.html'))
         }
@@ -44,16 +54,6 @@ module.exports = {
             res.status(200).sendFile(path.join(__dirname, '../../views/pages/acceso_denegado.html'))
         }
         
-    },
-
-    listar: async (req,res) => {
-
-        const productos = await product.leer()
-        if ( JSON.stringify(productos) === '[]'){     
-            res.json ({error:'no hay productos cargados'})
-           } else {
-            res.json({items: productos})
-           }   
     },
 
     listarById: async (req,res) => {
@@ -72,8 +72,15 @@ module.exports = {
     guardarProducto: async (req,res) => {
     
         const producto = req.body;
-        const productos = await product.guardar(producto)
-        res.redirect('http://localhost:8080/productos');
+        loggs.info(`producto que llega al controller para guardar ${producto}`)
+        const { productos, message } = await product.guardar(producto);
+        loggs.info(`productos luego de guardarse   ${productos}`)
+        const session = req.session;
+        if ( message == undefined ) {
+        res.status(200).json( { productos } )
+        } else {
+            res.status(200).json( { message } )  
+        }
 
     },
 
@@ -91,34 +98,28 @@ module.exports = {
     },
 
 
-    actualizar: (req, res)=>{
-
-        const productos = functions.leer()
-        loggs.debug('request recibido');
-        var longitud = productos.length;
-        var id = req.params.id;
-        var actualizar = req.body
-    
-        if ( id > longitud || id < 1){
-            res.json ({error:'producto no encontrado'})
-    
+    actualizar: async (req, res)=>{
+        let producto = req.body;
+        const response = await product.actualizar(producto);
+        if (response.nModified == 0) {
+            res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
         } else {
-    
-        productos[id-1] = actualizar
-        var producto = productos[id-1]
-        product.escribir(productos)
-    
-        res.json({items: producto})
-        }
+            const productos = await product.leer();
+            res.status(200).json({productos})
+        }    
     },
 
     borrar: async (req, res)=>{
 
-        const producto = await product.borrar(req.params.id)
-    
-        res.json({items: producto})
+        const response = await product.borrar(req.query.codigo)
+        if (response.deletedCount == 0) {
+            res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
+        } else {
+            const productos = await product.leer();
+            res.status(200).json({productos})
+        }  
+        res.status(200).json({productos})
     }
-
 
 }
     

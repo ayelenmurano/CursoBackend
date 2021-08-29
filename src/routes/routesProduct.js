@@ -11,8 +11,6 @@ routerProduct.get("/listar", controllers.getDataJSON )
 
 routerProduct.get('/vista-test', controllers.vistaTest )
 
-routerProduct.get('/listar/:id',  controllers.listarById )
-
 routerProduct.get('/agregarProductos',  controllers.agregarProducto )
 
 // routerProduct.post('/guardar', upload.array('nombre','descripcion','codigo','foto','precio','stock'), controllers.guardarProducto )

@@ -19,14 +19,25 @@ module.exports = {
 
     getDataJSON: async (req, res) => {
         const productos = await product.leer()
-        const session = req.session;
-        console.log(`en controllers los productos son ${JSON.stringify(productos)} y la session ${JSON.stringify(session)}`)
-        if ( JSON.stringify(productos) === '[]'){     
-            res.json ({message:'no hay productos cargados'})
-           } else {
-            res.status(200).json({productos, session})
-           }   
-        // res.render("pages/index.ejs", {productos, session})
+        if ( !req.query.codigo ) {
+            const session = req.session;
+       //     console.log(`en controllers los productos son ${JSON.stringify(productos)} y la session ${JSON.stringify(session)}`)
+            if ( JSON.stringify(productos) === '[]'){     
+                res.json ({message:'no hay productos cargados'})
+               } else {
+                res.status(200).json({productos, session})
+               }   
+        } else {
+            console.log(`el codigo es ${req.params.codigo}`)
+            const producto = await product.buscarPorCodigo(req.query.codigo)
+
+            if ( !producto ){
+                res.json ({error:'producto no encontrado'})
+            } else {
+                res.json({producto})
+            }
+        }
+  
     },
 
     vistaTest: (req, res) => {
@@ -39,7 +50,6 @@ module.exports = {
     },
     
     consultar: async (req, res) => {
-        console.log(req.session.passport)
         const productos = await product.leer()
         const session = req.session;
         res.render("pages/index.ejs", {productos, session})
@@ -65,7 +75,7 @@ module.exports = {
         if ( !producto ){
             res.json ({error:'producto no encontrado'})
         } else {
-            res.json({items: producto})
+            res.json({producto})
         }
     },
 
@@ -110,7 +120,7 @@ module.exports = {
     },
 
     borrar: async (req, res)=>{
-
+        loggs.info(`borrar en controllers ${req.query.codigo}`)
         const response = await product.borrar(req.query.codigo)
         if (response.deletedCount == 0) {
             res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})

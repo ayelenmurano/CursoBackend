@@ -113,14 +113,14 @@
             
             async function addProduct() {
                 const inputs = document.querySelectorAll('input');
-                console.log(`holaaaaaaaa   ${JSON.stringify({
-                        nombre: inputs[0].value,
-                        descripcion: inputs[1].value,
-                        codigo: inputs[2].value,
-                        foto: inputs[3].value,
-                        precio: inputs[4].value,
-                        stock: inputs[5].value
-                    })}`)
+    // //            console.log(`holaaaaaaaa   ${JSON.stringify({
+    //                     nombre: inputs[0].value,
+    //                     descripcion: inputs[1].value,
+    //                     codigo: inputs[2].value,
+    //                     foto: inputs[3].value,
+    //                     precio: inputs[4].value,
+    //                     stock: inputs[5].value
+    //                 })}`)
                 const response = await fetch('/productos/guardar', {
                     method: 'POST',
                     headers: {
@@ -137,7 +137,7 @@
                 });
 
                 let { productos, message } = await response.json();
-                console.log(`los products ${productos}`);
+       //         console.log(`los products ${productos}`);
                 inputs.forEach(input => input.value = '');
                 if ( message != '' ) {
                     document.getElementById('mensagge').innerHTML = message;
@@ -152,14 +152,14 @@
 
             async function cargarDatos() {
                 const response = await fetch('/productos/listar');
-                console.log(`la respuesta es ${JSON.stringify(response)}`)
+        //        console.log(`la respuesta es ${JSON.stringify(response)}`)
                 let { productos, session } = await response.json();
-                console.log(`los productos son ${JSON.stringify(productos)}`)
-                console.log(`la sesion es ${JSON.stringify(session)}`)
+     //           console.log(`los productos son ${JSON.stringify(productos)}`)
+      //          console.log(`la sesion es ${JSON.stringify(session)}`)
                 const template = Handlebars.compile(getPlantilla());
                 let HTML = template({productos, session});
                 document.getElementById('datos').innerHTML = HTML;
-                console.log(`la sesion es ${JSON.stringify(session.user)}`)
+      //          console.log(`la sesion es ${JSON.stringify(session.user)}`)
                 let input = session.user;
                 document.getElementById('sessionn').innerHTML = input;
 

@@ -1,6 +1,6 @@
-// let chai = require('chai');
-// let chaiHttp = require('chai-http');
-// const expect = require('chai').expect;
+let chai = require('chai');
+let chaiHttp = require('chai-http');
+const expect = require('chai').expect;
 
 // chai.use(chaiHttp);
 // const url= 'http://localhost:8080';
@@ -23,35 +23,36 @@ const userCredentials = {
     "password":"Aye42"
 }
 
-var request = require('supertest');
-var server = request.agent('http://localhost:8080');
+// var request = require('supertest').agent('http://localhost:8080');
+// var server = request.agent('http://localhost:8080');
 
-describe('GET /api/getDir', function(){
+// describe('GET /api/getDir', () => {
 
-    it('login', async (done) => {
-        await server
-        .post('/login')
-        .send({ username: 'Aye42', password: 'Aye42' })
-        .expect(302)
-        .expect('Location', '/productos')
-        .end( (err, res) => {
-                if (err) return done(err);
-                return done();
-        });
-    });
+//     it('login', async (done) => {
+//         let response = await server
+//         .post('/login')
+//         .send({ username: 'Aye42', password: 'Aye42' })
+//         .expect(302)
+//         .expect('Location', '/productos')
+//         // .end( (err, res) => {
+//         //         if (err) return done(err);
+//         //         return done();
+//         // });
+//     });
 
 
-    it('uri that requires user to be logged in', async (done) => {
-    await server
-        .get('/productos')                       
-        .expect(200)
-        .end( (err, res) => {
-            if (err) return done(err);
-            console.log(`11111 ${JSON.stringify(res.body)}`);
-             done()
-        });
-    });
-});
+//     it('uri that requires user to be logged in', async (done) => {
+//     let response =await server
+//         .get('/productos')                       
+//         .expect(200)
+//         // .end( (err, res) => {
+//         //     if (err) return done(err);
+//         //     console.log(`11111 ${JSON.stringify(res.body)}`);
+//         //      done()
+//         // });
+//         console.log(`11111 ${response}`)
+//     });
+// });
 
 // describe('Logueo del usuario: ',() => {
 
@@ -94,3 +95,32 @@ describe('GET /api/getDir', function(){
 //         // });
 //     });
 // });
+
+var request = require('superagent');
+var user1 = request.agent();
+
+describe('Logueo del usuario: ',() => {
+
+    it('should log', (done) => {
+        user1
+        .post('http://localhost:8080/login')
+        .send({ user: 'Aye42', password: 'Aye42' })
+        .end(function(err, res) {
+            // user1 will manage its own cookies
+            // res.redirects contains an Array of redirects
+            expect(200)
+        });
+        done()
+    });
+
+        it('should insert a product',  (done) => {
+        user1.get('/productos/listar')
+        .end(function(err, res) {
+            // user1 will manage its own cookies
+            // res.redirects contains an Array of redirects
+            console.log(res)
+            expect(200)
+        });
+        done()
+    });
+})

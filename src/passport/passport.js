@@ -15,11 +15,7 @@ passport.use('login', new LocalStrategy(
     passReqToCallback : true
     },
     async function(req, username, password, done){
-        loggs.info(`El req esss 111111 : ${CircularJSON.stringify(req)}`)
         //Buscamos usuario
-        loggs.debug(`El username es: ${req.body.username}`)
-        loggs.info(`El username esss 111111 : ${username}`)
-        loggs.info(`El password esss 111111 : ${password}`)
         try {
             username = await model.findOne({ username: username });
         } catch (error) {
@@ -40,7 +36,6 @@ passport.use('login', new LocalStrategy(
           }
         // let credencialOk = user.username === req.body.username && user.password === req.body.password ;
         // if ( !credencialOk ) return done(null, false)
-          console.log(username)
         return done(null, username);
         
     })    

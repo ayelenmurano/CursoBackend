@@ -26,7 +26,6 @@ const mailOptions = (info) => ({
 });
 
 const mailOptionsBuy = (user, productos, costoTotal) => {
-    loggs.info(`LOGIN.JS ${JSON.stringify(user)}`)
     let html = `<b> DATOS DE LA COMPRA: </b>
     <table class="table" border='1'>
         <thead>

@@ -101,6 +101,7 @@ class Productos {
         // await knex('productos').where('id','=',id).del()
         // const producto = await knex('productos').where('id','=',id).select()    
         let response = await model.deleteOne({'codigo':codigo})
+        loggs.info(`La respuesta al borrado es ${response}, el codigo ${codigo}`)
         return response
     }
 

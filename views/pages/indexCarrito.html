@@ -72,7 +72,7 @@
                                     <td><img src={{this.foto}} width="50" height="50"></td> 
                                     <td>{{this.precio}}</td> 
                                     <td>{{this.cantidad}}</td> 
-                                    <td> <button type="button" onclick="addProductCarrito('{{this._id}}')" class="btn btn-primary">Agregar</button> </td>
+                                    <td> <button type="button" onclick="addProductCarrito('{{this.codigo}}')" class="btn btn-primary">Agregar</button> </td>
                                 </tr>
                             {{/each}}
                     </tbody>
@@ -82,26 +82,26 @@
                 <tr> <td>No se encontraron productos</td> </tr>
                 {{/if}}
             `
-            async function addProductCarrito(id) {
-                console.log(`el id es  es ${id}`);
-                const response = await fetch(`/carrito/agregar?id=${id}`);
+            async function addProductCarrito(codigo) {
+                console.log(`el codigo es  es ${codigo}`);
+                const response = await fetch(`/carrito/agregar?codigo=${codigo}`);
                 let { productos } = await response.json();
                 console.log(`la respuesta es ${JSON.stringify(productos)}`);
                 const template = Handlebars.compile(getPlantilla());
-                let HTML = template({productos, session});
+                let HTML = template({productos});
                 document.getElementById('datos').innerHTML = HTML;
             };
 
             async function cargarDatos() {
                 const response = await fetch('/carrito/listar');
-                console.log(`la respuesta es ${JSON.stringify(response)}`)
+       //         console.log(`la respuesta es ${JSON.stringify(response)}`)
                 let { productos, session } = await response.json();
-                console.log(`los productos son ${JSON.stringify(productos)}`)
-                console.log(`la sesion es ${JSON.stringify(session)}`)
+       //         console.log(`los productos son ${JSON.stringify(productos)}`)
+     //           console.log(`la sesion es ${JSON.stringify(session)}`)
                 const template = Handlebars.compile(getPlantilla());
                 let HTML = template({productos, session});
                 document.getElementById('datos').innerHTML = HTML;
-                console.log(`la sesion es ${JSON.stringify(session.user)}`)
+      //          console.log(`la sesion es ${JSON.stringify(session.user)}`)
                 let input = session.user;
                 document.getElementById('sessionn').innerHTML = input;
 

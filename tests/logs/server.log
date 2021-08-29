@@ -2,3 +2,5 @@
 [2021-08-19T22:28:55.504] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 11948
 [2021-08-19T22:30:15.192] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 20260
 [2021-08-19T22:31:51.907] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 18348
+[2021-08-29T11:52:47.090] [ERROR] server - Se produjo un error: Error: listen EADDRINUSE: address already in use :::8080
+[2021-08-29T11:53:00.887] [INFO] server - Escuchando en el puerto 8080. Codigo de salida: 8820

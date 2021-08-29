@@ -29,16 +29,81 @@ const usuarioLogueado = {
     "password":"Aye55"
 }
 
-describe('Login: ',()=>{
-    it('Loguear un usuario', (done) => {
+
+
+
+// var supertest = require('supertest');
+// var app       = require('../server')
+// var agent     = supertest.agent(app);
+
+// describe('Login', function () {
+
+//   it('should login form', function(done) {
+//     agent
+//       .post('/login')
+//       .type('form')
+//       .send({ "username":"Aye55" })
+//       .send({ "password":"Aye55" })
+//       .expect(302)
+//       .expect('Location', '/')
+//       .expect('set-cookie', /connect.sid/)
+//       .end(function(err, res) {
+//         if (err) return done(err);
+//         agent.saveCookies(res);
+//         return done();
+//       });
+//   });
+// });
+
+
+// var request = require('superagent');
+// var user1 = request.agent();
+let sessionString = '';
+let sig = '';
+describe('GET /productos: ',()=>{
+    
+    it('Obtener sesion falsa', async () => {
+        const Buffer = require('safe-buffer').Buffer;
+        const sessionObject = {
+            passport: {
+                user: 'Aye55'
+            }
+        }
+        sessionString = Buffer.from(
+            JSON.stringify(sessionObject)
+        ).toString('base64');
+        
+
+        const Keygrip = require('keygrip');
+        const keygrip = new Keygrip(['secreto']);
+        sig = keygrip.sign('session='+sessionString)
+
+        console.log(sessionString,sig);
+    }); 
+    // NO FUNCIONA, FUNCIONA DENTRO DE UN IT
+    // before((done) => {
+    //     chai.request(url)
+    //     .post('/login')
+    //     .send(usuarioLogueado)
+    //     .end( async function(err,res){
+    //         await expect(res).to.have.status(200);
+    //         done();
+    //     });
+    // });
+
+
+    
+    it('Obtener productos disponibles', (done) => {
         chai.request(url)
-        .post('/login')
-        .send(usuarioLogueado)
+        .get('/productos')
+        .set('Cookie', `session=${sessionString};session.sig=${sig}`)
         .end( async function(err,res){
-            console.log(res)
             await expect(res).to.have.status(200);
+            console.log(res)
             done();
+            });
         });
-    });
+
 });
+
 

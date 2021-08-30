@@ -13,7 +13,6 @@ const cookieParser = require('cookie-parser');
 const io = require('socket.io')(http);
 
 
-const model = require('./src/models/mensajes.js');
 const conn = require('./src/config/DB/mongoAtlas.js');
 
 
@@ -71,41 +70,17 @@ app.use('/productos', login.checkAuthentication, routerProduct)
 const routerCarrito = require('./src/routes/routesCarrito.js');
 app.use('/carrito', login.checkAuthentication, routerCarrito)
 
+
 const routerLogin = require('./src/routes/routesLogin.js');
 app.use(routerLogin)
 
 
 
-
-//_____________SOCKET.IO_____________//
-io.on('connection', function(socket)  {
-
-    loggs.info('Usuario conectado');
-
-    socket.on('client-chat-message', async (mensajeNuevo) => 
-    {
-        const mensaje = { 
-            email: mensajeNuevo.nuevoEmail, 
-            fecha: new Date(),
-            mensaje: mensajeNuevo.nuevoMensaje
-        };
-        const mensajeSaveModel = new model(mensaje);
-        let mensajeSave = await mensajeSaveModel.save()
-        io.emit('server-chat-message', (mensajeNuevo));
-    });
-
-    socket.on('disconnect', ()=> {
-        loggs.info('Usuario desconectado');
-    })
-
-
-})
-
 //_____________LEVANTAMOS EL SERVIDOR_____________//
 const config = require('./src/config/config.js')
 
 
-if ( config.cluster ) {
+if ( config.cluster && config.cluster != 'false') {
     const cluster = require('cluster');
     const numCpu = require('os').cpus().length;
     if(cluster.isMaster) {

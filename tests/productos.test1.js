@@ -1,16 +1,17 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 const expect = require('chai').expect;
+const querystring = require('querystring');
 
 
 chai.use(chaiHttp);
 const url= 'http://localhost:8080';
 
-const producto = {
+let producto = {
     "nombre": "PruebaTest",
     "precio": 1300,
     "descripcion": "Objeto que sirve para hacer cuentas ",
-    "codigo": "1213444547789999",
+    "codigo": "1213444541",
     "foto": "https://cdn3.iconfinder.com/data/icons/e-commerce-and-online-shopping/64/__Calculator-256.png",
     "stock": "3"
 }
@@ -29,81 +30,119 @@ const usuarioLogueado = {
     "password":"Aye55"
 }
 
+let cantidadDeProductos = 0;
+let sid = '';
 
-
-
-// var supertest = require('supertest');
-// var app       = require('../server')
-// var agent     = supertest.agent(app);
-
-// describe('Login', function () {
-
-//   it('should login form', function(done) {
-//     agent
-//       .post('/login')
-//       .type('form')
-//       .send({ "username":"Aye55" })
-//       .send({ "password":"Aye55" })
-//       .expect(302)
-//       .expect('Location', '/')
-//       .expect('set-cookie', /connect.sid/)
-//       .end(function(err, res) {
-//         if (err) return done(err);
-//         agent.saveCookies(res);
-//         return done();
-//       });
-//   });
-// });
-
-
-// var request = require('superagent');
-// var user1 = request.agent();
-let sessionString = '';
-let sig = '';
-describe('GET /productos: ',()=>{
+describe('Se prueban las funciones correspondientes a productos: ',()=>{
     
-    it('Obtener sesion falsa', async () => {
-        const Buffer = require('safe-buffer').Buffer;
-        const sessionObject = {
-            passport: {
-                user: 'Aye55'
-            }
-        }
-        sessionString = Buffer.from(
-            JSON.stringify(sessionObject)
-        ).toString('base64');
-        
-
-        const Keygrip = require('keygrip');
-        const keygrip = new Keygrip(['secreto']);
-        sig = keygrip.sign('session='+sessionString)
-
-        console.log(sessionString,sig);
+    it('Logueo con el usuario ya creado', async () => {
+        const agent = chai.request.agent('http://localhost:8080');
+     
+        try {
+          await agent
+            .post('/login')
+            .send({ username: 'Aye55', password: 'Aye55' })
+            .then( function(res){
+             sid = res.header['set-cookie'][0].split(';')[0]
+             expect(res).to.redirectTo(`${url}/productos`)
+             });
+     
+         } catch (e) {
+             console.log(e);
+         } 
     }); 
-    // NO FUNCIONA, FUNCIONA DENTRO DE UN IT
-    // before((done) => {
-    //     chai.request(url)
-    //     .post('/login')
-    //     .send(usuarioLogueado)
-    //     .end( async function(err,res){
-    //         await expect(res).to.have.status(200);
-    //         done();
-    //     });
-    // });
-
 
     
-    it('Obtener productos disponibles', (done) => {
+    it('Obtener productos disponibles. GET /productos/listar', (done) => {
         chai.request(url)
-        .get('/productos')
-        .set('Cookie', `session=${sessionString};session.sig=${sig}`)
+        .get('/productos/listar')
+        .set('Cookie',sid)
         .end( async function(err,res){
-            await expect(res).to.have.status(200);
-            console.log(res)
+            await expect(res)
+            .to.have.status(200)
+            .to.be.json;
             done();
             });
-        });
+    });
+
+    it('Agregar un producto. POST /productos/guardar', (done) => {
+        chai.request(url)
+        .post('/productos/guardar')
+        .set('Cookie',sid)
+        .send(producto)
+        .end( async function(err,res){
+            await expect(res)
+            .to.have.status(200)
+            .to.be.json;
+            cantidadDeProductos = res.body.productos.length;
+            const id = cantidadDeProductos-1
+            expect(res.body.productos[id].nombre).to.equal(producto.nombre)
+            expect(res.body.productos[id].precio).to.equal(producto.precio)
+            expect(res.body.productos[id].descripcion).to.equal(producto.descripcion)
+            expect(res.body.productos[id].codigo).to.equal(producto.codigo)
+            expect(res.body.productos[id].foto).to.equal(producto.foto)
+            expect(res.body.productos[id].stock).to.equal(producto.stock)
+            done();
+            });
+    });
+
+    it('Actualizar un producto. POST /productos', (done) => {
+        producto.precio = 1400
+        chai.request(url)
+        .put('/productos')
+        .set('Cookie',sid)
+        .send(producto)
+        .end( async function(err,res){
+            await expect(res)
+            .to.have.status(200)
+            .to.be.json;
+
+            let productoResponse = {};
+            for (let elem in res.body.productos ) {
+                if (res.body.productos[elem].precio === producto.precio) {
+                    productoResponse = res.body.productos[elem]
+                    break;
+                }
+            }
+            expect(productoResponse.precio).to.equal(producto.precio)
+            done();
+            });
+    });
+
+    it('Listar un producto por codigo. GET /productos/listar?codigo=1213444541', (done) => {
+        chai.request(url)
+        .get('/productos/listar')
+        .query({codigo:producto.codigo})
+        .set('Cookie',sid)
+        .end( async function(err,res){
+            await expect(res)
+            .to.have.status(200)
+            .to.be.json;
+            expect(res.body.producto.nombre).to.equal(producto.nombre)
+            expect(res.body.producto.descripcion).to.equal(producto.descripcion)
+            expect(res.body.producto.codigo).to.equal(producto.codigo)
+            expect(res.body.producto.foto).to.equal(producto.foto)
+            expect(res.body.producto.stock).to.equal(producto.stock)
+            done();
+            });
+    });
+
+    it('Borrar un producto. DELETE /productos?codigo=1213444541', (done) => {
+        chai.request(url)
+        .delete('/productos')
+        .query({codigo:producto.codigo})
+        .set('Cookie',sid)
+        .end( async function(err,res){
+            await expect(res)
+            .to.have.status(200)
+            .to.be.json;
+            expect(res.body.productos.length).to.equal(cantidadDeProductos-1)
+            done();
+            });
+    });
 
 });
+
+    
 
 

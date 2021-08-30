@@ -46,23 +46,7 @@
                         <div id="datos"></div>
                     </div>
                 </div>
-                <div>
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" >Mensajes</a>
-                        <div>
-                            <ul id="listado-msjs">
-                           
-                            </ul>
-                        </div>
-                        
-                        <div id="env-msjs">
-                            <input id="email-nuevo-msj"  placeholder="Email">
-                            <input id="nuevo-msj"  placeholder="Nuevo mensaje">
-                            <button id="btn-msj" onclick="enviarMensaje()">Enviar</button>
-                        </div>
-                    </nav>
-                                      
-                </div>
+
             </div>                        
         </main>
     
@@ -109,22 +93,16 @@
                 {{/if}}
             `
             async function addProductCarrito(codigo) {
-                console.log(`el id es  es ${codigo}`);
                 const response = await fetch(`/carrito/agregar?codigo=${codigo}`);
                 let { productos } = await response.json();
-                console.log(`la respuesta es ${JSON.stringify(productos)}`);
             };
 
             async function cargarDatos() {
                 const response = await fetch('/productos/listar');
- //               console.log(`la respuesta es 34444444${JSON.stringify(response)}`)
                 let { productos, session } = await response.json();
-  //              console.log(`los productos son ${JSON.stringify(productos)}`)
-  //              console.log(`la sesion es ${JSON.stringify(session)}`)
                 const template = Handlebars.compile(getPlantilla());
                 let HTML = template({productos, session});
                 document.getElementById('datos').innerHTML = HTML;
-   //             console.log(`la sesion es ${JSON.stringify(session.user)}`)
                 let input = session.user;
                 document.getElementById('sessionn').innerHTML = input;
 

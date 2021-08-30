@@ -23,11 +23,9 @@ class Carrito {
         try {
             let productosCarrito = await model.find({username: username}, {productos:1, _id:0});
             let productosArray = [];
-            loggs.debug(`productoscarrito en carrito.js ${productosCarrito}`)
             if ( JSON.stringify(productosCarrito) != '[]' ) {
                 productosArray = productosCarrito[0].productos;
             }
-            loggs.debug(`Carrito.js ${JSON.stringify(productosArray)}`)
             return productosArray;
             
         } catch (error) {
@@ -47,7 +45,6 @@ class Carrito {
 
     async guardar(username, producto) {
         const productosCarrito = await this.leerProductos(username);
-        loggs.debug(`productosCarrito 11111 ${JSON.stringify(productosCarrito)}`)
         if (JSON.stringify(productosCarrito) != '[]') { 
             let productDuplicated = false
             for (let i in productosCarrito) {
@@ -55,6 +52,7 @@ class Carrito {
                     productDuplicated = true
                     const cantidadProductos = productosCarrito[i].cantidad;
                     productosCarrito[i].cantidad = cantidadProductos + 1;
+                    loggs.debug(`Se agrega una unidad del producto al carrito ya existente.`)
                     break;
                 }
             }
@@ -69,9 +67,9 @@ class Carrito {
                     id: producto.id
                 };
                 productosCarrito.push(productoAgregar);
+                loggs.debug(`Se agrega el producto al carrito ya existente: ${productoAgregar}`)
             }
             
-            loggs.debug(`productosCarrito 22222: ${JSON.stringify(productosCarrito)}`);
             try {
                 const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productosCarrito } });
             } catch (e) {
@@ -92,12 +90,11 @@ class Carrito {
                     id: producto.id
                 }]
             };
-
+            loggs.debug(`Se crea un nuevo carrito: ${nuevoCarrito}`)
             const carritoSaveModel = new model(nuevoCarrito);
             let carritoSave = await carritoSaveModel.save();
-            const array = [producto]
-            loggs.debug(`producto en carrito.js ${JSON.stringify(array)}, el tipo es ${typeof array }`)
-            return array; 
+
+            return nuevoCarrito.productos; 
         }
           
     
@@ -106,8 +103,6 @@ class Carrito {
     async borrar(username, codigo) {
 
         const productos = await this.leerProductos(username);
-        console.log(`productosss ${CircularJSON.stringify(productos)}`)
-        console.log(`codigo ${codigo}`)
         let positionProducto = "";
         let message = "";
         for (let producto in productos){ 
@@ -119,20 +114,26 @@ class Carrito {
         }
         if ( productos[positionProducto].cantidad != 1 ) {
             productos[positionProducto].cantidad -= 1 ;
-        } else { productos.splice(positionProducto,1) }
-        
+            loggs.debug(`El carrito contiene mas de un producto de este tipo. Se elimina una unidad.`)
+        } else { 
+            productos.splice(positionProducto,1) 
+            loggs.debug(`Se elimina el producto del carrito.`)
+        }
+  
         try {
-            const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productos } });
+            if (productos.length === 0) {
+                const productoSaveModel = await model.deleteOne({username: username});
+                loggs.debug(`El carrito esta vacio. Se elimina.`)
+            } else {
+                    const productoSaveModel = await model.updateOne({username: username},{$set : { productos : productos } });
+            }
         } catch (e) {
-            loggs.error('No se pudo agregar el elemento. ERROR: '+ e)
+            loggs.error('No se pudo borrar el elemento. ERROR: '+ e)
         }   
+        
         return { productos , message }
     }
 
 }
 
-//export default
 module.exports = Carrito
-
-//export mas de uno
-//exports.Productos = Productos

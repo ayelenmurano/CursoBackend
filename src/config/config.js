@@ -1,6 +1,7 @@
 const ini = require('ini');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config()
 
 //_____________LOGGS_____________//
 const log4js = require ('./logger/log4jsConfig.js');
@@ -28,18 +29,18 @@ let userTo = 'muranoayelen@gmail.com';
 
 
 //___________ARMADO DE PARAMETROS DE CONFIGURACION____________
-config.port = ( process.env.PORT || configInit.Parameters.port || port);
-config.cluster = ( configInit.Parameters.cluster || cluster);
+config.port = ( process.env.port || configInit.Parameters.port || port);
+config.cluster = ( process.env.cluster || configInit.Parameters.cluster || cluster);
 config.facebook = {
-    clientID : (configInit.Facebook.clientID || clientID),
-    clientSecret : (configInit.Facebook.clientSecret || clientSecret),
+    clientID : (process.env.clientID || configInit.Facebook.clientID || clientID),
+    clientSecret : (process.env.clientSecret || configInit.Facebook.clientSecret || clientSecret),
 }
-config.userFrom = ( configInit.Mail.userFrom || userFrom );
-config.passFrom = ( configInit.Mail.passFrom || passFrom );
-config.userTo = ( configInit.Mail.userTo || userTo );
-config.sId = configInit.Message.sId;
-config.authToken = configInit.Message.authToken;
-config.number = configInit.Message.number;
+config.userFrom = ( process.env.userFrom || configInit.Mail.userFrom || userFrom );
+config.passFrom = ( process.env.passFrom || configInit.Mail.passFrom || passFrom );
+config.userTo = ( process.env.userTo || configInit.Mail.userTo || userTo );
+config.sId = ( process.env.sId || configInit.Message.sId );
+config.authToken = ( process.env.authToken || configInit.Message.authToken) ;
+config.number = (process.env.number || configInit.Message.number) ;
 
 
 

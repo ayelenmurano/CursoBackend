@@ -24,15 +24,15 @@ module.exports = {
         const session = req.session;
         if ( !session) { res.redirect('/timeExpired') }        
         const productos = await carrito.leerProductos(session.user)
+        loggs.debug(`Se obtienen los productos provenientes al usuario ${session.user}.`)
         res.status(200).json({productos, session})
     },
-
+    
     listarById: (req, res) => {
         
         const session = req.session;
         if ( !session ) { res.redirect('/timeExpired') } 
         const productos = carrito.leerProductos(session.user)
-        loggs.debug(`El id recibido es ${req.params.codigo}`)
         res.status(200).json({productos, session})
     },
 
@@ -45,23 +45,25 @@ module.exports = {
            return res.status(400).send({Error: "No se encontro producto con dicho id"})
        }       
        const productos = await carrito.guardar(username, producto);
+       loggs.debug(`Se agrega un producto al carrito perteneciente al usuario: ${username}.`)
        res.status(200).json({productos})
     },
-
+    
     borrar: async (req, res) => {
         const username = req.session.user;
         if ( !username ) { res.redirect('/timeExpired') } 
         const codigo = req.query.codigo;
         const { productos , message } = await carrito.borrar(username, codigo);
+        loggs.debug(`Se borra una unidad del producto de codigo ${codigo} perteneciente al carrito del usuario: ${username}.`)
         if ( message !== '') {
             res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
         } else {
             res.status(200).json({productos})
         }  
     },
-
+    
     comprar: async (req, res) => {
-
+        
         const username = req.session.user;
         if ( !username ) { res.redirect('/timeExpired') } 
         const userData = await userFunctions.readByUsername(username);
@@ -78,10 +80,11 @@ module.exports = {
         });
         mail.sendMailBuy(user,productos,costoTotal);
         message.sendMessage(userData.phone,productos,costoTotal);
-
+        
         carrito.borrarCarrito(username);
         let mensaje = 'La compra fue realizada con exito'
-
+        loggs.debug(`Se finaliza la compra del usuario: ${username} y se eliminan los productos del carrito.`)
+        
         res.status(200).json({message: mensaje})
     }
 

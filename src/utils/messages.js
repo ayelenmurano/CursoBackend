@@ -5,7 +5,6 @@ const loggs = log4js.getLogger('utils');
 
 
 const client = require('twilio')(config.sId, config.authToken);
-loggs.info(`el config.sId es ${config.sId}.el config.authToken es ${config.authToken}`);
 
 const sendMessage = (phone,productos,costoTotal) => {
     if ( phone != '^(+54)') { phone = `+54${phone}` }

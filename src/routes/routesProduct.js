@@ -6,8 +6,6 @@ routerProduct.get('/', controllers.getData )
 
 routerProduct.get("/listar", controllers.getDataJSON )
 
-routerProduct.get('/vista-test', controllers.vistaTest )
-
 routerProduct.get('/agregarProductos',  controllers.agregarProducto )
 
 routerProduct.post('/guardar', controllers.guardarProducto )

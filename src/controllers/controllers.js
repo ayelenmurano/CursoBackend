@@ -18,6 +18,7 @@ module.exports = {
     getDataJSON: async (req, res) => {
         const productos = await product.leer()
         if ( !req.query.codigo ) {
+            loggs.debug(`Se obtienen los productos disponibles: ${productos}`)
             const session = req.session;
             if ( JSON.stringify(productos) === '[]'){     
                 res.json ({message:'no hay productos cargados'})
@@ -25,9 +26,8 @@ module.exports = {
                 res.status(200).json({productos, session})
                }   
         } else {
-            loggs.debug(`el codigo es ${req.params.codigo}`)
             const producto = await product.buscarPorCodigo(req.query.codigo)
-
+            loggs.debug(`Se obtiene el producto de codigo: ${req.params.codigo}. El producto es ${producto}`)
             if ( !producto ){
                 res.json ({error:'producto no encontrado'})
             } else {
@@ -35,21 +35,6 @@ module.exports = {
             }
         }
   
-    },
-
-    vistaTest: (req, res) => {
-        let cantidad = 10
-        if (req.query.cant !== undefined) {
-            cantidad = req.query.cant
-        }
-        const productos = generadorProductos(cantidad)
-        res.render("pages/index.ejs", {productos})
-    },
-    
-    consultar: async (req, res) => {
-        const productos = await product.leer()
-        const session = req.session;
-        res.render("pages/index.ejs", {productos, session})
     },
 
     agregarProducto: async (req, res) => {
@@ -66,8 +51,8 @@ module.exports = {
     listarById: async (req,res) => {
 
         const productos = await product.leer()
-        loggs.debug('request recibido')
         const producto = await product.buscarPorId(req.params.id)
+        loggs.debug(`Se obtiene el producto de id: ${req.params.id}. El producto es ${producto}`)
     
         if ( !producto ){
             res.json ({error:'producto no encontrado'})
@@ -80,19 +65,19 @@ module.exports = {
     
         const producto = req.body;
         const { productos, message } = await product.guardar(producto);
-        const session = req.session;
+        loggs.debug(`Se guarda un nuevo producto: ${producto}.`)
         if ( message == undefined ) {
-        res.status(200).json( { productos } )
+            res.status(200).json( { productos } )
         } else {
             res.status(200).json( { message } )  
         }
-
+        
     },
-
-
+    
     actualizar: async (req, res)=>{
         let producto = req.body;
         const response = await product.actualizar(producto);
+        loggs.debug(`Se actualiza el producto indicado: ${producto}.`)
         if (response.nModified == 0) {
             res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
         } else {
@@ -100,9 +85,10 @@ module.exports = {
             res.status(200).json({productos})
         }    
     },
-
+    
     borrar: async (req, res)=>{
         const response = await product.borrar(req.query.codigo)
+        loggs.debug(`Se borra el producto de codigo ${req.query.codigo}.`)
         if (response.deletedCount == 0) {
             res.status(200).json({message: 'El codigo no pertenece a ningún producto existente'})
         } else {

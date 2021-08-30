@@ -132,6 +132,16 @@ class Carrito {
         }   
         
         return { productos , message }
+    };
+
+
+    async borrarCarrito(username) {
+        try {
+                const productoSaveModel = await model.deleteOne({username: username});
+        } catch (e) {
+            loggs.error('No se pudo borrar el carrito. ERROR: '+ e)
+        }   
+        return ''
     }
 
 }

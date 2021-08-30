@@ -51,42 +51,54 @@
         <script>
 
             const getPlantilla = () => `
-                {{#if productos.length}} 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Nombre</td>
-                            <td>Descripción</td>
-                            <td>Código</td>
-                            <td>Foto</td>
-                            <td>Precio</td>
-                            <td>Cantidad</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                            {{#each productos}}
-                                <tr> 
-                                    <td>{{this.nombre}}</td> 
-                                    <td>{{this.descripcion}}</td> 
-                                    <td>{{this.codigo}}</td> 
-                                    <td><img src={{this.foto}} width="50" height="50"></td> 
-                                    <td>{{this.precio}}</td> 
-                                    <td>{{this.cantidad}}</td> 
-                                    <td> <button type="button" onclick="addProductCarrito('{{this.codigo}}')" class="btn btn-primary">Agregar</button> </td>
-                                </tr>
-                            {{/each}}
-                    </tbody>
-                </table>
-                <td> <a href='/carrito/comprar' class="btn btn-primary">Comprar</a> </td>
-                {{else}}  
-                <tr> <td>No se encontraron productos</td> </tr>
-                {{/if}}
+            {{#if message}} 
+            <tr> <td>{{message}}</td> </tr>
+            {{else}} 
+                    {{#if productos.length}} 
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Descripción</td>
+                                <td>Código</td>
+                                <td>Foto</td>
+                                <td>Precio</td>
+                                <td>Cantidad</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {{#each productos}}
+                                    <tr> 
+                                        <td>{{this.nombre}}</td> 
+                                        <td>{{this.descripcion}}</td> 
+                                        <td>{{this.codigo}}</td> 
+                                        <td><img src={{this.foto}} width="50" height="50"></td> 
+                                        <td>{{this.precio}}</td> 
+                                        <td>{{this.cantidad}}</td> 
+                                        <td> <button type="button" onclick="addProductCarrito('{{this.codigo}}')" class="btn btn-primary">Agregar</button> </td>
+                                    </tr>
+                                {{/each}}
+                        </tbody>
+                    </table>
+                    <td> <a onclick="BuyCarrito()" class="btn btn-primary">Comprar</a> </td>
+                    {{else}}  
+                    <tr> <td>No se encontraron productos</td> </tr>
+                    {{/if}}
+            {{/if}}
             `
             async function addProductCarrito(codigo) {
                 const response = await fetch(`/carrito/agregar?codigo=${codigo}`);
                 let { productos } = await response.json();
                 const template = Handlebars.compile(getPlantilla());
                 let HTML = template({productos});
+                document.getElementById('datos').innerHTML = HTML;
+            };
+
+            async function BuyCarrito() {
+                const response = await fetch(`/carrito/comprar`);
+                let { message } = await response.json();
+                const template = Handlebars.compile(getPlantilla());
+                let HTML = template({message});
                 document.getElementById('datos').innerHTML = HTML;
             };
 

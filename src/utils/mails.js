@@ -80,6 +80,10 @@ const sendMail = (info) => {
 
 const sendMailBuy = (user, productos, costoTotal) => {
     const options = mailOptionsBuy(user, productos, costoTotal);
+    loggs.info("Optionss: "+options.from);
+    loggs.info("Optionss: "+options.to);
+    loggs.info("Optionss: "+options.subject);
+    loggs.info("Optionss: "+options.html);
     transporter.sendMail(options, (err, response) => {
         if(err) {
             loggs.error("Error en el envio de mail: ", err);

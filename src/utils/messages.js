@@ -5,6 +5,7 @@ const loggs = log4js.getLogger('utils');
 
 
 const client = require('twilio')(config.sId, config.authToken);
+loggs.info(`el config.sId es ${config.sId}.el config.authToken es ${config.authToken}`);
 
 const sendMessage = (phone,productos,costoTotal) => {
     if ( phone != '^(+54)') { phone = `+54${phone}` }
@@ -20,12 +21,13 @@ const sendMessage = (phone,productos,costoTotal) => {
     `
     });
     body += `COSTO TOTAL: ${costoTotal}`;
+    loggs.info(`el body es ${body}`);
     client.messages.create({
         body: body,
         from: config.number,
         to: phone
     }).then( message => {
-        loggs.debug(`La cuenta id es ${message.accountSid}`);
+        loggs.info(`La cuenta id es ${message.accountSid}`);
     }).catch( (err) => {
         loggs.error("error: ", err);
     })

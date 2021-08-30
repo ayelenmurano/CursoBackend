@@ -23,7 +23,6 @@ module.exports = {
     listar: async (req, res) => {
         const session = req.session;
         if ( !session) { res.redirect('/timeExpired') }        
-        loggs.info(`session: ${session}`)
         const productos = await carrito.leerProductos(session.user)
         res.status(200).json({productos, session})
     },
@@ -63,9 +62,10 @@ module.exports = {
 
     comprar: async (req, res) => {
 
-        const username = req.session.passport.user;
+        const username = req.session.user;
         if ( !username ) { res.redirect('/timeExpired') } 
         const userData = await userFunctions.readByUsername(username);
+        loggs.info(`el userData es ${userData}`);
         const user = {
             username: username,
             mail: userData.email
@@ -79,7 +79,10 @@ module.exports = {
         mail.sendMailBuy(user,productos,costoTotal);
         message.sendMessage(userData.phone,productos,costoTotal);
 
-        res.render("pages/indexCarrito.ejs", {productos, username})
+        carrito.borrarCarrito(username);
+        let mensaje = 'La compra fue realizada con exito'
+
+        res.status(200).json({message: mensaje})
     }
 
 }

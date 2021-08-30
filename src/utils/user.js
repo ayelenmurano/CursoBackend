@@ -7,7 +7,7 @@ const readByUsername = (username) => {
 
     try {
         let user = model.findOne({username: username});
-        loggs.debug(`user.js ${user}`);
+        loggs.info(`El usuario es  ${user}`);
         return user 
     } catch (error) {   
         loggs.error(`Se produjo un error al buscar el usuario con username ${username}. Error: ${error}`)
